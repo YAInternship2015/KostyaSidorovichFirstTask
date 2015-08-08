@@ -1,6 +1,6 @@
 //
-//  CustomIOS7AlertView.m
-//  CustomIOS7AlertView
+//  WODCustomIOS7AlertView.m
+//  WODCustomIOS7AlertView
 //
 //  Created by Richard on 20/09/2013.
 //  Copyright (c) 2013 Wimagguc.
@@ -9,15 +9,15 @@
 //  http://opensource.org/licenses/MIT
 //
 
-#import "CustomIOS7AlertView.h"
+#import "WODCustomIOS7AlertView.h"
 #import <QuartzCore/QuartzCore.h>
 
-const static CGFloat kCustomIOS7AlertViewDefaultButtonHeight       = 50;
-const static CGFloat kCustomIOS7AlertViewDefaultButtonSpacerHeight = 1;
-const static CGFloat kCustomIOS7AlertViewCornerRadius              = 7;
+const static CGFloat kWODCustomIOS7AlertViewDefaultButtonHeight       = 50;
+const static CGFloat kWODCustomIOS7AlertViewDefaultButtonSpacerHeight = 1;
+const static CGFloat kWODCustomIOS7AlertViewCornerRadius              = 7;
 const static CGFloat kCustomIOS7MotionEffectExtent                 = 10.0;
 
-@implementation CustomIOS7AlertView
+@implementation WODCustomIOS7AlertView
 
 CGFloat buttonHeight = 0;
 CGFloat buttonSpacerHeight = 0;
@@ -130,7 +130,7 @@ CGFloat buttonSpacerHeight = 0;
 }
 
 // Default button behaviour
-- (void)customIOS7dialogButtonTouchUpInside: (CustomIOS7AlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)customIOS7dialogButtonTouchUpInside: (WODCustomIOS7AlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"Button Clicked! %d, %d", (int)buttonIndex, (int)[alertView tag]);
     [self close];
@@ -192,7 +192,7 @@ CGFloat buttonSpacerHeight = 0;
                        (id)[[UIColor colorWithRed:218.0/255.0 green:218.0/255.0 blue:218.0/255.0 alpha:1.0f] CGColor],
                        nil];
 
-    CGFloat cornerRadius = kCustomIOS7AlertViewCornerRadius;
+    CGFloat cornerRadius = kWODCustomIOS7AlertViewCornerRadius;
     gradient.cornerRadius = cornerRadius;
     [dialogContainer.layer insertSublayer:gradient atIndex:0];
 
@@ -240,7 +240,7 @@ CGFloat buttonSpacerHeight = 0;
         [closeButton setTitleColor:[UIColor colorWithRed:0.0f green:0.5f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
         [closeButton setTitleColor:[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:0.5f] forState:UIControlStateHighlighted];
         [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
-        [closeButton.layer setCornerRadius:kCustomIOS7AlertViewCornerRadius];
+        [closeButton.layer setCornerRadius:kWODCustomIOS7AlertViewCornerRadius];
 
         [container addSubview:closeButton];
     }
@@ -259,8 +259,8 @@ CGFloat buttonSpacerHeight = 0;
 - (CGSize)countScreenSize
 {
     if (buttonTitles!=NULL && [buttonTitles count] > 0) {
-        buttonHeight       = kCustomIOS7AlertViewDefaultButtonHeight;
-        buttonSpacerHeight = kCustomIOS7AlertViewDefaultButtonSpacerHeight;
+        buttonHeight       = kWODCustomIOS7AlertViewDefaultButtonHeight;
+        buttonSpacerHeight = kWODCustomIOS7AlertViewDefaultButtonSpacerHeight;
     } else {
         buttonHeight = 0;
         buttonSpacerHeight = 0;

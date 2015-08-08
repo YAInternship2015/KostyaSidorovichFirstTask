@@ -7,9 +7,9 @@
         <!--Table View Controller-->
         <scene sceneID="gZd-Ke-mxE">
             <objects>
-                <tableViewController id="EhH-TI-aO7" customClass="TableViewController" sceneMemberID="viewController">
+                <tableViewController id="EhH-TI-aO7" customClass="WODTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="L8f-9z-UB8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -25,7 +25,6 @@
                             <outlet property="delegate" destination="EhH-TI-aO7" id="cox-7C-APV"/>
                         </connections>
                     </tableView>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="day-eP-TEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

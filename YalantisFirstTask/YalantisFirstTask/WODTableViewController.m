@@ -1,30 +1,26 @@
 //
-//  TableViewController.m
+//  WODTableViewController.m
 //  YalantisFirstTask
 //
 //  Created by Woddi on 01.08.15.
 //  Copyright (c) 2015 Woddi. All rights reserved.
 //
 
-#import "TableViewController.h"
-#import "CustomCell.h"
+#import "WODTableViewController.h"
+#import "WODCustomCell.h"
+#import "WODDatabase.h"
+@interface WODTableViewController (){
+    WODDatabase *wODDB;
 
-@interface TableViewController (){
-    
-    NSArray *myArray;
 }
-
 
 @end
 
-@implementation TableViewController
+@implementation WODTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    myArray = [NSArray arrayWithObjects:@"а",@"б",@"в",@"г",@"д",@"е",@"ж",@"з",@"и",@"й", nil];
-
+    wODDB = [WODDatabase new];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -34,24 +30,26 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     static NSString *CellIdentifier = @"CustomCell";
-    CustomCell* cell = (CustomCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    WODCustomCell* cell = (WODCustomCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         NSArray* nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCell" owner:self options:nil];
         
         for (id oneObject in nib) {
-            if ([oneObject isKindOfClass:[CustomCell class]])
-                cell = (CustomCell *) oneObject;
+            if ([oneObject isKindOfClass:[WODCustomCell class]])
+                cell = (WODCustomCell *) oneObject;
         }
     }
-    cell.name.text = [myArray objectAtIndex:indexPath.row];
-    cell.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"природа %li.jpeg",(long)indexPath.row]];
+    
+    cell.name.text = [wODDB.pictureName objectAtIndex:indexPath.row];
+    cell.image.image = [wODDB.myPicture objectAtIndex:indexPath.row];
     
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return myArray.count;
+    
+    return wODDB.myPicture.count;
 }
 
 

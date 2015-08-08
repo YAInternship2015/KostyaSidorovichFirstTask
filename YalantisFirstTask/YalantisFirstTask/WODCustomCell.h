@@ -1,5 +1,5 @@
 //
-//  CustomCell.h
+//  WODCustomCell.h
 //  YalantisFirstTask
 //
 //  Created by Woddi on 02.08.15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomCell : UITableViewCell <UIAlertViewDelegate,UIApplicationDelegate>
+@interface WODCustomCell : UITableViewCell <UIAlertViewDelegate,UIApplicationDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UIImageView *image;
 - (IBAction)toBuy:(id)sender;

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  WODTableViewController.h
 //  YalantisFirstTask
 //
 //  Created by Woddi on 01.08.15.
@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface WODTableViewController : UITableViewController
 
 
 @end

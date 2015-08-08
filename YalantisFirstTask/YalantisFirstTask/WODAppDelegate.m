@@ -1,18 +1,18 @@
 //
-//  AppDelegate.m
+//  WODAppDelegate.m
 //  YalantisFirstTask
 //
 //  Created by Woddi on 01.08.15.
 //  Copyright (c) 2015 Woddi. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "WODAppDelegate.h"
 
-@interface AppDelegate ()
+@interface WODAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation WODAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
