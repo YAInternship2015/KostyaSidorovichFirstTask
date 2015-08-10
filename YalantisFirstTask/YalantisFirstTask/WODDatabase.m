@@ -11,6 +11,7 @@
 
 @implementation WODDatabase
 
+#warning поработая с форматированием кода, ссылка на гайдлайны есть в гугл группе в замечаниях
 -(NSArray *)myPicture{
     
     NSMutableArray *pictureArray = [NSMutableArray new];

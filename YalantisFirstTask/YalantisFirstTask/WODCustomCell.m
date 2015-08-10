@@ -10,14 +10,17 @@
 #import "WODCustomIOS7AlertView.h"
 
 @implementation WODCustomCell
+#warning @synthesize для простых свойств писать не нужно с Xcode 5
 @synthesize image;
 @synthesize name;
 
+#warning по сути пустой метод, его нужно удалить
 - (void) setSelected:(BOOL) selected animated: (BOOL) animated {
     
     [super setSelected:selected animated:animated];
 }
 
+#warning не очень осмысленное название метода, не заходя в реализацию неясно, что в нем происходит
 - (IBAction)toBuy:(id)sender {
     
     WODCustomIOS7AlertView *alertView = [[WODCustomIOS7AlertView alloc] init];
@@ -36,11 +39,13 @@
     // And launch the dialog
     [alertView show];
 }
+#warning по сути пустой метод, его нужно удалить
 - (void)customIOS7dialogButtonTouchUpInside: (WODCustomIOS7AlertView *)alertView clickedButtonAtIndex: (NSInteger)buttonIndex
 {
     NSLog(@"Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[alertView tag]);
 }
 
+#warning проблемы с форматированием кода
 - (UIView *)createDemoView
 {
     UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
