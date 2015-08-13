@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#warning переместите ваш .gitignore в корневую папку репозитория
+#warning Хочу заметить, что неплохо было бы соблюдать структуру проекта, то есть контроллеры должны находиться в папке Controllers, ячейки - в папке Views -> Cells, модели - в Models и т.д. Картинки должны находиться в папке Resources
 
 @interface WODAppDelegate : UIResponder <UIApplicationDelegate>
 

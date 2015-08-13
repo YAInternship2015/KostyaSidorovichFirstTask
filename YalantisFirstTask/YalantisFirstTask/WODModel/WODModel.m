@@ -11,8 +11,9 @@
 @implementation WODModel
 
 - (id)initWithString:(NSString *)name imageSignature:(NSString *)signature {
-    
+#warning здесь не нужна пустая строка
     self = [super init];
+#warning где проверка if (self) ?
     _picturesName = signature;
     _myPikture = [UIImage imageNamed:name];
     return self;

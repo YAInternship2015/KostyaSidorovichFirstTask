@@ -11,6 +11,7 @@
 #import "WODModel.h"
 @interface WODCustomCell ()
 
+#warning айтлеты принято помечать как weak, так как ими владеет, в данном случае, сама ячейка. Пока ячейки жива, аутлеты тоже живы. Как только ячейка становится nil, все ее аутлеты также становятся nil
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UIImageView *image;
 
@@ -19,13 +20,13 @@
 @implementation WODCustomCell
 
 - (void)setupWithModel:(WODModel *)wModel {
-    
+#warning здесь не нужна пустая строка
     self.image.image = wModel.myPikture;
     self.name.text = wModel.picturesName;
 }
 
 - (IBAction)showAlertWhenPressed:(id)sender {
-    
+#warning здесь не нужна пустая строка
     WODCustomIOS7AlertView *alertView = [[WODCustomIOS7AlertView alloc] init];
     
     // Add some custom content to the alert view

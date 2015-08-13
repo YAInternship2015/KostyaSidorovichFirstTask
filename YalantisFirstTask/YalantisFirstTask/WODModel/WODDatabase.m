@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 @interface WODDatabase ()
 
+#warning нужно писать (nonatomic, stromg)
 @property NSMutableArray *itemArray;
 
 @end
@@ -17,9 +18,9 @@
 @implementation WODDatabase
 
 - (id)init {
-    
+#warning self = [super init];
     self=[super init];
-    
+#warning где проверка if (self) ?
     [self pictureSignature];
 
     self.itemArray = [NSMutableArray new];
