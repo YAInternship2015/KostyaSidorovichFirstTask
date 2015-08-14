@@ -9,53 +9,37 @@
 #import "WODTableViewController.h"
 #import "WODCustomCell.h"
 #import "WODDatabase.h"
-@interface WODTableViewController (){
-    WODDatabase *wODDB;
+@interface WODTableViewController ()
 
-}
-
+@property WODDatabase *wODDB;
+    
 @end
 
 @implementation WODTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    wODDB = [WODDatabase new];
+    
+    self.tableView.rowHeight = 80;
+    self.wODDB = [WODDatabase new];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
-}
+- (WODCustomCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    static NSString *CellIdentifier = @"CustomCell";
-    WODCustomCell* cell = (WODCustomCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"WODCustomCell";
     
-    if (cell == nil) {
-        NSArray* nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCell" owner:self options:nil];
-        
-        for (id oneObject in nib) {
-            if ([oneObject isKindOfClass:[WODCustomCell class]])
-                cell = (WODCustomCell *) oneObject;
-        }
-    }
+    [self.tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil]
+         forCellReuseIdentifier:CellIdentifier];
     
-    cell.name.text = [wODDB.pictureName objectAtIndex:indexPath.row];
-    cell.image.image = [wODDB.myPicture objectAtIndex:indexPath.row];
-    
+    WODCustomCell* cell = (WODCustomCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                                            forIndexPath:indexPath];
+    [cell setupWithModel:[self.wODDB dataForCellsWhithIndex:indexPath.row]];
     return cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return wODDB.myPicture.count;
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return self.wODDB.objectsCount;
 }
 
 @end

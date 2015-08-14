@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WODModel.h"
 
-@interface WODDatabase : NSObject
+@interface WODDatabase : WODModel
 
-@property (nonatomic, retain) NSArray *myPicture;
-@property (nonatomic, retain) NSArray *pictureName;
+@property (readonly) NSInteger objectsCount;
 
+- (WODModel *)dataForCellsWhithIndex:(NSInteger)index;
 
 @end
