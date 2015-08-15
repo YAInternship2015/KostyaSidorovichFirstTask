@@ -102,8 +102,7 @@
 				DA0B10C11B7BA22D0015749E /* WODModel.h */,
 				DA0B10C21B7BA22D0015749E /* WODModel.m */,
 			);
-			name = Model;
-			path = WODModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DAA205341B7E2FA7001F0876 /* View */ = {
@@ -115,8 +114,7 @@
 				DAF5377D1B6CD60C00AE1857 /* Images.xcassets */,
 				DAF5377F1B6CD60C00AE1857 /* LaunchScreen.xib */,
 			);
-			name = View;
-			path = WODView;
+			path = View;
 			sourceTree = "<group>";
 		};
 		DAA205381B7E3042001F0876 /* Cells */ = {
