@@ -11,10 +11,11 @@
 @implementation WODModel
 
 - (id)initWithString:(NSString *)name imageSignature:(NSString *)signature {
-    
     self = [super init];
+    if (self){
     _picturesName = signature;
     _myPikture = [UIImage imageNamed:name];
+    }
     return self;
 }
 

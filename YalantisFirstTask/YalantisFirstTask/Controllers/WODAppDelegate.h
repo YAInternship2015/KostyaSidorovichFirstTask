@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#warning переместите ваш .gitignore в корневую папку репозитория
-
 @interface WODAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

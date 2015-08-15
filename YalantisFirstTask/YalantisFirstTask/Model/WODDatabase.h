@@ -11,8 +11,8 @@
 
 @interface WODDatabase : WODModel
 
-@property (readonly) NSInteger objectsCount;
+- (NSInteger)objectsCount;
 
-- (WODModel *)dataForCellsWhithIndex:(NSInteger)index;
+- (WODModel *)modelAtIndex:(NSInteger)index;
 
 @end

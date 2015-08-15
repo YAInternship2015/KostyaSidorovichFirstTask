@@ -10,32 +10,33 @@
 #import <UIKit/UIKit.h>
 @interface WODDatabase ()
 
-@property NSMutableArray *itemArray;
+@property (nonatomic, strong) NSMutableArray *itemArray;
 
 @end
 
 @implementation WODDatabase
 
 - (id)init {
-    
-    self=[super init];
-    
-    [self pictureSignature];
-
-    self.itemArray = [NSMutableArray new];
-    
-    for (int a = 0; a < [self pictureSignature].count; a++) {
-        [self.itemArray addObject:[[WODModel alloc] initWithString:[NSString stringWithFormat:@"природа %i.jpeg",a]
-                                                    imageSignature:[[self pictureSignature] objectAtIndex:a]]];
+    self = [super init];
+    if (self){
+        [self pictureSignature];
+        
+        self.itemArray = [NSMutableArray new];
+        
+        for (int a = 0; a < [self pictureSignature].count; a++) {
+            [self.itemArray addObject:[[WODModel alloc] initWithString:[NSString stringWithFormat:@"природа %i.jpeg",a]
+                                                        imageSignature:[[self pictureSignature] objectAtIndex:a]]];
+        }
     }
-    _objectsCount = self.itemArray.count;
-    
     return self;
 }
 
-- (WODModel *)dataForCellsWhithIndex:(NSInteger)index{
-    
+- (WODModel *)modelAtIndex:(NSInteger)index{
     return [self.itemArray objectAtIndex:index];
+}
+
+- (NSInteger)objectsCount{
+    return self.itemArray.count;
 }
 
 - (NSArray *)pictureSignature {

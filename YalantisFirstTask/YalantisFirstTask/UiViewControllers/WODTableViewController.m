@@ -9,9 +9,12 @@
 #import "WODTableViewController.h"
 #import "WODCustomCell.h"
 #import "WODDatabase.h"
+
+static NSString *kCellIdentifier = @"WODCustomCell";
+
 @interface WODTableViewController ()
 
-@property WODDatabase *wODDB;
+@property (nonatomic, strong) WODDatabase *wODDB;
     
 @end
 
@@ -22,23 +25,19 @@
     
     self.tableView.rowHeight = 80;
     self.wODDB = [WODDatabase new];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:kCellIdentifier bundle:nil]
+         forCellReuseIdentifier:kCellIdentifier];
 }
 
 - (WODCustomCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    static NSString *CellIdentifier = @"WODCustomCell";
-    
-    [self.tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil]
-         forCellReuseIdentifier:CellIdentifier];
-    
-    WODCustomCell* cell = (WODCustomCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+    WODCustomCell* cell =[tableView dequeueReusableCellWithIdentifier:kCellIdentifier
                                                                             forIndexPath:indexPath];
-    [cell setupWithModel:[self.wODDB dataForCellsWhithIndex:indexPath.row]];
+    [cell setupWithModel:[self.wODDB modelAtIndex:indexPath.row]];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.wODDB.objectsCount;
 }
 

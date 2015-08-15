@@ -11,21 +11,19 @@
 #import "WODModel.h"
 @interface WODCustomCell ()
 
-@property (strong, nonatomic) IBOutlet UILabel *name;
-@property (strong, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
 
 @end
 
 @implementation WODCustomCell
 
 - (void)setupWithModel:(WODModel *)wModel {
-    
     self.image.image = wModel.myPikture;
     self.name.text = wModel.picturesName;
 }
 
 - (IBAction)showAlertWhenPressed:(id)sender {
-    
     WODCustomIOS7AlertView *alertView = [[WODCustomIOS7AlertView alloc] init];
     
     // Add some custom content to the alert view
@@ -45,7 +43,6 @@
 
 
 - (UIView *)createDemoView {
-    
     UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 270, 180)];
     
