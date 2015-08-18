@@ -13,21 +13,21 @@
 		DAA205481B7E32AE001F0876 /* WODAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA205451B7E32AE001F0876 /* WODAppDelegate.m */; };
 		DAA205491B7E32AE001F0876 /* WODCustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA205471B7E32AE001F0876 /* WODCustomIOS7AlertView.m */; };
 		DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2054C1B7E3309001F0876 /* WODTableViewController.m */; };
+		DAA205601B834D9E001F0876 /* природа 0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA205561B834D9E001F0876 /* природа 0.jpeg */; };
+		DAA205611B834D9E001F0876 /* природа 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA205571B834D9E001F0876 /* природа 1.jpeg */; };
+		DAA205621B834D9E001F0876 /* природа 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA205581B834D9E001F0876 /* природа 2.jpeg */; };
+		DAA205631B834D9E001F0876 /* природа 3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA205591B834D9E001F0876 /* природа 3.jpeg */; };
+		DAA205641B834D9E001F0876 /* природа 4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055A1B834D9E001F0876 /* природа 4.jpeg */; };
+		DAA205651B834D9E001F0876 /* природа 5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055B1B834D9E001F0876 /* природа 5.jpeg */; };
+		DAA205661B834D9E001F0876 /* природа 6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055C1B834D9E001F0876 /* природа 6.jpeg */; };
+		DAA205671B834D9E001F0876 /* природа 7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055D1B834D9E001F0876 /* природа 7.jpeg */; };
+		DAA205681B834D9E001F0876 /* природа 8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055E1B834D9E001F0876 /* природа 8.jpeg */; };
+		DAA205691B834D9E001F0876 /* природа 9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055F1B834D9E001F0876 /* природа 9.jpeg */; };
 		DAF537731B6CD60C00AE1857 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF537721B6CD60C00AE1857 /* main.m */; };
 		DAF5377C1B6CD60C00AE1857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377A1B6CD60C00AE1857 /* Main.storyboard */; };
 		DAF5377E1B6CD60C00AE1857 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377D1B6CD60C00AE1857 /* Images.xcassets */; };
 		DAF537811B6CD60C00AE1857 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377F1B6CD60C00AE1857 /* LaunchScreen.xib */; };
 		DAF5378D1B6CD60C00AE1857 /* YalantisFirstTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5378C1B6CD60C00AE1857 /* YalantisFirstTaskTests.m */; };
-		DAF537A11B6CE42200AE1857 /* природа 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF537971B6CE42200AE1857 /* природа 1.jpeg */; };
-		DAF537A21B6CE42200AE1857 /* природа 0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF537981B6CE42200AE1857 /* природа 0.jpeg */; };
-		DAF537A31B6CE42200AE1857 /* природа 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF537991B6CE42200AE1857 /* природа 2.jpeg */; };
-		DAF537A41B6CE42200AE1857 /* природа 3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF5379A1B6CE42200AE1857 /* природа 3.jpeg */; };
-		DAF537A51B6CE42200AE1857 /* природа 4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF5379B1B6CE42200AE1857 /* природа 4.jpeg */; };
-		DAF537A61B6CE42200AE1857 /* природа 5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF5379C1B6CE42200AE1857 /* природа 5.jpeg */; };
-		DAF537A71B6CE42200AE1857 /* природа 6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF5379D1B6CE42200AE1857 /* природа 6.jpeg */; };
-		DAF537A81B6CE42200AE1857 /* природа 7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF5379E1B6CE42200AE1857 /* природа 7.jpeg */; };
-		DAF537A91B6CE42200AE1857 /* природа 8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF5379F1B6CE42200AE1857 /* природа 8.jpeg */; };
-		DAF537AA1B6CE42200AE1857 /* природа 9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAF537A01B6CE42200AE1857 /* природа 9.jpeg */; };
 		DAF537B21B6D6BF100AE1857 /* WODCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF537B01B6D6BF100AE1857 /* WODCustomCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +54,16 @@
 		DAA205471B7E32AE001F0876 /* WODCustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODCustomIOS7AlertView.m; sourceTree = "<group>"; };
 		DAA2054B1B7E3309001F0876 /* WODTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODTableViewController.h; sourceTree = "<group>"; };
 		DAA2054C1B7E3309001F0876 /* WODTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODTableViewController.m; sourceTree = "<group>"; };
+		DAA205561B834D9E001F0876 /* природа 0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 0.jpeg"; sourceTree = "<group>"; };
+		DAA205571B834D9E001F0876 /* природа 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 1.jpeg"; sourceTree = "<group>"; };
+		DAA205581B834D9E001F0876 /* природа 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 2.jpeg"; sourceTree = "<group>"; };
+		DAA205591B834D9E001F0876 /* природа 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 3.jpeg"; sourceTree = "<group>"; };
+		DAA2055A1B834D9E001F0876 /* природа 4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 4.jpeg"; sourceTree = "<group>"; };
+		DAA2055B1B834D9E001F0876 /* природа 5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 5.jpeg"; sourceTree = "<group>"; };
+		DAA2055C1B834D9E001F0876 /* природа 6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 6.jpeg"; sourceTree = "<group>"; };
+		DAA2055D1B834D9E001F0876 /* природа 7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 7.jpeg"; sourceTree = "<group>"; };
+		DAA2055E1B834D9E001F0876 /* природа 8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 8.jpeg"; sourceTree = "<group>"; };
+		DAA2055F1B834D9E001F0876 /* природа 9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 9.jpeg"; sourceTree = "<group>"; };
 		DAF5376D1B6CD60C00AE1857 /* YalantisFirstTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YalantisFirstTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF537711B6CD60C00AE1857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAF537721B6CD60C00AE1857 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,16 +73,6 @@
 		DAF537861B6CD60C00AE1857 /* YalantisFirstTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YalantisFirstTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF5378B1B6CD60C00AE1857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAF5378C1B6CD60C00AE1857 /* YalantisFirstTaskTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YalantisFirstTaskTests.m; sourceTree = "<group>"; };
-		DAF537971B6CE42200AE1857 /* природа 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 1.jpeg"; sourceTree = "<group>"; };
-		DAF537981B6CE42200AE1857 /* природа 0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 0.jpeg"; sourceTree = "<group>"; };
-		DAF537991B6CE42200AE1857 /* природа 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 2.jpeg"; sourceTree = "<group>"; };
-		DAF5379A1B6CE42200AE1857 /* природа 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 3.jpeg"; sourceTree = "<group>"; };
-		DAF5379B1B6CE42200AE1857 /* природа 4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 4.jpeg"; sourceTree = "<group>"; };
-		DAF5379C1B6CE42200AE1857 /* природа 5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 5.jpeg"; sourceTree = "<group>"; };
-		DAF5379D1B6CE42200AE1857 /* природа 6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 6.jpeg"; sourceTree = "<group>"; };
-		DAF5379E1B6CE42200AE1857 /* природа 7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 7.jpeg"; sourceTree = "<group>"; };
-		DAF5379F1B6CE42200AE1857 /* природа 8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 8.jpeg"; sourceTree = "<group>"; };
-		DAF537A01B6CE42200AE1857 /* природа 9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 9.jpeg"; sourceTree = "<group>"; };
 		DAF537B01B6D6BF100AE1857 /* WODCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WODCustomCell.xib; path = ../View/WODCustomCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +146,31 @@
 			path = UiViewControllers;
 			sourceTree = "<group>";
 		};
+		DAA205541B834D9E001F0876 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DAA205551B834D9E001F0876 /* images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DAA205551B834D9E001F0876 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DAA205561B834D9E001F0876 /* природа 0.jpeg */,
+				DAA205571B834D9E001F0876 /* природа 1.jpeg */,
+				DAA205581B834D9E001F0876 /* природа 2.jpeg */,
+				DAA205591B834D9E001F0876 /* природа 3.jpeg */,
+				DAA2055A1B834D9E001F0876 /* природа 4.jpeg */,
+				DAA2055B1B834D9E001F0876 /* природа 5.jpeg */,
+				DAA2055C1B834D9E001F0876 /* природа 6.jpeg */,
+				DAA2055D1B834D9E001F0876 /* природа 7.jpeg */,
+				DAA2055E1B834D9E001F0876 /* природа 8.jpeg */,
+				DAA2055F1B834D9E001F0876 /* природа 9.jpeg */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		DAF537641B6CD60C00AE1857 = {
 			isa = PBXGroup;
 			children = (
@@ -167,11 +192,11 @@
 		DAF5376F1B6CD60C00AE1857 /* YalantisFirstTask */ = {
 			isa = PBXGroup;
 			children = (
+				DAA205541B834D9E001F0876 /* Resources */,
 				DAA2054A1B7E3309001F0876 /* UiViewControllers */,
 				DAA205431B7E32AE001F0876 /* Controllers */,
 				DAA205341B7E2FA7001F0876 /* View */,
 				DA0B10BD1B7BA1D80015749E /* Model */,
-				DAF537961B6CE42200AE1857 /* images */,
 				DAF537701B6CD60C00AE1857 /* Supporting Files */,
 			);
 			path = YalantisFirstTask;
@@ -201,24 +226,6 @@
 				DAF5378B1B6CD60C00AE1857 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DAF537961B6CE42200AE1857 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				DAF537971B6CE42200AE1857 /* природа 1.jpeg */,
-				DAF537981B6CE42200AE1857 /* природа 0.jpeg */,
-				DAF537991B6CE42200AE1857 /* природа 2.jpeg */,
-				DAF5379A1B6CE42200AE1857 /* природа 3.jpeg */,
-				DAF5379B1B6CE42200AE1857 /* природа 4.jpeg */,
-				DAF5379C1B6CE42200AE1857 /* природа 5.jpeg */,
-				DAF5379D1B6CE42200AE1857 /* природа 6.jpeg */,
-				DAF5379E1B6CE42200AE1857 /* природа 7.jpeg */,
-				DAF5379F1B6CE42200AE1857 /* природа 8.jpeg */,
-				DAF537A01B6CE42200AE1857 /* природа 9.jpeg */,
-			);
-			name = images;
-			path = Resources/images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,20 +308,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF537A11B6CE42200AE1857 /* природа 1.jpeg in Resources */,
-				DAF537A61B6CE42200AE1857 /* природа 5.jpeg in Resources */,
+				DAA205691B834D9E001F0876 /* природа 9.jpeg in Resources */,
+				DAA205661B834D9E001F0876 /* природа 6.jpeg in Resources */,
+				DAA205651B834D9E001F0876 /* природа 5.jpeg in Resources */,
+				DAA205641B834D9E001F0876 /* природа 4.jpeg in Resources */,
+				DAA205621B834D9E001F0876 /* природа 2.jpeg in Resources */,
+				DAA205611B834D9E001F0876 /* природа 1.jpeg in Resources */,
+				DAA205601B834D9E001F0876 /* природа 0.jpeg in Resources */,
+				DAA205671B834D9E001F0876 /* природа 7.jpeg in Resources */,
 				DAF537B21B6D6BF100AE1857 /* WODCustomCell.xib in Resources */,
-				DAF537A41B6CE42200AE1857 /* природа 3.jpeg in Resources */,
-				DAF537A31B6CE42200AE1857 /* природа 2.jpeg in Resources */,
 				DAF5377C1B6CD60C00AE1857 /* Main.storyboard in Resources */,
-				DAF537A71B6CE42200AE1857 /* природа 6.jpeg in Resources */,
-				DAF537AA1B6CE42200AE1857 /* природа 9.jpeg in Resources */,
-				DAF537A81B6CE42200AE1857 /* природа 7.jpeg in Resources */,
-				DAF537A91B6CE42200AE1857 /* природа 8.jpeg in Resources */,
-				DAF537A21B6CE42200AE1857 /* природа 0.jpeg in Resources */,
 				DAF537811B6CD60C00AE1857 /* LaunchScreen.xib in Resources */,
+				DAA205631B834D9E001F0876 /* природа 3.jpeg in Resources */,
 				DAF5377E1B6CD60C00AE1857 /* Images.xcassets in Resources */,
-				DAF537A51B6CE42200AE1857 /* природа 4.jpeg in Resources */,
+				DAA205681B834D9E001F0876 /* природа 8.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
