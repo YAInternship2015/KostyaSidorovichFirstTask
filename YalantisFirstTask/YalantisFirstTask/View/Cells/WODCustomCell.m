@@ -8,18 +8,22 @@
 
 #import "WODCustomCell.h"
 #import "WODCustomIOS7AlertView.h"
+#import "WODModel.h"
+@interface WODCustomCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+
+@end
 
 @implementation WODCustomCell
-@synthesize image;
-@synthesize name;
 
-- (void) setSelected:(BOOL) selected animated: (BOOL) animated {
-    
-    [super setSelected:selected animated:animated];
+- (void)setupWithModel:(WODModel *)wModel {
+    self.image.image = wModel.myPikture;
+    self.name.text = wModel.picturesName;
 }
 
-- (IBAction)toBuy:(id)sender {
-    
+- (IBAction)showAlertWhenPressed:(id)sender {
     WODCustomIOS7AlertView *alertView = [[WODCustomIOS7AlertView alloc] init];
     
     // Add some custom content to the alert view
@@ -36,22 +40,16 @@
     // And launch the dialog
     [alertView show];
 }
-- (void)customIOS7dialogButtonTouchUpInside: (WODCustomIOS7AlertView *)alertView clickedButtonAtIndex: (NSInteger)buttonIndex
-{
-    NSLog(@"Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[alertView tag]);
-}
 
-- (UIView *)createDemoView
-{
+
+- (UIView *)createDemoView {
     UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 270, 180)];
     
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 270, 180)];
-        [imageView setImage:image.image];
-        [demoView addSubview:imageView];
+    [imageView setImage:self.image.image];
+    [demoView addSubview:imageView];
     
     return demoView;
 }
-
-
 
 @end

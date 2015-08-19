@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class WODModel;
+
 @interface WODCustomCell : UITableViewCell <UIAlertViewDelegate,UIApplicationDelegate>
-@property (strong, nonatomic) IBOutlet UILabel *name;
-@property (strong, nonatomic) IBOutlet UIImageView *image;
-- (IBAction)toBuy:(id)sender;
+
+- (void)setupWithModel:(WODModel *)wModel;
 
 @end
