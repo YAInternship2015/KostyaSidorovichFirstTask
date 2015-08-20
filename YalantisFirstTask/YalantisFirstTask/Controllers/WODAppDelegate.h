@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#warning что AppDelegate и Alert делают в папке Controllers?
+
 @interface WODAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 @interface WODModel : NSObject
 
+#warning опечатались в myPikture
 @property (nonatomic, readonly) UIImage *myPikture;
 @property (nonatomic, readonly) NSString *picturesName;
 

@@ -24,6 +24,7 @@
         self.itemArray = [NSMutableArray new];
         
         for (int a = 0; a < [self pictureSignature].count; a++) {
+#warning не самое оптимальное решение - массив pictureSignature создается каждую итерацию. Его лучше единожды создать перед циклом
             [self.itemArray addObject:[[WODModel alloc] initWithString:[NSString stringWithFormat:@"природа %i.jpeg",a]
                                                         imageSignature:[[self pictureSignature] objectAtIndex:a]]];
         }
@@ -40,6 +41,7 @@
 }
 
 - (NSArray *)pictureSignature {
+#warning можно писать современным синтаксисом @[]
     return [NSArray arrayWithObjects:
             @"Новый Виндовс",@"Карпаты",@"Вишневое озеро",
             @"Тропа в загадку",@"Древо Гондора",@"Долина",

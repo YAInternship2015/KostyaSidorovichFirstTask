@@ -13,6 +13,7 @@
 - (id)initWithString:(NSString *)name imageSignature:(NSString *)signature {
     self = [super init];
     if (self){
+#warning потеряли сдвиг вправо
     _picturesName = signature;
     _myPikture = [UIImage imageNamed:name];
     }
