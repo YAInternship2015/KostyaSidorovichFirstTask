@@ -9,23 +9,30 @@
 #import "WODTableViewController.h"
 #import "WODCustomCell.h"
 #import "WODDatabase.h"
+#import "WODPicturesCollectionViewController.h"
 
 static NSString *kCellIdentifier = @"WODCustomCell";
 
 @interface WODTableViewController ()
 
 @property (nonatomic, strong) WODDatabase *wODDB;
-    
+
 @end
 
 @implementation WODTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+//    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc]
+//                                      initWithTitle:@"switch"
+//                                      style:UIBarButtonItemStylePlain
+//                                      target:self
+//                                      action:@selector(swap:)];
+//    self.navigationItem.leftBarButtonItem = anotherButton;
+//    self.navigationController.navigationBar.hidden = NO;
     self.tableView.rowHeight = 80;
     self.wODDB = [WODDatabase new];
-    
+
     [self.tableView registerNib:[UINib nibWithNibName:kCellIdentifier bundle:nil]
          forCellReuseIdentifier:kCellIdentifier];
 }
@@ -40,5 +47,5 @@ static NSString *kCellIdentifier = @"WODCustomCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.wODDB.objectsCount;
 }
-
+////
 @end

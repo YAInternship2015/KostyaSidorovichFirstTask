@@ -23,6 +23,10 @@
 		DAA205671B834D9E001F0876 /* природа 7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055D1B834D9E001F0876 /* природа 7.jpeg */; };
 		DAA205681B834D9E001F0876 /* природа 8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055E1B834D9E001F0876 /* природа 8.jpeg */; };
 		DAA205691B834D9E001F0876 /* природа 9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA2055F1B834D9E001F0876 /* природа 9.jpeg */; };
+		DAA2057B1B85E9A2001F0876 /* WODPicturesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2057A1B85E9A2001F0876 /* WODPicturesCollectionViewController.m */; };
+		DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2057D1B85FD09001F0876 /* WODCustomCollectionViewCell.m */; };
+		DAA205801B862BA6001F0876 /* WODCustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */; };
+		DADE4AD31B8B229C00014412 /* WODMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DADE4AD21B8B229C00014412 /* WODMainViewController.m */; };
 		DAF537731B6CD60C00AE1857 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF537721B6CD60C00AE1857 /* main.m */; };
 		DAF5377C1B6CD60C00AE1857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377A1B6CD60C00AE1857 /* Main.storyboard */; };
 		DAF5377E1B6CD60C00AE1857 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377D1B6CD60C00AE1857 /* Images.xcassets */; };
@@ -64,6 +68,13 @@
 		DAA2055D1B834D9E001F0876 /* природа 7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 7.jpeg"; sourceTree = "<group>"; };
 		DAA2055E1B834D9E001F0876 /* природа 8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 8.jpeg"; sourceTree = "<group>"; };
 		DAA2055F1B834D9E001F0876 /* природа 9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "природа 9.jpeg"; sourceTree = "<group>"; };
+		DAA205791B85E9A2001F0876 /* WODPicturesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODPicturesCollectionViewController.h; sourceTree = "<group>"; };
+		DAA2057A1B85E9A2001F0876 /* WODPicturesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODPicturesCollectionViewController.m; sourceTree = "<group>"; };
+		DAA2057C1B85FD09001F0876 /* WODCustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODCustomCollectionViewCell.h; sourceTree = "<group>"; };
+		DAA2057D1B85FD09001F0876 /* WODCustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODCustomCollectionViewCell.m; sourceTree = "<group>"; };
+		DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WODCustomCollectionCell.xib; sourceTree = "<group>"; };
+		DADE4AD11B8B229C00014412 /* WODMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODMainViewController.h; sourceTree = "<group>"; };
+		DADE4AD21B8B229C00014412 /* WODMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODMainViewController.m; sourceTree = "<group>"; };
 		DAF5376D1B6CD60C00AE1857 /* YalantisFirstTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YalantisFirstTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF537711B6CD60C00AE1857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAF537721B6CD60C00AE1857 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -110,6 +121,7 @@
 			children = (
 				DAA205381B7E3042001F0876 /* Cells */,
 				DAF537B01B6D6BF100AE1857 /* WODCustomCell.xib */,
+				DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */,
 				DAF5377A1B6CD60C00AE1857 /* Main.storyboard */,
 				DAF5377D1B6CD60C00AE1857 /* Images.xcassets */,
 				DAF5377F1B6CD60C00AE1857 /* LaunchScreen.xib */,
@@ -122,6 +134,8 @@
 			children = (
 				DAA205391B7E3042001F0876 /* WODCustomCell.h */,
 				DAA2053A1B7E3042001F0876 /* WODCustomCell.m */,
+				DAA2057C1B85FD09001F0876 /* WODCustomCollectionViewCell.h */,
+				DAA2057D1B85FD09001F0876 /* WODCustomCollectionViewCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -142,6 +156,10 @@
 			children = (
 				DAA2054B1B7E3309001F0876 /* WODTableViewController.h */,
 				DAA2054C1B7E3309001F0876 /* WODTableViewController.m */,
+				DAA205791B85E9A2001F0876 /* WODPicturesCollectionViewController.h */,
+				DAA2057A1B85E9A2001F0876 /* WODPicturesCollectionViewController.m */,
+				DADE4AD11B8B229C00014412 /* WODMainViewController.h */,
+				DADE4AD21B8B229C00014412 /* WODMainViewController.m */,
 			);
 			path = UiViewControllers;
 			sourceTree = "<group>";
@@ -319,6 +337,7 @@
 				DAF537B21B6D6BF100AE1857 /* WODCustomCell.xib in Resources */,
 				DAF5377C1B6CD60C00AE1857 /* Main.storyboard in Resources */,
 				DAF537811B6CD60C00AE1857 /* LaunchScreen.xib in Resources */,
+				DAA205801B862BA6001F0876 /* WODCustomCollectionCell.xib in Resources */,
 				DAA205631B834D9E001F0876 /* природа 3.jpeg in Resources */,
 				DAF5377E1B6CD60C00AE1857 /* Images.xcassets in Resources */,
 				DAA205681B834D9E001F0876 /* природа 8.jpeg in Resources */,
@@ -339,10 +358,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DADE4AD31B8B229C00014412 /* WODMainViewController.m in Sources */,
 				DAF537731B6CD60C00AE1857 /* main.m in Sources */,
 				DAA205491B7E32AE001F0876 /* WODCustomIOS7AlertView.m in Sources */,
 				DA0B10C31B7BA22D0015749E /* WODModel.m in Sources */,
 				DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */,
+				DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */,
+				DAA2057B1B85E9A2001F0876 /* WODPicturesCollectionViewController.m in Sources */,
 				DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */,
 				DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */,
 				DAA205481B7E32AE001F0876 /* WODAppDelegate.m in Sources */,
