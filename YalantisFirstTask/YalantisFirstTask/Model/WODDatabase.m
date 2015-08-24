@@ -18,14 +18,14 @@
 
 - (id)init {
     self = [super init];
-    if (self){
-        [self pictureSignature];
+    if (self) {
+        NSArray *pictureSig = [self pictureSignature];
         
         self.itemArray = [NSMutableArray new];
         
         for (int a = 0; a < [self pictureSignature].count; a++) {
             [self.itemArray addObject:[[WODModel alloc] initWithString:[NSString stringWithFormat:@"природа %i.jpeg",a]
-                                                        imageSignature:[[self pictureSignature] objectAtIndex:a]]];
+                                                        imageSignature:[pictureSig objectAtIndex:a]]];
         }
     }
     return self;

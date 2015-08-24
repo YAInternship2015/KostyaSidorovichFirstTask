@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 @interface WODModel : NSObject
 
-@property (nonatomic, readonly) UIImage *myPikture;
+@property (nonatomic, readonly) UIImage *myPicture;
 @property (nonatomic, readonly) NSString *picturesName;
 
 - (id)initWithString:(NSString *)name imageSignature:(NSString *)signature;

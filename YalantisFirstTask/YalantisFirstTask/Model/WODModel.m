@@ -13,8 +13,8 @@
 - (id)initWithString:(NSString *)name imageSignature:(NSString *)signature {
     self = [super init];
     if (self){
-    _picturesName = signature;
-    _myPikture = [UIImage imageNamed:name];
+        _picturesName = signature;
+        _myPicture = [UIImage imageNamed:name];
     }
     return self;
 }
