@@ -17,6 +17,6 @@
 @implementation WODCustomCollectionViewCell
 
 - (void)setupWithModel:(WODModel *)wModel {
-    self.image.image = wModel.myPikture;    
+    self.image.image = wModel.myPicture;    
 }
 @end

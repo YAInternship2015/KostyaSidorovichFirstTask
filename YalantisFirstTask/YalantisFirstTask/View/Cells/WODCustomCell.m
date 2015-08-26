@@ -19,7 +19,7 @@
 @implementation WODCustomCell
 
 - (void)setupWithModel:(WODModel *)wModel {
-    self.image.image = wModel.myPikture;
+    self.image.image = wModel.myPicture;
     self.name.text = wModel.picturesName;
 }
 

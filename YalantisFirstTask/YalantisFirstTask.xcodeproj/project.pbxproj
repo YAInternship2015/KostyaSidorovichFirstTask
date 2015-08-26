@@ -27,7 +27,9 @@
 		DADE4AD31B8B229C00014412 /* WODMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DADE4AD21B8B229C00014412 /* WODMainViewController.m */; };
 		DADE4AD81B8BB6F100014412 /* WODAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DADE4AD51B8BB6F100014412 /* WODAppDelegate.m */; };
 		DADE4AD91B8BB6F100014412 /* WODCustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DADE4AD71B8BB6F100014412 /* WODCustomIOS7AlertView.m */; };
-		DAF537731B6CD60C00AE1857 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF537721B6CD60C00AE1857 /* main.m */; };
+		DADE4ADD1B8CEA9E00014412 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DADE4ADB1B8CEA9E00014412 /* main.m */; };
+		DADE4AE01B8CEAEC00014412 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DADE4ADF1B8CEAEC00014412 /* Info.plist */; };
+		DADE4AE21B8CED5200014412 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = DADE4AE11B8CED5200014412 /* Data.plist */; };
 		DAF5377C1B6CD60C00AE1857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377A1B6CD60C00AE1857 /* Main.storyboard */; };
 		DAF5377E1B6CD60C00AE1857 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377D1B6CD60C00AE1857 /* Images.xcassets */; };
 		DAF537811B6CD60C00AE1857 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377F1B6CD60C00AE1857 /* LaunchScreen.xib */; };
@@ -75,9 +77,10 @@
 		DADE4AD51B8BB6F100014412 /* WODAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODAppDelegate.m; sourceTree = "<group>"; };
 		DADE4AD61B8BB6F100014412 /* WODCustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODCustomIOS7AlertView.h; sourceTree = "<group>"; };
 		DADE4AD71B8BB6F100014412 /* WODCustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODCustomIOS7AlertView.m; sourceTree = "<group>"; };
+		DADE4ADB1B8CEA9E00014412 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DADE4ADF1B8CEAEC00014412 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DADE4AE11B8CED5200014412 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		DAF5376D1B6CD60C00AE1857 /* YalantisFirstTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YalantisFirstTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DAF537711B6CD60C00AE1857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DAF537721B6CD60C00AE1857 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DAF5377B1B6CD60C00AE1857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DAF5377D1B6CD60C00AE1857 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		DAF537801B6CD60C00AE1857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 		DAA205541B834D9E001F0876 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DADE4ADB1B8CEA9E00014412 /* main.m */,
+				DADE4ADE1B8CEAEC00014412 /* PlistFolder */,
 				DAA205551B834D9E001F0876 /* images */,
 			);
 			path = Resources;
@@ -183,6 +188,15 @@
 				DAA2055F1B834D9E001F0876 /* природа 9.jpeg */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		DADE4ADE1B8CEAEC00014412 /* PlistFolder */ = {
+			isa = PBXGroup;
+			children = (
+				DADE4ADF1B8CEAEC00014412 /* Info.plist */,
+				DADE4AE11B8CED5200014412 /* Data.plist */,
+			);
+			path = PlistFolder;
 			sourceTree = "<group>";
 		};
 		DAF537641B6CD60C00AE1857 = {
@@ -215,18 +229,8 @@
 				DAA205431B7E32AE001F0876 /* Controllers */,
 				DAA205341B7E2FA7001F0876 /* View */,
 				DA0B10BD1B7BA1D80015749E /* Model */,
-				DAF537701B6CD60C00AE1857 /* Supporting Files */,
 			);
 			path = YalantisFirstTask;
-			sourceTree = "<group>";
-		};
-		DAF537701B6CD60C00AE1857 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DAF537711B6CD60C00AE1857 /* Info.plist */,
-				DAF537721B6CD60C00AE1857 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		DAF537891B6CD60C00AE1857 /* YalantisFirstTaskTests */ = {
@@ -326,12 +330,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DADE4AE01B8CEAEC00014412 /* Info.plist in Resources */,
 				DAA205691B834D9E001F0876 /* природа 9.jpeg in Resources */,
 				DAA205661B834D9E001F0876 /* природа 6.jpeg in Resources */,
 				DAA205651B834D9E001F0876 /* природа 5.jpeg in Resources */,
 				DAA205641B834D9E001F0876 /* природа 4.jpeg in Resources */,
 				DAA205621B834D9E001F0876 /* природа 2.jpeg in Resources */,
 				DAA205611B834D9E001F0876 /* природа 1.jpeg in Resources */,
+				DADE4AE21B8CED5200014412 /* Data.plist in Resources */,
 				DAA205601B834D9E001F0876 /* природа 0.jpeg in Resources */,
 				DAA205671B834D9E001F0876 /* природа 7.jpeg in Resources */,
 				DAF537B21B6D6BF100AE1857 /* WODCustomCell.xib in Resources */,
@@ -358,8 +364,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DADE4ADD1B8CEA9E00014412 /* main.m in Sources */,
 				DADE4AD31B8B229C00014412 /* WODMainViewController.m in Sources */,
-				DAF537731B6CD60C00AE1857 /* main.m in Sources */,
 				DA0B10C31B7BA22D0015749E /* WODModel.m in Sources */,
 				DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */,
 				DADE4AD81B8BB6F100014412 /* WODAppDelegate.m in Sources */,
