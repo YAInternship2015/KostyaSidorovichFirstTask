@@ -8,25 +8,44 @@
 
 #import "WODDatabase.h"
 #import <UIKit/UIKit.h>
+#import "WODPlist.h"
+
+NSString * const kWODDataFileContentDidChangeNotification = @"WODDataFileContentDidChangeNotification";
+NSString * const kWODTitleUserInfoKey = @"WODTitleUserInfoKey";
+
 @interface WODDatabase ()
 
-@property (nonatomic, strong) NSMutableArray *itemArray;
+@property (nonatomic, strong) WODPlist *wodPlist;
+@property (nonatomic, weak) id<WODDataModelDelegate> delegate;
 
 @end
 
 @implementation WODDatabase
+- (instancetype)initWithDelegate:(id<WODDataModelDelegate>)delegate {
+    self = [super init];
+    if (self) {
+        self.delegate = delegate;
+        self.wodPlist = [WODPlist new];
+        self.itemArray = [NSMutableArray arrayWithArray:[self dataFromPlist]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(myTitleDidChanged:)
+                                                     name:kWODDataFileContentDidChangeNotification
+                                                   object:nil];
+    }
+    return self;
+}
 
 - (id)init {
     self = [super init];
     if (self) {
-        NSArray *pictureSig = [self pictureSignature];
+        self.wodPlist = [WODPlist new];
+        self.itemArray = [NSMutableArray arrayWithArray:[self dataFromPlist]];
         
-        self.itemArray = [NSMutableArray new];
-        
-        for (int a = 0; a < [self pictureSignature].count; a++) {
-            [self.itemArray addObject:[[WODModel alloc] initWithString:[NSString stringWithFormat:@"природа %i.jpeg",a]
-                                                        imageSignature:[pictureSig objectAtIndex:a]]];
-        }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(myTitleDidChanged:)
+                                                     name:kWODDataFileContentDidChangeNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -35,14 +54,44 @@
     return [self.itemArray objectAtIndex:index];
 }
 
-- (NSInteger)objectsCount{
-    return self.itemArray.count;
+- (NSArray *)dataFromPlist {
+    NSArray *namesValueArray =  [self.wodPlist readValueForKey:@"names"];
+    NSArray *imagesValueArray = [self.wodPlist readValueForKey:@"images"];
+    NSMutableArray *wModel = [NSMutableArray new];
+    
+    for (int a = 0; a < namesValueArray.count; a++) {
+        [wModel addObject:[[WODModel alloc]initWithString:[imagesValueArray objectAtIndex:a] imageSignature:[namesValueArray objectAtIndex:a]]];
+    }
+    return wModel;
+}
+- (void)myTitleDidChanged:(NSNotification *)notification {
+    [self.delegate dataWasChanged:self array:[self dataFromPlist]];
 }
 
-- (NSArray *)pictureSignature {
-    return @[@"Новый Виндовс",@"Карпаты",@"Вишневое озеро",
-             @"Тропа в загадку",@"Древо Гондора",@"Долина",
-             @"Зеркало",@"Рыбное место",@"Сад",@"Горы на закате"];
+- (void)saveModelToPlist:(WODModel *)model {
+    NSMutableDictionary *savedStock = [[NSMutableDictionary alloc]initWithContentsOfFile:self.wodPlist.plistFile];
+    NSMutableArray *imgArray = [savedStock valueForKey:@"images"];
+    NSMutableArray *titleArray = [savedStock valueForKey:@"names"];
+    
+    [titleArray addObject:model.picturesSignature];
+    [imgArray addObject:[NSString stringWithFormat:@"Пустая картинка.jpeg"]];
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:imgArray, @"images",
+                                                                    titleArray, @"names", nil];
+    [dict writeToFile:self.wodPlist.plistFile atomically: YES];
+    self.tempStringForNotification = model.picturesSignature;
+    
 }
 
+-(void)setTempStringForNotification:(NSString *)tempStringForNotification {
+    _tempStringForNotification = tempStringForNotification;
+    NSNotificationCenter *notificetionCentr = [NSNotificationCenter defaultCenter];
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:@"modelDidChanged" forKey:kWODTitleUserInfoKey];
+    [notificetionCentr postNotificationName:kWODDataFileContentDidChangeNotification
+                      object:nil
+                    userInfo:dict];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end

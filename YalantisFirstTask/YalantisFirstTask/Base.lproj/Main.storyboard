@@ -2,12 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IFx-Ca-9vV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="73K-vY-5n7">
             <objects>
                 <navigationController id="IFx-Ca-9vV" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tif-CA-Yzv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -21,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-1911" y="612"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Picture Gallery-->
         <scene sceneID="Nxt-BK-1Jr">
             <objects>
-                <viewController id="iTO-yU-wKe" customClass="WODMainViewController" sceneMemberID="viewController">
+                <viewController id="iTO-yU-wKe" customClass="WODContainerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xbt-z9-oAY"/>
                         <viewControllerLayoutGuide type="bottom" id="tQr-6B-BYY"/>
@@ -34,12 +36,74 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Et5-dn-WGg"/>
+                    <navigationItem key="navigationItem" title="Picture Gallery" id="Et5-dn-WGg">
+                        <barButtonItem key="leftBarButtonItem" title="Switch" id="gKx-qi-EtH">
+                            <connections>
+                                <action selector="switchVC:" destination="iTO-yU-wKe" id="Ier-nC-snM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xFL-qF-2xe">
+                            <connections>
+                                <segue destination="CVo-rT-WDK" kind="show" id="kws-bk-0WK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9T-Ez-ste" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1314" y="612"/>
+            <point key="canvasLocation" x="-1306" y="271"/>
+        </scene>
+        <!--Save Model View Controller-->
+        <scene sceneID="94s-NO-k8Q">
+            <objects>
+                <viewController id="CVo-rT-WDK" customClass="WODSaveModelViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gvO-yK-v6A"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iic-Ig-6YS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JhB-y3-Dq7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-Nc-Xd1">
+                                <rect key="frame" x="57" y="187" width="300" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KC4-Nc-Xd1" firstAttribute="leading" secondItem="JhB-y3-Dq7" secondAttribute="leadingMargin" constant="41" id="53X-Pe-pbV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KC4-Nc-Xd1" secondAttribute="trailing" constant="41" id="8IN-aE-9Ha"/>
+                            <constraint firstAttribute="centerX" secondItem="KC4-Nc-Xd1" secondAttribute="centerX" id="Mc5-B5-Rej"/>
+                            <constraint firstItem="KC4-Nc-Xd1" firstAttribute="top" secondItem="gvO-yK-v6A" secondAttribute="bottom" constant="123" id="Xsa-KR-nlV"/>
+                            <constraint firstAttribute="centerY" secondItem="KC4-Nc-Xd1" secondAttribute="centerY" id="fRE-bM-dxd"/>
+                            <constraint firstItem="Iic-Ig-6YS" firstAttribute="top" secondItem="KC4-Nc-Xd1" secondAttribute="bottom" constant="470" id="tom-cO-lhx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Mc5-B5-Rej"/>
+                                <exclude reference="fRE-bM-dxd"/>
+                                <exclude reference="tom-cO-lhx"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="7wU-K7-nS8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="2lO-js-xAZ">
+                            <connections>
+                                <action selector="saveButton:" destination="CVo-rT-WDK" id="UxM-Wm-vf4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="nameForPicture" destination="KC4-Nc-Xd1" id="52B-Hq-tSv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Vz-1i-VxC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1306" y="1040"/>
         </scene>
         <!--Pictures Collection View Controller-->
         <scene sceneID="Tj5-Je-SIt">

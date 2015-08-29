@@ -11,8 +11,10 @@
 @interface WODModel : NSObject
 
 @property (nonatomic, readonly) UIImage *myPicture;
-@property (nonatomic, readonly) NSString *picturesName;
+@property (nonatomic, readonly) NSString *picturesSignature;
+@property (nonatomic, readonly) NSString *imageNamed;
 
 - (id)initWithString:(NSString *)name imageSignature:(NSString *)signature;
+- (id)initWithImage:(UIImage *)image imageSignature:(NSString *)signature;
 
 @end

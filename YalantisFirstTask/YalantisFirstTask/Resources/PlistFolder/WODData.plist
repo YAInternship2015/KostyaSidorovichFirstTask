@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>images</key>
+	<array>
+		<string>природа 0.jpeg</string>
+		<string>природа 1.jpeg</string>
+		<string>природа 2.jpeg</string>
+		<string>природа 3.jpeg</string>
+		<string>природа 4.jpeg</string>
+		<string>природа 5.jpeg</string>
+		<string>природа 6.jpeg</string>
+		<string>природа 7.jpeg</string>
+		<string>природа 8.jpeg</string>
+		<string>природа 9.jpeg</string>
+	</array>
+	<key>names</key>
+	<array>
+		<string>Новый Виндовс</string>
+		<string>Карпаты</string>
+		<string>Вишневое озеро</string>
+		<string>Тропа в загадку</string>
+		<string>Древо Гондора</string>
+		<string>Долина</string>
+		<string>Зеркало</string>
+		<string>Рыбное место</string>
+		<string>Сад</string>
+		<string>Горы на закате</string>
+	</array>
+</dict>
+</plist>

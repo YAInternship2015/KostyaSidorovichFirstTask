@@ -1,23 +1,24 @@
 //
-//  WODMainViewController.m
+//  WODContainerViewController.m
 //  YalantisFirstTask
 //
 //  Created by Woddi on 24.08.15.
 //  Copyright (c) 2015 Woddi. All rights reserved.
 //
 
-#import "WODMainViewController.h"
+#import "WODContainerViewController.h"
 #import "WODPicturesCollectionViewController.h"
 #import "WODTableViewController.h"
-@interface WODMainViewController ()
+@interface WODContainerViewController ()
 
 @property (nonatomic, assign) BOOL switcherVC;
 
 @property (strong, nonatomic) WODTableViewController *tableViewController;
 @property (strong, nonatomic) WODPicturesCollectionViewController *collectionViewController;
+
 @end
 
-@implementation WODMainViewController
+@implementation WODContainerViewController
 
 
 
@@ -30,13 +31,6 @@
     [self addChildViewController:self.tableViewController];
     [self.view addSubview:self.tableViewController.view];
     [self.tableViewController didMoveToParentViewController:self];
-    
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc]
-                                      initWithTitle:@"switch"
-                                              style:UIBarButtonItemStylePlain
-                                             target:self
-                                             action:@selector(switchVC:)];
-    self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
 - (void)swapFromViewController:(UIViewController *)fromViewController

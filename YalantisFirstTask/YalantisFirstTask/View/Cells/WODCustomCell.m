@@ -20,7 +20,7 @@
 
 - (void)setupWithModel:(WODModel *)wModel {
     self.image.image = wModel.myPicture;
-    self.name.text = wModel.picturesName;
+    self.name.text = wModel.picturesSignature;
 }
 
 - (IBAction)showAlertWhenPressed:(id)sender {

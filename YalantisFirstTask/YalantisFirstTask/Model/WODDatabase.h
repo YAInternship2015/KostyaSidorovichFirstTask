@@ -9,10 +9,24 @@
 #import <Foundation/Foundation.h>
 #import "WODModel.h"
 
+OBJC_EXTERN NSString * const kWODDataFileContentDidChangeNotification;
+OBJC_EXTERN NSString * const kWODTitleUserInfoKey;
+
+@protocol WODDataModelDelegate;
+
 @interface WODDatabase : WODModel
 
-- (NSInteger)objectsCount;
+@property (nonatomic, strong) NSMutableArray *itemArray;
+@property (nonatomic, weak) NSString *tempStringForNotification;
 
 - (WODModel *)modelAtIndex:(NSInteger)index;
+- (instancetype)initWithDelegate:(id<WODDataModelDelegate>)delegate;
+- (void)saveModelToPlist:(WODModel *)model;
+
+@end
+
+@protocol WODDataModelDelegate <NSObject>
+@required
+- (void)dataWasChanged:(WODDatabase *)data array:(NSArray *)array;
 
 @end

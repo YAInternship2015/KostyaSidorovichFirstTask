@@ -1,5 +1,5 @@
 //
-//  WODMainViewController.h
+//  WODContainerViewController.h
 //  YalantisFirstTask
 //
 //  Created by Woddi on 24.08.15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WODMainViewController : UIViewController
+@interface WODContainerViewController : UIViewController
 
 @end
