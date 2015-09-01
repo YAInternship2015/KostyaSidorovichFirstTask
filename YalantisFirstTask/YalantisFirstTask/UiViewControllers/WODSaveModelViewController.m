@@ -13,7 +13,9 @@
 #import "WODFactoryModel.h"
 @interface WODSaveModelViewController ()<UITextFieldDelegate>
 
+#warning pictureNameTextField
 @property (nonatomic, weak) IBOutlet UITextField *nameForPicture;
+#warning валидатор можно создавать по необходимости и не хранить его в проперти
 @property (nonatomic, strong) WODValidateModel *wValidate;
 
 @end
@@ -24,10 +26,14 @@
     [super viewDidLoad];
     self.wValidate = [WODValidateModel new];
     [self.nameForPicture becomeFirstResponder];
+#warning задать делегата филду лучше в сториборде
     self.nameForPicture.delegate = self;
 }
+
+#warning validateEnteredtext
 - (void)validateEnterText{
     NSError *error = nil;
+#warning isValidName
     BOOL correctNameOrNot = [self.wValidate isValidModelTitle:self.nameForPicture.text error:&error];
     if (!correctNameOrNot) {
         UIAlertView *aller = [[UIAlertView alloc]initWithTitle:[error localizedDescription]

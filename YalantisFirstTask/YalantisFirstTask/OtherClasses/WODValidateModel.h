@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#warning стоило назвать класс WODModelValidator
 @interface WODValidateModel : NSObject
+
+#warning после @interface/@implementation/@protocol и перед @end должны быть пустые строки. Это касается всего приложения
 - (BOOL)isValidModelTitle:(NSString *)title error:(NSError **)error;
 @end

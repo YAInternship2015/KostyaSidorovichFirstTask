@@ -11,6 +11,7 @@
 #import "WODModel.h"
 @interface WODCustomCell ()
 
+#pragma по нашим гайдлайнам правильнее писать (nonatomic, weak)
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 

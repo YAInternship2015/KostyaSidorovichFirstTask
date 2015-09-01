@@ -20,7 +20,7 @@
     return self;
 }
 
-- (id)initWithImage:(UIImage *)image imageSignature:(NSString *)signature{
+- (id)initWithImage:(UIImage *)image imageSignature:(NSString *)signature {
     self = [super init];
     if (self){
         _picturesSignature = signature;

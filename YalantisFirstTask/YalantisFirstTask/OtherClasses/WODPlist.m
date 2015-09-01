@@ -11,6 +11,7 @@
 #import "WODDatabase.h"
 @interface WODPlist ()
 
+#warning этот объект держит strong ссылку на WODDatabase, который в свою очередь дердит strong ссылку на WODPlist. Retain cycle в чистом виде
 @property (nonatomic, strong) WODDatabase *wDB;
 
 @end

@@ -10,6 +10,7 @@
 
 @implementation WODValidateModel
 - (BOOL)isValidModelTitle:(NSString *)title error:(NSError **)error{
+#warning цифру 3 надо объявить константой с именем kMinModelTitleLength и использовать ее. Надо избегать появления случайных чисел в коде, вместо них использовать константы с понятными именами
     if (title.length < 3) {
         if (error != nil) {
             NSString *description = NSLocalizedString(@"Input Validation Failed", @"");

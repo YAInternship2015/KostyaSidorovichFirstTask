@@ -25,6 +25,7 @@ static NSString * const kReuseIdentifier = @"Cell";
     self.wODDB = [[WODDatabase alloc]initWithDelegate:self];
     self.modelArray = [NSMutableArray arrayWithArray:self.wODDB.itemArray];
     UICollectionViewFlowLayout *layout = (id)self.collectionView.collectionViewLayout;
+#warning числа 120 надо объявить константами с понятными именами
     layout.itemSize = CGSizeMake(120, 120);
     layout.minimumInteritemSpacing = 0;
     

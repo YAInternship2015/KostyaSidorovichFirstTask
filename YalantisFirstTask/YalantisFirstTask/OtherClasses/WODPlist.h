@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 @class WODModel;
+
+#warning в принципе обертку над plist'ом можно было не делать, достаточно категории на NSFileManager, которая бы возвращала путь к файлу
 @interface WODPlist : NSObject
 
 @property (nonatomic, retain) NSString *plistFile;

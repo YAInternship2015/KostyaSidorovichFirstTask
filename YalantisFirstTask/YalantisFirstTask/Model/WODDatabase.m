@@ -25,6 +25,7 @@ NSString * const kWODTitleUserInfoKey = @"WODTitleUserInfoKey";
     self = [super init];
     if (self) {
         self.delegate = delegate;
+#warning  явное дублирование кода в двух инитах. Отличаются ни только строкой self.delegate = delegate; Потому правильно было бы в initWithDelegate: вызвать self = [self init], и оставить в initWithDelegate: только одну строку с присваиванием делегата
         self.wodPlist = [WODPlist new];
         self.itemArray = [NSMutableArray arrayWithArray:[self dataFromPlist]];
         
@@ -60,10 +61,13 @@ NSString * const kWODTitleUserInfoKey = @"WODTitleUserInfoKey";
     NSMutableArray *wModel = [NSMutableArray new];
     
     for (int a = 0; a < namesValueArray.count; a++) {
+#warning после alloc] нужен пробел
         [wModel addObject:[[WODModel alloc]initWithString:[imagesValueArray objectAtIndex:a] imageSignature:[namesValueArray objectAtIndex:a]]];
     }
     return wModel;
 }
+
+#warning плохое имя для обработчика события по изменения данных
 - (void)myTitleDidChanged:(NSNotification *)notification {
     [self.delegate dataWasChanged:self array:[self dataFromPlist]];
 }
@@ -86,11 +90,15 @@ NSString * const kWODTitleUserInfoKey = @"WODTitleUserInfoKey";
 -(void)setTempStringForNotification:(NSString *)tempStringForNotification {
     _tempStringForNotification = tempStringForNotification;
     NSNotificationCenter *notificetionCentr = [NSNotificationCenter defaultCenter];
+#warning этот словарь Вам в принципе не нужен, никакой полезной информации в нем нет
+#warning собственно, свойство tempStringForNotification также не нужно, просто после сохранения модели швыряйте нотификейшн
     NSDictionary *dict = [NSDictionary dictionaryWithObject:@"modelDidChanged" forKey:kWODTitleUserInfoKey];
     [notificetionCentr postNotificationName:kWODDataFileContentDidChangeNotification
                       object:nil
                     userInfo:dict];
 }
+
+#warning dealloc лучше размещать после инитов
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

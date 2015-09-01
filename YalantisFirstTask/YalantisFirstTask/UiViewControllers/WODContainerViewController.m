@@ -36,12 +36,13 @@
 - (void)swapFromViewController:(UIViewController *)fromViewController
               toViewController:(UIViewController *)toViewController {
     self.navigationController.navigationBar.translucent = NO;
-
+#warning вместо CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) лучше написать self.view.bounds
     toViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
                                              self.view.frame.size.height);
     
     [fromViewController willMoveToParentViewController:nil];
     [self addChildViewController:toViewController];
+#warning длину анимации также надо вынести в константы
     [self transitionFromViewController:fromViewController
                       toViewController:toViewController duration:0.1
                                options:UIViewAnimationOptionTransitionCrossDissolve
