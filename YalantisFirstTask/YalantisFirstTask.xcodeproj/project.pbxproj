@@ -10,7 +10,7 @@
 		DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B10BF1B7BA1D80015749E /* WODDatabase.m */; };
 		DA0B10C31B7BA22D0015749E /* WODModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B10C21B7BA22D0015749E /* WODModel.m */; };
 		DA5B4E481B8F5A14006B8F3D /* WODSaveModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */; };
-		DA5B4E4B1B8F66B0006B8F3D /* WODValidateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4E4A1B8F66B0006B8F3D /* WODValidateModel.m */; };
+		DA5B4E4B1B8F66B0006B8F3D /* WODModelValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4E4A1B8F66B0006B8F3D /* WODModelValidator.m */; };
 		DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2053A1B7E3042001F0876 /* WODCustomCell.m */; };
 		DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2054C1B7E3309001F0876 /* WODTableViewController.m */; };
 		DAA205601B834D9E001F0876 /* природа 0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA205561B834D9E001F0876 /* природа 0.jpeg */; };
@@ -29,7 +29,6 @@
 		DACE357E1B8FD8C70021CC61 /* WODFactoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DACE357D1B8FD8C70021CC61 /* WODFactoryModel.m */; };
 		DAD247EE1B8E0A8E00156B10 /* WODAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */; };
 		DAD247EF1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD247EB1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m */; };
-		DAD247F01B8E0A8E00156B10 /* WODPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD247ED1B8E0A8E00156B10 /* WODPlist.m */; };
 		DAD8E5C11B905DA20047A6CF /* Пустая картинка.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAD8E5C01B905DA10047A6CF /* Пустая картинка.jpeg */; };
 		DADE4AD31B8B229C00014412 /* WODContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DADE4AD21B8B229C00014412 /* WODContainerViewController.m */; };
 		DADE4ADD1B8CEA9E00014412 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DADE4ADB1B8CEA9E00014412 /* main.m */; };
@@ -58,9 +57,9 @@
 		DA0B10C11B7BA22D0015749E /* WODModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = WODModel.h; path = ../Model/WODModel.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DA0B10C21B7BA22D0015749E /* WODModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = WODModel.m; path = ../Model/WODModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DA5B4E461B8F5A14006B8F3D /* WODSaveModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODSaveModelViewController.h; sourceTree = "<group>"; };
-		DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODSaveModelViewController.m; sourceTree = "<group>"; };
-		DA5B4E491B8F66B0006B8F3D /* WODValidateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODValidateModel.h; sourceTree = "<group>"; };
-		DA5B4E4A1B8F66B0006B8F3D /* WODValidateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODValidateModel.m; sourceTree = "<group>"; };
+		DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WODSaveModelViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DA5B4E491B8F66B0006B8F3D /* WODModelValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WODModelValidator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		DA5B4E4A1B8F66B0006B8F3D /* WODModelValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WODModelValidator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAA205391B7E3042001F0876 /* WODCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WODCustomCell.h; path = ../../View/Cells/WODCustomCell.h; sourceTree = "<group>"; };
 		DAA2053A1B7E3042001F0876 /* WODCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = WODCustomCell.m; path = ../../View/Cells/WODCustomCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAA2054B1B7E3309001F0876 /* WODTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODTableViewController.h; sourceTree = "<group>"; };
@@ -86,8 +85,7 @@
 		DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODAppDelegate.m; sourceTree = "<group>"; };
 		DAD247EA1B8E0A8E00156B10 /* WODCustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODCustomIOS7AlertView.h; sourceTree = "<group>"; };
 		DAD247EB1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODCustomIOS7AlertView.m; sourceTree = "<group>"; };
-		DAD247EC1B8E0A8E00156B10 /* WODPlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODPlist.h; sourceTree = "<group>"; };
-		DAD247ED1B8E0A8E00156B10 /* WODPlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WODPlist.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DAD5FC051B98522B007D7674 /* WODNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODNotifications.h; sourceTree = "<group>"; };
 		DAD8E5C01B905DA10047A6CF /* Пустая картинка.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Пустая картинка.jpeg"; sourceTree = "<group>"; };
 		DADE4AD11B8B229C00014412 /* WODContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WODContainerViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DADE4AD21B8B229C00014412 /* WODContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WODContainerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -214,12 +212,11 @@
 				DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */,
 				DAD247EA1B8E0A8E00156B10 /* WODCustomIOS7AlertView.h */,
 				DAD247EB1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m */,
-				DAD247EC1B8E0A8E00156B10 /* WODPlist.h */,
-				DAD247ED1B8E0A8E00156B10 /* WODPlist.m */,
-				DA5B4E491B8F66B0006B8F3D /* WODValidateModel.h */,
-				DA5B4E4A1B8F66B0006B8F3D /* WODValidateModel.m */,
+				DA5B4E491B8F66B0006B8F3D /* WODModelValidator.h */,
+				DA5B4E4A1B8F66B0006B8F3D /* WODModelValidator.m */,
 				DACE357C1B8FD8C70021CC61 /* WODFactoryModel.h */,
 				DACE357D1B8FD8C70021CC61 /* WODFactoryModel.m */,
+				DAD5FC051B98522B007D7674 /* WODNotifications.h */,
 			);
 			path = OtherClasses;
 			sourceTree = "<group>";
@@ -400,14 +397,13 @@
 				DADE4ADD1B8CEA9E00014412 /* main.m in Sources */,
 				DADE4AD31B8B229C00014412 /* WODContainerViewController.m in Sources */,
 				DA0B10C31B7BA22D0015749E /* WODModel.m in Sources */,
-				DAD247F01B8E0A8E00156B10 /* WODPlist.m in Sources */,
 				DAD247EF1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m in Sources */,
 				DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */,
 				DAD247EE1B8E0A8E00156B10 /* WODAppDelegate.m in Sources */,
 				DACE357E1B8FD8C70021CC61 /* WODFactoryModel.m in Sources */,
 				DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */,
 				DA5B4E481B8F5A14006B8F3D /* WODSaveModelViewController.m in Sources */,
-				DA5B4E4B1B8F66B0006B8F3D /* WODValidateModel.m in Sources */,
+				DA5B4E4B1B8F66B0006B8F3D /* WODModelValidator.m in Sources */,
 				DAA2057B1B85E9A2001F0876 /* WODPicturesCollectionViewController.m in Sources */,
 				DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */,
 				DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */,

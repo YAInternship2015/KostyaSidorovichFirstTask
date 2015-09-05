@@ -8,31 +8,23 @@
 
 #import "WODDatabase.h"
 #import <UIKit/UIKit.h>
-#import "WODPlist.h"
-
-NSString * const kWODDataFileContentDidChangeNotification = @"WODDataFileContentDidChangeNotification";
-NSString * const kWODTitleUserInfoKey = @"WODTitleUserInfoKey";
+#import "WODNotifications.h"
 
 @interface WODDatabase ()
 
-@property (nonatomic, strong) WODPlist *wodPlist;
 @property (nonatomic, weak) id<WODDataModelDelegate> delegate;
+@property (nonatomic, weak) NSString *tempStringForNotification;
+@property (nonatomic, strong) NSArray *itemArray;
+@property (nonatomic, retain) NSString *plistFile;
 
 @end
 
 @implementation WODDatabase
+
 - (instancetype)initWithDelegate:(id<WODDataModelDelegate>)delegate {
-    self = [super init];
+    self = [self init];
     if (self) {
         self.delegate = delegate;
-#warning  явное дублирование кода в двух инитах. Отличаются ни только строкой self.delegate = delegate; Потому правильно было бы в initWithDelegate: вызвать self = [self init], и оставить в initWithDelegate: только одну строку с присваиванием делегата
-        self.wodPlist = [WODPlist new];
-        self.itemArray = [NSMutableArray arrayWithArray:[self dataFromPlist]];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(myTitleDidChanged:)
-                                                     name:kWODDataFileContentDidChangeNotification
-                                                   object:nil];
     }
     return self;
 }
@@ -40,40 +32,48 @@ NSString * const kWODTitleUserInfoKey = @"WODTitleUserInfoKey";
 - (id)init {
     self = [super init];
     if (self) {
-        self.wodPlist = [WODPlist new];
+        [self openPlistFile];
         self.itemArray = [NSMutableArray arrayWithArray:[self dataFromPlist]];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(myTitleDidChanged:)
-                                                     name:kWODDataFileContentDidChangeNotification
+                                                 selector:@selector(dataDidChanged:)
+                                                     name:WODDataFileContentDidChangeNotificationName
                                                    object:nil];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (WODModel *)modelAtIndex:(NSInteger)index{
     return [self.itemArray objectAtIndex:index];
 }
 
+- (NSInteger)modelCount {
+    return self.itemArray.count;
+}
+
 - (NSArray *)dataFromPlist {
-    NSArray *namesValueArray =  [self.wodPlist readValueForKey:@"names"];
-    NSArray *imagesValueArray = [self.wodPlist readValueForKey:@"images"];
+    NSArray *namesValueArray = [self readValueForKey:@"names"];
+    NSArray *imagesValueArray = [self readValueForKey:@"images"];
     NSMutableArray *wModel = [NSMutableArray new];
     
     for (int a = 0; a < namesValueArray.count; a++) {
-#warning после alloc] нужен пробел
-        [wModel addObject:[[WODModel alloc]initWithString:[imagesValueArray objectAtIndex:a] imageSignature:[namesValueArray objectAtIndex:a]]];
+        [wModel addObject:[[WODModel alloc] initWithString:[imagesValueArray objectAtIndex:a]
+                                            imageSignature:[namesValueArray objectAtIndex:a]]];
     }
     return wModel;
 }
 
-#warning плохое имя для обработчика события по изменения данных
-- (void)myTitleDidChanged:(NSNotification *)notification {
+- (void)dataDidChanged:(NSNotification *)notification {
+    self.itemArray = [self dataFromPlist];
     [self.delegate dataWasChanged:self array:[self dataFromPlist]];
 }
 
-- (void)saveModelToPlist:(WODModel *)model {
-    NSMutableDictionary *savedStock = [[NSMutableDictionary alloc]initWithContentsOfFile:self.wodPlist.plistFile];
+- (void)saveModel:(WODModel *)model {
+    NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile:self.plistFile];
     NSMutableArray *imgArray = [savedStock valueForKey:@"images"];
     NSMutableArray *titleArray = [savedStock valueForKey:@"names"];
     
@@ -82,24 +82,34 @@ NSString * const kWODTitleUserInfoKey = @"WODTitleUserInfoKey";
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:imgArray, @"images",
                                                                     titleArray, @"names", nil];
-    [dict writeToFile:self.wodPlist.plistFile atomically: YES];
+    [dict writeToFile:self.plistFile atomically: YES];
     self.tempStringForNotification = model.picturesSignature;
     
 }
 
--(void)setTempStringForNotification:(NSString *)tempStringForNotification {
-    _tempStringForNotification = tempStringForNotification;
-    NSNotificationCenter *notificetionCentr = [NSNotificationCenter defaultCenter];
-#warning этот словарь Вам в принципе не нужен, никакой полезной информации в нем нет
-#warning собственно, свойство tempStringForNotification также не нужно, просто после сохранения модели швыряйте нотификейшн
-    NSDictionary *dict = [NSDictionary dictionaryWithObject:@"modelDidChanged" forKey:kWODTitleUserInfoKey];
-    [notificetionCentr postNotificationName:kWODDataFileContentDidChangeNotification
-                      object:nil
-                    userInfo:dict];
+- (void)openPlistFile {
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    self.plistFile = [documentsDirectory stringByAppendingPathComponent:@"data.plist"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath: self.plistFile]) {
+        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"WODData" ofType:@"plist"];
+        
+        [fileManager copyItemAtPath:bundle toPath: self.plistFile error:&error];
+    }
 }
 
-#warning dealloc лучше размещать после инитов
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (NSArray *)readValueForKey:(NSString *)key{
+    NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile:self.plistFile];
+    NSArray *arr = [NSArray arrayWithArray:[savedStock valueForKey:key]];
+    return arr;
 }
+
+-(void)setTempStringForNotification:(NSString *)tempStringForNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:WODDataFileContentDidChangeNotificationName object:nil];
+
+}
+
 @end

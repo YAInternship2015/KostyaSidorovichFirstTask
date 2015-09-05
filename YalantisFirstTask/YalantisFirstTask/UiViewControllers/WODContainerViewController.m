@@ -9,18 +9,19 @@
 #import "WODContainerViewController.h"
 #import "WODPicturesCollectionViewController.h"
 #import "WODTableViewController.h"
+
+float const kDurationAnimation = 0.1;
+
 @interface WODContainerViewController ()
 
 @property (nonatomic, assign) BOOL switcherVC;
 
-@property (strong, nonatomic) WODTableViewController *tableViewController;
-@property (strong, nonatomic) WODPicturesCollectionViewController *collectionViewController;
+@property (nonatomic, strong) WODTableViewController *tableViewController;
+@property (nonatomic, strong) WODPicturesCollectionViewController *collectionViewController;
 
 @end
 
 @implementation WODContainerViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,15 +37,12 @@
 - (void)swapFromViewController:(UIViewController *)fromViewController
               toViewController:(UIViewController *)toViewController {
     self.navigationController.navigationBar.translucent = NO;
-#warning вместо CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) лучше написать self.view.bounds
-    toViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width,
-                                             self.view.frame.size.height);
+    toViewController.view.frame = self.view.bounds;
     
     [fromViewController willMoveToParentViewController:nil];
     [self addChildViewController:toViewController];
-#warning длину анимации также надо вынести в константы
     [self transitionFromViewController:fromViewController
-                      toViewController:toViewController duration:0.1
+                      toViewController:toViewController duration:kDurationAnimation
                                options:UIViewAnimationOptionTransitionCrossDissolve
                             animations:nil
                             completion:^(BOOL finished) {
@@ -52,7 +50,6 @@
                                 [toViewController didMoveToParentViewController:self];
                             }];
 }
-
 
 - (IBAction)switchVC:(id)sender {
     if (self.switcherVC == YES) {

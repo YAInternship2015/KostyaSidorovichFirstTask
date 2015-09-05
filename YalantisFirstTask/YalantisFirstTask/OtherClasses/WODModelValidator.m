@@ -1,17 +1,19 @@
 //
-//  WODValidateModel.m
+//  WODModelValidator.m
 //  YalantisFirstTask
 //
 //  Created by Woddi on 27.08.15.
 //  Copyright (c) 2015 Woddi. All rights reserved.
 //
 
-#import "WODValidateModel.h"
+#import "WODModelValidator.h"
 
-@implementation WODValidateModel
-- (BOOL)isValidModelTitle:(NSString *)title error:(NSError **)error{
-#warning цифру 3 надо объявить константой с именем kMinModelTitleLength и использовать ее. Надо избегать появления случайных чисел в коде, вместо них использовать константы с понятными именами
-    if (title.length < 3) {
+float const kMinModelTitleLength = 0.1;
+
+@implementation WODModelValidator
+
+- (BOOL)isValidModelTitle:(NSString *)title error:(NSError **)error {
+    if (title.length < kMinModelTitleLength) {
         if (error != nil) {
             NSString *description = NSLocalizedString(@"Input Validation Failed", @"");
             NSString *reason = NSLocalizedString(@"Too few characters", @"");
@@ -28,4 +30,5 @@
     }
     return YES;
 }
+
 @end

@@ -11,7 +11,7 @@
 
 @interface WODCustomCollectionViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (nonatomic, weak) IBOutlet UIImageView *image;
 
 @end
 @implementation WODCustomCollectionViewCell

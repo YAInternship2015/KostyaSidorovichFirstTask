@@ -13,8 +13,9 @@
 static NSString * const kReuseIdentifier = @"Cell";
 
 @interface WODPicturesCollectionViewController ()<WODDataModelDelegate>
+
 @property (nonatomic, strong) WODDatabase *wODDB;
-@property (nonatomic, strong) NSMutableArray *modelArray;
+
 @end
 
 @implementation WODPicturesCollectionViewController
@@ -22,16 +23,10 @@ static NSString * const kReuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.wODDB = [[WODDatabase alloc]initWithDelegate:self];
-    self.modelArray = [NSMutableArray arrayWithArray:self.wODDB.itemArray];
-    UICollectionViewFlowLayout *layout = (id)self.collectionView.collectionViewLayout;
-#warning числа 120 надо объявить константами с понятными именами
-    layout.itemSize = CGSizeMake(120, 120);
-    layout.minimumInteritemSpacing = 0;
-    
-    [self.collectionView registerNib:[UINib nibWithNibName:@"WODCustomCollectionCell" bundle:nil] forCellWithReuseIdentifier:kReuseIdentifier];
+    self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"WODCustomCollectionCell" bundle:nil]
+          forCellWithReuseIdentifier:kReuseIdentifier];
 }
-
 
 #pragma mark <CollectionViewDataSource,delegat>
 
@@ -40,19 +35,19 @@ static NSString * const kReuseIdentifier = @"Cell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.modelArray.count;
+    return [self.wODDB modelCount];
 }
 
 - (WODCustomCollectionViewCell *)collectionView:(UICollectionView *)collectionView
                          cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WODCustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier
                                                                                   forIndexPath:indexPath];
-    [cell setupWithModel:[self.modelArray objectAtIndex:indexPath.row]];
+    [cell setupWithModel:[self.wODDB modelAtIndex:indexPath.row]];
     return cell;
 }
 
-- (void)dataWasChanged:(WODDatabase *)data array:(NSArray *)array{
-    self.modelArray = [NSMutableArray arrayWithArray:array];
+- (void)dataWasChanged:(WODDatabase *)data array:(NSArray *)array {
     [self.collectionView reloadData];
 }
+
 @end

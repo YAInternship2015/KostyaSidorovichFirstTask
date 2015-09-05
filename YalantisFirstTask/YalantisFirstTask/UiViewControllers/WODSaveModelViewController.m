@@ -7,16 +7,13 @@
 //
 
 #import "WODSaveModelViewController.h"
-#import "WODValidateModel.h"
+#import "WODModelValidator.h"
 #import "WODDatabase.h"
 #import "WODModel.h"
 #import "WODFactoryModel.h"
 @interface WODSaveModelViewController ()<UITextFieldDelegate>
 
-#warning pictureNameTextField
-@property (nonatomic, weak) IBOutlet UITextField *nameForPicture;
-#warning валидатор можно создавать по необходимости и не хранить его в проперти
-@property (nonatomic, strong) WODValidateModel *wValidate;
+@property (nonatomic, weak) IBOutlet UITextField *pictureNameTextField;
 
 @end
 
@@ -24,18 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.wValidate = [WODValidateModel new];
-    [self.nameForPicture becomeFirstResponder];
-#warning задать делегата филду лучше в сториборде
-    self.nameForPicture.delegate = self;
+    [self.pictureNameTextField becomeFirstResponder];
 }
 
-#warning validateEnteredtext
-- (void)validateEnterText{
+- (void)validateEnteredtext{
     NSError *error = nil;
-#warning isValidName
-    BOOL correctNameOrNot = [self.wValidate isValidModelTitle:self.nameForPicture.text error:&error];
-    if (!correctNameOrNot) {
+    WODModelValidator *wValidate = [WODModelValidator new];
+    BOOL isValidName = [wValidate isValidModelTitle:self.pictureNameTextField.text error:&error];
+    if (!isValidName) {
         UIAlertView *aller = [[UIAlertView alloc]initWithTitle:[error localizedDescription]
                                                        message:[error localizedFailureReason]
                                                       delegate:nil
@@ -43,22 +36,23 @@
                                              otherButtonTitles:nil];
         [aller show];
     } else {
-        [self saveDataToPlist:self.nameForPicture.text];
+        [self saveDataToPlist:self.pictureNameTextField.text];
         [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
 - (void)saveDataToPlist:(NSString *)data {
-    WODModel *textForFuturePicture = [WODFactoryModel createObjectWithText:self.nameForPicture.text image:nil];
+    WODModel *textForFuturePicture = [WODFactoryModel modelWithText:self.pictureNameTextField.text image:nil];
     WODDatabase *wDB = [WODDatabase new];
-    [wDB saveModelToPlist:textForFuturePicture];
+    [wDB saveModel:textForFuturePicture];
 }
 
 - (IBAction)saveButton:(id)sender {
-    [self validateEnterText];
+    [self validateEnteredtext];
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self validateEnterText];
+    [self validateEnteredtext];
     return NO;
 }
 @end

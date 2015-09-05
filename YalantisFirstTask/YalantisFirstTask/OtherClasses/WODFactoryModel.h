@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#warning зачем здесь показывать WODModel?
-@class WODModel;
+
 @interface WODFactoryModel : NSObject
-#warning create в имени метода лишний. Так как из метода возвращается модель, он должен называться modelWithText:imageName:
-+ (WODModel *)createObjectWithText:(NSString *)text image:(NSString *)imageNamed;
+
++ (id)modelWithText:(NSString *)text image:(NSString *)imageNamed;
+
 @end

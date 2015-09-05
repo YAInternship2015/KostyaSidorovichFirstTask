@@ -8,11 +8,12 @@
 
 #import "WODFactoryModel.h"
 #import "WODModel.h"
-#warning здесь должна быть пустая строка
+
 @implementation WODFactoryModel
-+ (WODModel *)createObjectWithText:(NSString *)text image:(NSString *)imageNamed {
-#warning после alloc] должен быть пробел
-    WODModel *obj= [[WODModel alloc]initWithString:imageNamed imageSignature:text];
+
++ (WODModel *)modelWithText:(NSString *)text image:(NSString *)imageNamed {
+    WODModel *obj= [[WODModel alloc] initWithString:imageNamed imageSignature:text];
     return obj;
 }
+
 @end

@@ -10,8 +10,7 @@
 
 @class WODModel;
 
-#warning здесь правда нужны <UIAlertViewDelegate,UIApplicationDelegate> ?
-@interface WODCustomCell : UITableViewCell <UIAlertViewDelegate,UIApplicationDelegate>
+@interface WODCustomCell : UITableViewCell
 
 - (void)setupWithModel:(WODModel *)wModel;
 

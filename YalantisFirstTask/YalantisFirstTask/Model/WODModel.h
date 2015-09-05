@@ -15,6 +15,5 @@
 @property (nonatomic, readonly) NSString *imageNamed;
 
 - (id)initWithString:(NSString *)name imageSignature:(NSString *)signature;
-- (id)initWithImage:(UIImage *)image imageSignature:(NSString *)signature;
 
 @end
