@@ -24,6 +24,7 @@
     [self.pictureNameTextField becomeFirstResponder];
 }
 
+#warning validateEnteredText {
 - (void)validateEnteredtext{
     NSError *error = nil;
     WODModelValidator *wValidate = [WODModelValidator new];

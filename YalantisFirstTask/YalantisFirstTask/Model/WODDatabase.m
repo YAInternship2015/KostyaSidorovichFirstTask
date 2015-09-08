@@ -13,6 +13,7 @@
 @interface WODDatabase ()
 
 @property (nonatomic, weak) id<WODDataModelDelegate> delegate;
+#warning не понял, зачем нужно свойство tempStringForNotification
 @property (nonatomic, weak) NSString *tempStringForNotification;
 @property (nonatomic, strong) NSArray *itemArray;
 @property (nonatomic, retain) NSString *plistFile;
@@ -78,6 +79,7 @@
     NSMutableArray *titleArray = [savedStock valueForKey:@"names"];
     
     [titleArray addObject:model.picturesSignature];
+#warning название картинки по умолчанию вынесите в константы
     [imgArray addObject:[NSString stringWithFormat:@"Пустая картинка.jpeg"]];
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:imgArray, @"images",

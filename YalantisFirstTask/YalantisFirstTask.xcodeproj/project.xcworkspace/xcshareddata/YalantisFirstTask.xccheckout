@@ -7,21 +7,21 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>3B1E6D4D-A5F2-47FC-B0BE-1203F67E85AA</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>YalantisFirstTask</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5A2A5D282376A5EB6F10CD136914B06CD36B30C8</key>
-		<string>https://github.com/YAInternship2015/KostyaSidorovichFirstTask.git</string>
+		<string>github.com:YAInternship2015/KostyaSidorovichFirstTask.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>YalantisFirstTask/YalantisFirstTask.xcodeproj/project.xcworkspace</string>
+	<string>YalantisFirstTask/YalantisFirstTask.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5A2A5D282376A5EB6F10CD136914B06CD36B30C8</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/YAInternship2015/KostyaSidorovichFirstTask.git</string>
+	<string>github.com:YAInternship2015/KostyaSidorovichFirstTask.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

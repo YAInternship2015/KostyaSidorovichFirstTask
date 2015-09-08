@@ -8,6 +8,7 @@
 
 #import "WODModelValidator.h"
 
+#warning в задании вроде была длина не менее трех символов
 float const kMinModelTitleLength = 0.1;
 
 @implementation WODModelValidator
