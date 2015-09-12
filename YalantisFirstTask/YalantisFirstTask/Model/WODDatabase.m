@@ -10,11 +10,11 @@
 #import <UIKit/UIKit.h>
 #import "WODNotifications.h"
 
+static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg";
+
 @interface WODDatabase ()
 
 @property (nonatomic, weak) id<WODDataModelDelegate> delegate;
-#warning не понял, зачем нужно свойство tempStringForNotification
-@property (nonatomic, weak) NSString *tempStringForNotification;
 @property (nonatomic, strong) NSArray *itemArray;
 @property (nonatomic, retain) NSString *plistFile;
 
@@ -79,8 +79,7 @@
     NSMutableArray *titleArray = [savedStock valueForKey:@"names"];
     
     [titleArray addObject:model.picturesSignature];
-#warning название картинки по умолчанию вынесите в константы
-    [imgArray addObject:[NSString stringWithFormat:@"Пустая картинка.jpeg"]];
+    [imgArray addObject:[NSString stringWithFormat:kEmptyPictureNamed]];
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:imgArray, @"images",
                                                                     titleArray, @"names", nil];

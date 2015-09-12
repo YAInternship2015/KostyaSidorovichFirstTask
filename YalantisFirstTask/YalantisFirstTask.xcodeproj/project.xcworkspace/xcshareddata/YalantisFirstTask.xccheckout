@@ -11,7 +11,7 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5A2A5D282376A5EB6F10CD136914B06CD36B30C8</key>
-		<string>github.com:YAInternship2015/KostyaSidorovichFirstTask.git</string>
+		<string>https://github.com/YAInternship2015/KostyaSidorovichFirstTask.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>YalantisFirstTask/YalantisFirstTask.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:YAInternship2015/KostyaSidorovichFirstTask.git</string>
+	<string>https://github.com/YAInternship2015/KostyaSidorovichFirstTask.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
