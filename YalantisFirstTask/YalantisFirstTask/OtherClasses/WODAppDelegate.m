@@ -7,7 +7,7 @@
 //
 
 #import "WODAppDelegate.h"
-
+#import "WODConnectCD.h"
 @interface WODAppDelegate ()
 
 @end
@@ -17,6 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    WODConnectCD *wCD = [WODConnectCD new];
+    [wCD plagiateAppDelegate];
     return YES;
 }
 

@@ -27,6 +27,9 @@
 		DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2057D1B85FD09001F0876 /* WODCustomCollectionViewCell.m */; };
 		DAA205801B862BA6001F0876 /* WODCustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */; };
 		DACE357E1B8FD8C70021CC61 /* WODFactoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DACE357D1B8FD8C70021CC61 /* WODFactoryModel.m */; };
+		DAD1F6381BA444BB00BF3B1D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD1F6371BA444BB00BF3B1D /* CoreData.framework */; };
+		DAD1F63B1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAD1F6391BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld */; };
+		DAD1F6441BA4502900BF3B1D /* WODConnectCD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD1F6431BA4502900BF3B1D /* WODConnectCD.m */; };
 		DAD247EE1B8E0A8E00156B10 /* WODAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */; };
 		DAD247EF1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD247EB1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m */; };
 		DAD8E5C11B905DA20047A6CF /* Пустая картинка.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAD8E5C01B905DA10047A6CF /* Пустая картинка.jpeg */; };
@@ -81,6 +84,10 @@
 		DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WODCustomCollectionCell.xib; sourceTree = "<group>"; };
 		DACE357C1B8FD8C70021CC61 /* WODFactoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODFactoryModel.h; sourceTree = "<group>"; };
 		DACE357D1B8FD8C70021CC61 /* WODFactoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODFactoryModel.m; sourceTree = "<group>"; };
+		DAD1F6371BA444BB00BF3B1D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DAD1F63A1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WODCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		DAD1F6421BA4502900BF3B1D /* WODConnectCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODConnectCD.h; sourceTree = "<group>"; };
+		DAD1F6431BA4502900BF3B1D /* WODConnectCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODConnectCD.m; sourceTree = "<group>"; };
 		DAD247E81B8E0A8E00156B10 /* WODAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODAppDelegate.h; sourceTree = "<group>"; };
 		DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODAppDelegate.m; sourceTree = "<group>"; };
 		DAD247EA1B8E0A8E00156B10 /* WODCustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODCustomIOS7AlertView.h; sourceTree = "<group>"; };
@@ -107,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAD1F6381BA444BB00BF3B1D /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +135,9 @@
 				DA0B10BF1B7BA1D80015749E /* WODDatabase.m */,
 				DA0B10C11B7BA22D0015749E /* WODModel.h */,
 				DA0B10C21B7BA22D0015749E /* WODModel.m */,
+				DAD1F6391BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld */,
+				DAD1F6421BA4502900BF3B1D /* WODConnectCD.h */,
+				DAD1F6431BA4502900BF3B1D /* WODConnectCD.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +244,7 @@
 		DAF537641B6CD60C00AE1857 = {
 			isa = PBXGroup;
 			children = (
+				DAD1F6371BA444BB00BF3B1D /* CoreData.framework */,
 				DAF5376F1B6CD60C00AE1857 /* YalantisFirstTask */,
 				DAF537891B6CD60C00AE1857 /* YalantisFirstTaskTests */,
 				DAF5376E1B6CD60C00AE1857 /* Products */,
@@ -396,7 +408,9 @@
 			files = (
 				DADE4ADD1B8CEA9E00014412 /* main.m in Sources */,
 				DADE4AD31B8B229C00014412 /* WODContainerViewController.m in Sources */,
+				DAD1F63B1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld in Sources */,
 				DA0B10C31B7BA22D0015749E /* WODModel.m in Sources */,
+				DAD1F6441BA4502900BF3B1D /* WODConnectCD.m in Sources */,
 				DAD247EF1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m in Sources */,
 				DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */,
 				DAD247EE1B8E0A8E00156B10 /* WODAppDelegate.m in Sources */,
@@ -617,6 +631,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DAD1F6391BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DAD1F63A1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = DAD1F63A1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodel */;
+			path = WODCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DAF537651B6CD60C00AE1857 /* Project object */;
 }
