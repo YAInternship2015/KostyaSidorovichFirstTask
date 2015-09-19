@@ -14,10 +14,12 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 - (void)saveContext;
 - (NSURL *)applicationsDocumentsDirectory;
 
-- (void)plagiateAppDelegate;
+
+- (void)insertNewObjectWithPictureName:(NSString *)name forSignature:(NSString *)signature;
 
 @end

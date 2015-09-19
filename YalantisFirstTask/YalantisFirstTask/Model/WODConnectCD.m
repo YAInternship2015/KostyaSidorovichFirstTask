@@ -7,21 +7,62 @@
 //
 
 #import "WODConnectCD.h"
-//@interface WODConnectCD ()
-//
-//@property (readwrite, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-//@property (readwrite, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-//@property (readwrite, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-//
-//@end
+#import "Signature.h"
+#import "Picture.h"
 
 @implementation WODConnectCD
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+//@synthesize managedObjectContext = _managedObjectContext;
+//@synthesize managedObjectModel = _managedObjectModel;
+//@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil)
+        return _fetchedResultsController;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    
+    [fetchRequest setFetchBatchSize:20];
+    
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pictureSignature" ascending:NO];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+    
+    NSError *error = nil;
+    if(![self.fetchedResultsController performFetch:&error]){
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    
+    return _fetchedResultsController;
+}
+
+- (void)insertNewObject {
+    NSManagedObjectContext *managedObjectContext = [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
+    
+    [newManagedObject setValue:[NSDate date] forKey:@"pictureSignature"];
+    
+    NSError *error = nil;
+    if(![managedObjectContext save:&error]){
+        NSLog(@"Unresolved error: %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
 
 - (NSManagedObjectModel *)managedObjectModel {
-    if (_managedObjectModel != nil){
+    if(_managedObjectModel != nil){
         return _managedObjectModel;
     }
     
@@ -36,10 +77,10 @@
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationsDocumentsDirectory] URLByAppendingPathComponent:@"DemoApp.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"BasicApplication.sqlite"];
     
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
+    NSError* error = nil;
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]){
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
@@ -47,7 +88,6 @@
     
     return _persistentStoreCoordinator;
 }
-
 - (NSManagedObjectContext *)managedObjectContext {
     if(_managedObjectContext != nil){
         return _managedObjectContext;
@@ -61,8 +101,7 @@
     
     return _managedObjectContext;
 }
-
-- (NSURL *)applicationsDocumentsDirectory {
+- (NSURL *)applicationDocumentsDirectory{
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
@@ -77,23 +116,21 @@
         }
     }
 }
-///
-- (void)plagiateAppDelegate {
+- (void)insertNewObjectWithPictureName:(NSString *)name forSignature:(NSString *)signature {
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entity" inManagedObjectContext:context];
-    [request setEntity:entity];
-    NSArray *results = [context executeFetchRequest:request error:nil];
-    for(NSManagedObject *object in results){
-        NSLog(@"Found %@", [object valueForKey:@"pictureSignature"]);
+    Signature *kSignature = [NSEntityDescription
+                                      insertNewObjectForEntityForName:@"Signature"
+                                      inManagedObjectContext:context];
+    kSignature.pictureSignature = signature;
+    Picture *kPicture = [NSEntityDescription
+                                            insertNewObjectForEntityForName:@"Picture"
+                                            inManagedObjectContext:context];
+    kPicture.named = name;
+    kSignature.pictureName = kPicture;
+    kPicture.signature = kSignature;
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
-    NSString *launchTitle = [NSString stringWithFormat:@"launch %lu", (unsigned long)[results count]];
-    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    [object setValue:launchTitle forKey:@"pictureSignature"];
-    [self saveContext];
-    NSLog(@"Added : %@", launchTitle);
 }
-///
-
-
 @end

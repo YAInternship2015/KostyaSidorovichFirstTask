@@ -27,6 +27,8 @@
 		DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2057D1B85FD09001F0876 /* WODCustomCollectionViewCell.m */; };
 		DAA205801B862BA6001F0876 /* WODCustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */; };
 		DACE357E1B8FD8C70021CC61 /* WODFactoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DACE357D1B8FD8C70021CC61 /* WODFactoryModel.m */; };
+		DAD14AB01BA842AF00621288 /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD14AAF1BA842AF00621288 /* Signature.m */; };
+		DAD14AB31BA842B000621288 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD14AB21BA842B000621288 /* Picture.m */; };
 		DAD1F6381BA444BB00BF3B1D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD1F6371BA444BB00BF3B1D /* CoreData.framework */; };
 		DAD1F63B1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAD1F6391BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld */; };
 		DAD1F6441BA4502900BF3B1D /* WODConnectCD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD1F6431BA4502900BF3B1D /* WODConnectCD.m */; };
@@ -84,6 +86,10 @@
 		DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WODCustomCollectionCell.xib; sourceTree = "<group>"; };
 		DACE357C1B8FD8C70021CC61 /* WODFactoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODFactoryModel.h; sourceTree = "<group>"; };
 		DACE357D1B8FD8C70021CC61 /* WODFactoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODFactoryModel.m; sourceTree = "<group>"; };
+		DAD14AAE1BA842AF00621288 /* Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signature.h; sourceTree = "<group>"; };
+		DAD14AAF1BA842AF00621288 /* Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signature.m; sourceTree = "<group>"; };
+		DAD14AB11BA842B000621288 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
+		DAD14AB21BA842B000621288 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 		DAD1F6371BA444BB00BF3B1D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DAD1F63A1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WODCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		DAD1F6421BA4502900BF3B1D /* WODConnectCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODConnectCD.h; sourceTree = "<group>"; };
@@ -136,6 +142,10 @@
 				DA0B10C11B7BA22D0015749E /* WODModel.h */,
 				DA0B10C21B7BA22D0015749E /* WODModel.m */,
 				DAD1F6391BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld */,
+				DAD14AB11BA842B000621288 /* Picture.h */,
+				DAD14AB21BA842B000621288 /* Picture.m */,
+				DAD14AAE1BA842AF00621288 /* Signature.h */,
+				DAD14AAF1BA842AF00621288 /* Signature.m */,
 				DAD1F6421BA4502900BF3B1D /* WODConnectCD.h */,
 				DAD1F6431BA4502900BF3B1D /* WODConnectCD.m */,
 			);
@@ -414,6 +424,7 @@
 				DAD247EF1B8E0A8E00156B10 /* WODCustomIOS7AlertView.m in Sources */,
 				DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */,
 				DAD247EE1B8E0A8E00156B10 /* WODAppDelegate.m in Sources */,
+				DAD14AB01BA842AF00621288 /* Signature.m in Sources */,
 				DACE357E1B8FD8C70021CC61 /* WODFactoryModel.m in Sources */,
 				DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */,
 				DA5B4E481B8F5A14006B8F3D /* WODSaveModelViewController.m in Sources */,
@@ -421,6 +432,7 @@
 				DAA2057B1B85E9A2001F0876 /* WODPicturesCollectionViewController.m in Sources */,
 				DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */,
 				DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */,
+				DAD14AB31BA842B000621288 /* Picture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,9 @@
 #import "WODDatabase.h"
 #import <UIKit/UIKit.h>
 #import "WODNotifications.h"
+#import "WODConnectCD.h"
+#import "Signature.h"
+#import "Picture.h"
 
 static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg";
 
@@ -17,7 +20,7 @@ static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg
 @property (nonatomic, weak) id<WODDataModelDelegate> delegate;
 @property (nonatomic, strong) NSArray *itemArray;
 @property (nonatomic, retain) NSString *plistFile;
-
+@property (nonatomic, strong) WODConnectCD *connectedCoreData;
 @end
 
 @implementation WODDatabase
@@ -33,8 +36,8 @@ static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg
 - (id)init {
     self = [super init];
     if (self) {
-        [self openPlistFile];
-        self.itemArray = [NSMutableArray arrayWithArray:[self dataFromPlist]];
+        self.connectedCoreData = [WODConnectCD new];
+        self.itemArray = [NSMutableArray arrayWithArray:[self coreDataArray]];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(dataDidChanged:)
@@ -48,7 +51,7 @@ static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (WODModel *)modelAtIndex:(NSInteger)index{
+- (WODModel *)modelAtIndex:(NSInteger)index {
     return [self.itemArray objectAtIndex:index];
 }
 
@@ -56,50 +59,28 @@ static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg
     return self.itemArray.count;
 }
 
-- (NSArray *)dataFromPlist {
-    NSArray *namesValueArray = [self readValueForKey:@"names"];
-    NSArray *imagesValueArray = [self readValueForKey:@"images"];
+- (void)dataDidChanged:(NSNotification *)notification {
+    self.itemArray = [self coreDataArray];
+    [self.delegate dataWasChanged:self array:[self coreDataArray]];
+}
+
+- (NSArray *)coreDataArray {
     NSMutableArray *wModel = [NSMutableArray new];
-    
-    for (int a = 0; a < namesValueArray.count; a++) {
-        [wModel addObject:[[WODModel alloc] initWithString:[imagesValueArray objectAtIndex:a]
-                                            imageSignature:[namesValueArray objectAtIndex:a]]];
+    NSManagedObjectContext *context = [self.connectedCoreData managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:context];
+    [request setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:nil];
+    for (Signature *info in fetchedObjects) {
+        NSLog(@"Name: %@", info.pictureSignature);
+        Picture *details = info.pictureName;
+        NSLog(@"Zip: %@", details.named);
+        if (details.named != nil & info.pictureSignature != nil) {
+            [wModel addObject:[[WODModel alloc] initWithString:details.named
+                                                imageSignature:info.pictureSignature]];
+        }
     }
     return wModel;
-}
-
-- (void)dataDidChanged:(NSNotification *)notification {
-    self.itemArray = [self dataFromPlist];
-    [self.delegate dataWasChanged:self array:[self dataFromPlist]];
-}
-
-- (void)saveModel:(WODModel *)model {
-    NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile:self.plistFile];
-    NSMutableArray *imgArray = [savedStock valueForKey:@"images"];
-    NSMutableArray *titleArray = [savedStock valueForKey:@"names"];
-    
-    [titleArray addObject:model.picturesSignature];
-    [imgArray addObject:[NSString stringWithFormat:kEmptyPictureNamed]];
-    
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:imgArray, @"images",
-                                                                    titleArray, @"names", nil];
-    [dict writeToFile:self.plistFile atomically: YES];
-    self.tempStringForNotification = model.picturesSignature;
-    
-}
-
-- (void)openPlistFile {
-    NSError *error;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    self.plistFile = [documentsDirectory stringByAppendingPathComponent:@"data.plist"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if (![fileManager fileExistsAtPath: self.plistFile]) {
-        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"WODData" ofType:@"plist"];
-        
-        [fileManager copyItemAtPath:bundle toPath: self.plistFile error:&error];
-    }
 }
 
 - (NSArray *)readValueForKey:(NSString *)key{
@@ -110,7 +91,12 @@ static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg
 
 -(void)setTempStringForNotification:(NSString *)tempStringForNotification {
     [[NSNotificationCenter defaultCenter] postNotificationName:WODDataFileContentDidChangeNotificationName object:nil];
-
 }
 
+- (void)saveModel:(WODModel *)model {
+    NSString *named = [NSString stringWithFormat:@"природа %i.jpeg",arc4random()%9];
+    
+    [self.connectedCoreData insertNewObjectWithPictureName:named forSignature:model.picturesSignature];
+    self.tempStringForNotification = model.picturesSignature;
+}
 @end
