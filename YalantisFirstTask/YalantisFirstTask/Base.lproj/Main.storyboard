@@ -44,7 +44,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xFL-qF-2xe">
                             <connections>
-                                <segue destination="CVo-rT-WDK" kind="show" id="kws-bk-0WK"/>
+                                <segue destination="CVo-rT-WDK" kind="show" identifier="pushSaveViewController" id="ChJ-a7-tau"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -106,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Vz-1i-VxC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1306" y="1040"/>
+            <point key="canvasLocation" x="-1306" y="1135"/>
         </scene>
         <!--Pictures Collection View Controller-->
         <scene sceneID="Tj5-Je-SIt">
@@ -125,14 +125,20 @@
                         <connections>
                             <outlet property="dataSource" destination="dvA-vr-Ae5" id="1pG-MQ-VZO"/>
                             <outlet property="delegate" destination="dvA-vr-Ae5" id="CYe-R7-Rhq"/>
+                            <outletCollection property="gestureRecognizers" destination="cA1-LM-aRw" appends="YES" id="Q22-Rh-ISi"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="boR-S8-EI6"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="39q-i6-czu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="1.5" id="cA1-LM-aRw">
+                    <connections>
+                        <action selector="handleLongPress:" destination="dvA-vr-Ae5" id="V9L-1e-aiS"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-678" y="1040"/>
+            <point key="canvasLocation" x="-678" y="1039"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="gZd-Ke-mxE">

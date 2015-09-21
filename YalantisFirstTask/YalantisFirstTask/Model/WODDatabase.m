@@ -7,25 +7,24 @@
 //
 
 #import "WODDatabase.h"
-#import <UIKit/UIKit.h>
-#import "WODNotifications.h"
-#import "WODConnectCD.h"
 #import "Signature.h"
-#import "Picture.h"
 
-static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg";
+static NSString *kPictureSignatureAttribute = @"pictureSignature";
+static NSString *kPictureNameAttribute = @"pictureNamed";
 
 @interface WODDatabase ()
 
-@property (nonatomic, weak) id<WODDataModelDelegate> delegate;
-@property (nonatomic, strong) NSArray *itemArray;
-@property (nonatomic, retain) NSString *plistFile;
-@property (nonatomic, strong) WODConnectCD *connectedCoreData;
+@property (nonatomic, weak) id<NSFetchedResultsControllerDelegate> delegate;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 @end
 
 @implementation WODDatabase
 
-- (instancetype)initWithDelegate:(id<WODDataModelDelegate>)delegate {
+- (instancetype)initWithDelegate:(id<NSFetchedResultsControllerDelegate>)delegate {
     self = [self init];
     if (self) {
         self.delegate = delegate;
@@ -33,70 +32,121 @@ static NSString *const kEmptyPictureNamed = @"Пустая картинка.jpeg
     return self;
 }
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.connectedCoreData = [WODConnectCD new];
-        self.itemArray = [NSMutableArray arrayWithArray:[self coreDataArray]];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(dataDidChanged:)
-                                                     name:WODDataFileContentDidChangeNotificationName
-                                                   object:nil];
+- (Signature *)modelAtIndexPath:(NSIndexPath *)indexPath {
+    Signature *model = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    return model;
+}
+
+- (NSInteger)modelCountForSections:(NSInteger)section {
+    id  sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
+
+
+- (void)deleteModelWithIndex:(NSIndexPath *)index {
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    [context deleteObject:[self.fetchedResultsController objectAtIndexPath:index]];
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
     }
-    return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)insertNewObjectWithPictureName:(NSString *)name forSignature:(NSString *)signature {
+    
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                                                      inManagedObjectContext:context];
+    
+    [newManagedObject setValue:signature forKey:kPictureSignatureAttribute];
+    [newManagedObject setValue:name forKey:kPictureNameAttribute];
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
 }
 
-- (WODModel *)modelAtIndex:(NSInteger)index {
-    return [self.itemArray objectAtIndex:index];
+#pragma mark - Cora Data
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription* description =[NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
+    
+    [fetchRequest setEntity:description];
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kPictureSignatureAttribute ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc]
+                                     initWithFetchRequest:fetchRequest
+                                     managedObjectContext:context
+                                     sectionNameKeyPath:nil
+                                     cacheName:nil];
+    self.fetchedResultsController.delegate = self.delegate;
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"%@, %@", error, [error userInfo]);
+    }
+    return _fetchedResultsController;
 }
 
-- (NSInteger)modelCount {
-    return self.itemArray.count;
+- (NSManagedObjectModel *)managedObjectModel {
+    if(_managedObjectModel != nil) {
+        return _managedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"WODCoreDataModel" withExtension:@"momd"];
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
 }
 
-- (void)dataDidChanged:(NSNotification *)notification {
-    self.itemArray = [self coreDataArray];
-    [self.delegate dataWasChanged:self array:[self coreDataArray]];
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    if(_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
+    }
+    NSError* error = nil;
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"BasicApplication.sqlite"];
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
+    if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]){
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    return _persistentStoreCoordinator;
 }
 
-- (NSArray *)coreDataArray {
-    NSMutableArray *wModel = [NSMutableArray new];
-    NSManagedObjectContext *context = [self.connectedCoreData managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:context];
-    [request setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:request error:nil];
-    for (Signature *info in fetchedObjects) {
-        NSLog(@"Name: %@", info.pictureSignature);
-        Picture *details = info.pictureName;
-        NSLog(@"Zip: %@", details.named);
-        if (details.named != nil & info.pictureSignature != nil) {
-            [wModel addObject:[[WODModel alloc] initWithString:details.named
-                                                imageSignature:info.pictureSignature]];
+- (NSManagedObjectContext *)managedObjectContext {
+    if(_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if(coordinator != nil){
+        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return _managedObjectContext;
+}
+
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (void)saveContext {
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        NSError *error = nil;
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
         }
     }
-    return wModel;
 }
 
-- (NSArray *)readValueForKey:(NSString *)key{
-    NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile:self.plistFile];
-    NSArray *arr = [NSArray arrayWithArray:[savedStock valueForKey:key]];
-    return arr;
-}
-
--(void)setTempStringForNotification:(NSString *)tempStringForNotification {
-    [[NSNotificationCenter defaultCenter] postNotificationName:WODDataFileContentDidChangeNotificationName object:nil];
-}
-
-- (void)saveModel:(WODModel *)model {
-    NSString *named = [NSString stringWithFormat:@"природа %i.jpeg",arc4random()%9];
-    
-    [self.connectedCoreData insertNewObjectWithPictureName:named forSignature:model.picturesSignature];
-    self.tempStringForNotification = model.picturesSignature;
-}
 @end

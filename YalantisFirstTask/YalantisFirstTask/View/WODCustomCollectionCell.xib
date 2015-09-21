@@ -13,14 +13,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VW9-PS-B1w" customClass="wod">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VW9-PS-B1w">
                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <connections>
-                <outlet property="image" destination="VW9-PS-B1w" id="v78-LV-EVP"/>
+                <outlet property="image" destination="VW9-PS-B1w" id="tPw-Hl-aM0"/>
             </connections>
             <point key="canvasLocation" x="214" y="224"/>
         </collectionViewCell>

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class WODDatabase;
+
 @interface WODTableViewController : UITableViewController
+
+@property (nonatomic, strong) WODDatabase *wODDB;
 
 @end
 

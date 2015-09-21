@@ -7,7 +7,7 @@
 //
 
 #import "WODAppDelegate.h"
-#import "WODConnectCD.h"
+#import "WODDatabase.h"
 @interface WODAppDelegate ()
 
 @end
@@ -40,6 +40,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    WODDatabase *dataBase = [WODDatabase new];
+    [dataBase saveContext];
 }
 
 @end

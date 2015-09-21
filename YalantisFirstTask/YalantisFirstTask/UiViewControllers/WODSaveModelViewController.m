@@ -9,8 +9,7 @@
 #import "WODSaveModelViewController.h"
 #import "WODModelValidator.h"
 #import "WODDatabase.h"
-#import "WODModel.h"
-#import "WODFactoryModel.h"
+
 @interface WODSaveModelViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *pictureNameTextField;
@@ -36,15 +35,14 @@
                                              otherButtonTitles:nil];
         [aller show];
     } else {
-        [self saveDataToPlist:self.pictureNameTextField.text];
+        [self saveData:self.pictureNameTextField.text];
         [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
-- (void)saveDataToPlist:(NSString *)data {
-    WODModel *textForFuturePicture = [WODFactoryModel modelWithText:self.pictureNameTextField.text image:nil];
-    WODDatabase *wDB = [WODDatabase new];
-    [wDB saveModel:textForFuturePicture];
+- (void)saveData:(NSString *)data {
+    NSString *named = [NSString stringWithFormat:@"природа %i.jpeg",arc4random() % 9];
+    [self.wODDB insertNewObjectWithPictureName:named forSignature:data];
 }
 
 - (IBAction)saveButton:(id)sender {

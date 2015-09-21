@@ -9,13 +9,10 @@
 #import "WODTableViewController.h"
 #import "WODCustomCell.h"
 #import "WODDatabase.h"
-#import "WODPicturesCollectionViewController.h"
 
 static NSString *kCellIdentifier = @"WODCustomCell";
 
-@interface WODTableViewController ()<WODDataModelDelegate>
-
-@property (nonatomic, strong) WODDatabase *wODDB;
+@interface WODTableViewController ()<NSFetchedResultsControllerDelegate>
 
 @end
 
@@ -23,26 +20,58 @@ static NSString *kCellIdentifier = @"WODCustomCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.wODDB = [[WODDatabase alloc]initWithDelegate:self];
+    self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
     [self.tableView registerNib:[UINib nibWithNibName:kCellIdentifier bundle:nil]
          forCellReuseIdentifier:kCellIdentifier];
 }
 
 #pragma mark <TableViewDataSource,delegat>
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+                                            forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.wODDB deleteModelWithIndex:indexPath];
+    }
+}
+
 - (WODCustomCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WODCustomCell *cell =[tableView dequeueReusableCellWithIdentifier:kCellIdentifier
                                                          forIndexPath:indexPath];
-    [cell setupWithModel:[self.wODDB modelAtIndex:indexPath.row]];
+    [cell setupWithModel:[self.wODDB modelAtIndexPath:indexPath]];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.wODDB modelCount];
+    return [self.wODDB modelCountForSections:section];
 }
 
-- (void)dataWasChanged:(WODDatabase *)data array:(NSArray *)array{
-    [self.tableView reloadData];
+#pragma mark - core data
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            break;
+    }
 }
 
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class WODDatabase;
+
 @interface WODPicturesCollectionViewController : UICollectionViewController
+
+@property (nonatomic, strong) WODDatabase *wODDB;
 
 @end

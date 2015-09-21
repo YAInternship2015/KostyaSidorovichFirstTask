@@ -7,23 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WODModel.h"
+#import <CoreData/CoreData.h>
 
-@protocol WODDataModelDelegate;
+@class Signature;
 
 @interface WODDatabase : NSObject
 
-- (WODModel *)modelAtIndex:(NSInteger)index;
-- (instancetype)initWithDelegate:(id<WODDataModelDelegate>)delegate;
-- (NSInteger)modelCount;
-
-- (void)saveModel:(WODModel *)model;
-
-@end
-
-@protocol WODDataModelDelegate <NSObject>
-@required
-
-- (void)dataWasChanged:(WODDatabase *)data array:(NSArray *)array;
+- (Signature *)modelAtIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)modelCountForSections:(NSInteger)section;
+- (instancetype)initWithDelegate:(id<NSFetchedResultsControllerDelegate>)delegate;
+- (void)insertNewObjectWithPictureName:(NSString *)name forSignature:(NSString *)signature;
+- (void)deleteModelWithIndex:(NSIndexPath *)index;
+- (void)saveContext;
 
 @end
+

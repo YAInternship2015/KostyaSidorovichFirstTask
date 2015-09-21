@@ -7,7 +7,7 @@
 //
 
 #import "WODCustomCollectionViewCell.h"
-#import "WODModel.h"
+#import "Signature.h"
 
 @interface WODCustomCollectionViewCell ()
 
@@ -16,7 +16,7 @@
 @end
 @implementation WODCustomCollectionViewCell
 
-- (void)setupWithModel:(WODModel *)wModel {
-    self.image.image = wModel.myPicture;    
+- (void)setupWithModel:(Signature *)wModel {
+    self.image.image =[UIImage imageNamed:wModel.pictureNamed];
 }
 @end

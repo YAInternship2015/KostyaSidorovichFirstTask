@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class WODDatabase;
+
 @interface WODSaveModelViewController : UIViewController
+
+@property (nonatomic, strong) WODDatabase *wODDB;
 
 @end

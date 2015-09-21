@@ -7,8 +7,7 @@
 //
 
 #import "WODCustomCell.h"
-#import "WODCustomIOS7AlertView.h"
-#import "WODModel.h"
+#import "Signature.h"
 @interface WODCustomCell ()
 
 @property (nonatomic, weak) IBOutlet UILabel *name;
@@ -18,33 +17,9 @@
 
 @implementation WODCustomCell
 
-- (void)setupWithModel:(WODModel *)wModel {
-    self.image.image = wModel.myPicture;
-    self.name.text = wModel.picturesSignature;
-}
-
-- (IBAction)showAlertWhenPressed:(id)sender {
-    
-    WODCustomIOS7AlertView *alertView = [[WODCustomIOS7AlertView alloc] init];
-    
-    [alertView setContainerView:[self createDemoView]];
-    [alertView setOnButtonTouchUpInside:^(WODCustomIOS7AlertView *alertView, int buttonIndex) {
-        NSLog(@"Block: Button at position %d is clicked on alertView %d.", buttonIndex, (int)[alertView tag]);
-        [alertView close];
-    }];
-    [alertView setUseMotionEffects:true];
-    [alertView show];
-}
-
-
-- (UIView *)createDemoView {
-    
-    UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 270, 180)];
-    
-    [imageView setImage:self.image.image];
-    [demoView addSubview:imageView];
-    return demoView;
+- (void)setupWithModel:(Signature *)wModel {
+    self.image.image = [UIImage imageNamed:wModel.pictureNamed];
+    self.name.text = wModel.pictureSignature;
 }
 
 @end

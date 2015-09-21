@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class WODModel;
+@class Signature;
 
 @interface WODCustomCollectionViewCell : UICollectionViewCell
 
-- (void)setupWithModel:(WODModel *)wModel;
+- (void)setupWithModel:(Signature *)wModel;
 
 @end
