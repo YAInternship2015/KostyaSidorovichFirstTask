@@ -127,15 +127,12 @@ static NSString *const kInstagramClientID = @"bc03d5c0fbf94750898b75920b94411a";
     [self.data setLength:0];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError *jsonError = nil;
     id jsonData = [NSJSONSerialization JSONObjectWithData:self.data options:0 error:&jsonError];
-    if(jsonData && [NSJSONSerialization isValidJSONObject:jsonData])
-    {
+    if(jsonData && [NSJSONSerialization isValidJSONObject:jsonData]) {
         NSString *accesstoken = [jsonData objectForKey:@"access_token"];
-        if(accesstoken)
-        {
+        if (accesstoken) {
             [self.authDelegate didAuthWithToken:accesstoken];
             return;
         }

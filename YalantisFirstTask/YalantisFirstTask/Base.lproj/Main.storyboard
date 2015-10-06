@@ -14,16 +14,19 @@
                         <viewControllerLayoutGuide type="bottom" id="qm6-UR-cIP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="30t-zu-swH">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="400" height="600"/>
+                    <navigationItem key="navigationItem" id="cQn-1w-HDC"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <segue destination="iTO-yU-wKe" kind="push" identifier="afterLogin" id="a7t-TI-86T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQd-Bk-1vG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2537" y="531"/>
+            <point key="canvasLocation" x="-1989" y="622"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="73K-vY-5n7">
@@ -36,12 +39,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="iTO-yU-wKe" kind="relationship" relationship="rootViewController" id="Eqj-Pi-cTl"/>
+                        <segue destination="gf8-AH-XlM" kind="relationship" relationship="rootViewController" id="BVJ-Xj-gxI"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKb-iD-6C2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1911" y="612"/>
+            <point key="canvasLocation" x="-2569" y="622"/>
         </scene>
         <!--Picture Gallery-->
         <scene sceneID="Nxt-BK-1Jr">
@@ -52,7 +55,7 @@
                         <viewControllerLayoutGuide type="bottom" id="tQr-6B-BYY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ODr-Lf-1lE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -68,6 +71,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9T-Ez-ste" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -83,10 +87,10 @@
                         <viewControllerLayoutGuide type="bottom" id="Iic-Ig-6YS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JhB-y3-Dq7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-Nc-Xd1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-Nc-Xd1">
                                 <rect key="frame" x="57" y="187" width="300" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
