@@ -26,7 +26,9 @@ static NSString *kCellIdentifier = @"WODCustomCell";
 }
 
 #pragma mark <TableViewDataSource,delegat>
-
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"indexPath = %@",indexPath);
+}
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
                                             forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {

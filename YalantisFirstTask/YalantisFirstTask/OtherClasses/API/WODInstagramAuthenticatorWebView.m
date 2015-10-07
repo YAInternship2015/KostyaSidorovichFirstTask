@@ -9,6 +9,7 @@
 #import "WODInstagramAuthenticatorWebView.h"
 //#import "InstagramAuthDelegate.h"
 #import "NSDictionary+UrlEncoding.h"
+#import "WODGetterInstagramInfo.h"
 
 static NSString *const kInstagramRedirectURL = @"https://www.google.com.ua";
 static NSString *const kInstagramClientSecret = @"27cc791529904236a03dbaaa6b500e7a";
@@ -17,6 +18,7 @@ static NSString *const kInstagramClientID = @"bc03d5c0fbf94750898b75920b94411a";
 @interface WODInstagramAuthenticatorWebView()
 @property(nonatomic, strong) NSMutableData *data;
 @property(nonatomic, strong) NSURLConnection *tokenRequestConnection;
+@property (nonatomic, strong) WODInstagramAuthViewController *wIAVC;
 @end
 
 @implementation WODInstagramAuthenticatorWebView
@@ -48,14 +50,8 @@ static NSString *const kInstagramClientID = @"bc03d5c0fbf94750898b75920b94411a";
     self.delegate = nil;
 }
 
--(void) authorize
-{
-    //See http://instagram.com/developer/authentication/ for more details.
-
-    NSString *scopeStr = @"scope=likes+comments+relationships";
-    
-    NSString *url = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&display=touch&%@&redirect_uri=https://www.google.com.ua&response_type=code", kInstagramClientID, scopeStr];
-    
+-(void) authorize {
+    NSString *url = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&display=touch&redirect_uri=https://www.google.com.ua&response_type=code", kInstagramClientID];
     [self loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
@@ -133,12 +129,12 @@ static NSString *const kInstagramClientID = @"bc03d5c0fbf94750898b75920b94411a";
     if(jsonData && [NSJSONSerialization isValidJSONObject:jsonData]) {
         NSString *accesstoken = [jsonData objectForKey:@"access_token"];
         if (accesstoken) {
-            [self.authDelegate didAuthWithToken:accesstoken];
+            WODGetterInstagramInfo *wGII = [WODGetterInstagramInfo new];
+            [wGII setToken:accesstoken];
+            [self.authDelegate pushToContainerVC];
             return;
         }
     }
-
-    [self.authDelegate didAuthWithToken:nil];
 }
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse

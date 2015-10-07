@@ -16,18 +16,15 @@
 
 @synthesize delegate;
 
-- (id)initWithFrame:(CGRect)frame frameChangeDelegate:(id<FrameChangeDelegate>)_delegate
-{
+- (id)initWithFrame:(CGRect)frame frameChangeDelegate:(id<FrameChangeDelegate>)_delegate {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         self.delegate = _delegate;
     }
     return self;
 }
 
--(void) layoutSubviews
-{
+-(void) layoutSubviews {
     [self.delegate frameChanged:self.frame];
 }
 

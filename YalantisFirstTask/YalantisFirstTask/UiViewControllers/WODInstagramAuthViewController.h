@@ -14,15 +14,16 @@
 
 @end
 
-@protocol InstagramAuthDelegate <NSObject>
+@protocol InstagramAuthCompletedDelegate <NSObject>
 
--(void) didAuthWithToken:(NSString*)token;
+- (void)pushToContainerVC;
 
 @end
 
-@interface WODInstagramAuthViewController : UIViewController<FrameChangeDelegate, InstagramAuthDelegate>
+@interface WODInstagramAuthViewController : UIViewController<FrameChangeDelegate,InstagramAuthCompletedDelegate>
 
-@property(nonatomic, weak) id<InstagramAuthDelegate> authDelegate;
+@property(nonatomic, weak) id<InstagramAuthCompletedDelegate> authDelegate;
+
 
 @end
 

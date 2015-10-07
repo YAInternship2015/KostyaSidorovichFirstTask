@@ -11,6 +11,6 @@
 
 @interface WODInstagramAuthenticatorWebView : UIWebView <UIWebViewDelegate>
 
-@property(nonatomic, weak) id<InstagramAuthDelegate> authDelegate;
+@property(nonatomic, weak) id<InstagramAuthCompletedDelegate> authDelegate;
 
 @end
