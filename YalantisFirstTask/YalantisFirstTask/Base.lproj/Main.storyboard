@@ -21,7 +21,7 @@
                     <navigationItem key="navigationItem" id="cQn-1w-HDC"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <segue destination="iTO-yU-wKe" kind="push" identifier="afterLogin" id="a7t-TI-86T"/>
+                        <segue destination="iTO-yU-wKe" kind="show" identifier="afterLogin" id="a7t-TI-86T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQd-Bk-1vG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -90,8 +90,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-Nc-Xd1">
-                                <rect key="frame" x="57" y="187" width="300" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-Nc-Xd1">
+                                <rect key="frame" x="57" y="123" width="300" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>

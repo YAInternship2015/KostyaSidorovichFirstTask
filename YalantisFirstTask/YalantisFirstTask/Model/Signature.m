@@ -13,5 +13,5 @@
 
 @dynamic pictureSignature;
 @dynamic pictureNamed;
-
+@dynamic pictureIdNamed;
 @end

@@ -16,9 +16,11 @@ static NSString *const kInstagramClientSecret = @"27cc791529904236a03dbaaa6b500e
 static NSString *const kInstagramClientID = @"bc03d5c0fbf94750898b75920b94411a";
 
 @interface WODInstagramAuthenticatorWebView()
+
 @property(nonatomic, strong) NSMutableData *data;
 @property(nonatomic, strong) NSURLConnection *tokenRequestConnection;
 @property (nonatomic, strong) WODInstagramAuthViewController *wIAVC;
+
 @end
 
 @implementation WODInstagramAuthenticatorWebView
@@ -131,6 +133,7 @@ static NSString *const kInstagramClientID = @"bc03d5c0fbf94750898b75920b94411a";
         if (accesstoken) {
             WODGetterInstagramInfo *wGII = [WODGetterInstagramInfo new];
             [wGII setToken:accesstoken];
+            
             [self.authDelegate pushToContainerVC];
             return;
         }

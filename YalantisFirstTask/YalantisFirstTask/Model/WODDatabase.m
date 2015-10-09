@@ -11,6 +11,7 @@
 
 static NSString *kPictureSignatureAttribute = @"pictureSignature";
 static NSString *kPictureNameAttribute = @"pictureNamed";
+static NSString *kPictureIdAttribute = @"pictureIdNamed";
 
 @interface WODDatabase ()
 
@@ -23,6 +24,7 @@ static NSString *kPictureNameAttribute = @"pictureNamed";
 @end
 
 @implementation WODDatabase
+
 
 - (instancetype)initWithDelegate:(id<NSFetchedResultsControllerDelegate>)delegate {
     self = [self init];
@@ -41,6 +43,27 @@ static NSString *kPictureNameAttribute = @"pictureNamed";
     id  sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
+#warning !!!!
+- (BOOL)existenceIdName:(NSString *)idName {
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                                                      inManagedObjectContext:context];
+    if ([[newManagedObject valueForKey:kPictureIdAttribute]containsString:idName]) {
+        return YES;
+    }
+    return NO;
+}
+#warning !!!!
+- (void)replaceParametrsSignature:(NSString *)signature pictureName:(NSString *)pictureName forIdName:(NSString *)idName {
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                                                      inManagedObjectContext:context];
+    NSUInteger ind = [[newManagedObject valueForKey:kPictureIdAttribute]indexOfObject:idName];
+    [[newManagedObject valueForKey:kPictureSignatureAttribute]replaceObjectAtIndex:ind withObject:signature];
+    [[newManagedObject valueForKey:kPictureNameAttribute]replaceObjectAtIndex:ind withObject:pictureName];
+}
 
 
 - (void)deleteModelWithIndex:(NSIndexPath *)index {
@@ -53,8 +76,8 @@ static NSString *kPictureNameAttribute = @"pictureNamed";
     }
 }
 
-- (void)insertNewObjectWithPictureName:(NSString *)name forSignature:(NSString *)signature {
-    
+- (void)insertNewObjectWithPictureName:(NSString *)name pictureIdName:(NSString *)idName forSignature:(NSString *)signature {
+
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
@@ -62,6 +85,8 @@ static NSString *kPictureNameAttribute = @"pictureNamed";
     
     [newManagedObject setValue:signature forKey:kPictureSignatureAttribute];
     [newManagedObject setValue:name forKey:kPictureNameAttribute];
+    [newManagedObject setValue:idName forKey:kPictureIdAttribute];
+
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);

@@ -8,11 +8,13 @@
 
 #import "WODGetterInstagramInfo.h"
 #import <UIKit/UIKit.h>
+#import "WODSaveModelViewController.h"
 @interface WODGetterInstagramInfo ()
 
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSMutableArray *usersPictureId;
 @property (nonatomic, strong) NSMutableArray *picturesURL;
+@property (nonatomic, strong) NSMutableArray *pictureCaptionText;
 
 @end
 
@@ -20,11 +22,15 @@
 
 - (void)setToken:(NSString *)token {
     self.accessToken = token;
-    
-    [self didAuthWithToken:self.accessToken forTagNmaed:@"car"];
+    [self getDataFromAPIforTag:@"car"];
 }
 
-- (void)didAuthWithToken:(NSString*)token forTagNmaed:(NSString *)tag{
+- (void)getDataFromAPIforTag:(NSString *)tag{
+    NSLog(@"access token %@",self.accessToken);
+    [self didAuthWithToken:self.accessToken forTagNmaed:tag];
+}
+
+- (void)didAuthWithToken:(NSString*)token forTagNmaed:(NSString *)tag {
         if(!token) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                 message:@"Failed to request token."
@@ -35,7 +41,7 @@
             return;
         }
         NSString *instagramBase = @"https://api.instagram.com/v1";
-        NSString *popularURLString = [NSString stringWithFormat:@"%@/tags/%@/media/recent?access_token=%@", instagramBase, token, tag];
+        NSString *popularURLString = [NSString stringWithFormat:@"%@/tags/%@/media/recent?access_token=%@", instagramBase, tag, token];
     
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:popularURLString]];
     
@@ -58,12 +64,16 @@
                                            } else {
                                                self.usersPictureId = [NSMutableArray new];
                                                self.picturesURL = [NSMutableArray new];
+                                               self.pictureCaptionText = [NSMutableArray new];
                                                for (NSDictionary *dict in data) {
                                                    [self.usersPictureId addObject:[dict valueForKey:@"id"]];
                                                    [self.picturesURL addObject:[[[dict valueForKey:@"images"] valueForKey:@"thumbnail"] valueForKey:@"url"]];
+                                                   [self.pictureCaptionText addObject:[[dict valueForKey:@"caption"]valueForKey:@"text"]];
                                                }
-                                               NSLog(@"id = %@",self.usersPictureId);
-                                               NSLog(@"id = %@",self.picturesURL);
+//                                               NSLog(@"id = %@",self.usersPictureId);
+//                                               NSLog(@"url = %@",self.picturesURL);
+                                               NSLog(@"text = %@",self.pictureCaptionText);
+
                                            }
                                        });
                                    }

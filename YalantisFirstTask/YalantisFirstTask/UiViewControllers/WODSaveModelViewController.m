@@ -9,8 +9,9 @@
 #import "WODSaveModelViewController.h"
 #import "WODModelValidator.h"
 #import "WODDatabase.h"
+//#import "WODSaveModelViewController.h"
 
-@interface WODSaveModelViewController ()<UITextFieldDelegate>
+@interface WODSaveModelViewController ()
 
 @property (nonatomic, weak) IBOutlet UITextField *pictureNameTextField;
 
@@ -42,7 +43,7 @@
 }
 - (void)saveData:(NSString *)data {
     NSString *named = [NSString stringWithFormat:@"природа %i.jpeg",arc4random() % 9];
-    [self.wODDB insertNewObjectWithPictureName:named forSignature:data];
+    [self.wODDB insertNewObjectWithPictureName:named pictureIdName:@"id" forSignature:data];
 }
 
 - (IBAction)saveButton:(id)sender {

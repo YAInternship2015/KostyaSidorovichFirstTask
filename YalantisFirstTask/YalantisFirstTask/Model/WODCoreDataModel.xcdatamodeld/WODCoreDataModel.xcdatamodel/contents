@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Signature" representedClassName="Signature" syncable="YES">
+        <attribute name="pictureIdNamed" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureNamed" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureSignature" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Signature" positionX="-164" positionY="-9" width="128" height="73"/>
+        <element name="Signature" positionX="-164" positionY="-9" width="128" height="90"/>
     </elements>
 </model>
