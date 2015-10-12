@@ -9,6 +9,7 @@
 #import "WODCustomCell.h"
 #import "Signature.h"
 #import <SDWebImage/SDImageCache.h>
+
 @interface WODCustomCell ()
 
 @property (nonatomic, weak) IBOutlet UILabel *name;

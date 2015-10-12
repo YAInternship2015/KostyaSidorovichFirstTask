@@ -9,6 +9,7 @@
 #import "WODCustomCollectionViewCell.h"
 #import "Signature.h"
 #import <SDWebImage/SDImageCache.h>
+
 @interface WODCustomCollectionViewCell ()
 
 @property (nonatomic, weak) IBOutlet UIImageView *image;
