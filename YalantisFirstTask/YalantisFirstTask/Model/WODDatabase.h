@@ -16,9 +16,10 @@
 - (Signature *)modelAtIndexPath:(NSIndexPath *)indexPath;
 - (NSInteger)modelCountForSections:(NSInteger)section;
 - (instancetype)initWithDelegate:(id<NSFetchedResultsControllerDelegate>)delegate;
-- (void)insertNewObjectWithPictureName:(NSString *)name forSignature:(NSString *)signature;
+- (void)insertNewObjectWithPictureName:(NSString *)name pictureIdName:(NSString *)idName forSignature:(NSString *)signature;
 - (void)deleteModelWithIndex:(NSIndexPath *)index;
 - (void)saveContext;
+- (NSString *)selectedRowStringWithModel:(Signature *)model;
 
 @end
 

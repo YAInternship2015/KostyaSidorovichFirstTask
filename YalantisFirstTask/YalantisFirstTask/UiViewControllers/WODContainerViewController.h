@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WODInstagramAuthViewController.h"
 
 @interface WODContainerViewController : UIViewController
 

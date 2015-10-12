@@ -7,10 +7,11 @@
 //
 
 #import "WODSaveModelViewController.h"
-#import "WODModelValidator.h"
 #import "WODDatabase.h"
+#import "WODInstagramAPIClient.h"
+//#import "WODSaveModelViewController.h"
 
-@interface WODSaveModelViewController ()<UITextFieldDelegate>
+@interface WODSaveModelViewController ()
 
 @property (nonatomic, weak) IBOutlet UITextField *pictureNameTextField;
 
@@ -23,34 +24,22 @@
     [self.pictureNameTextField becomeFirstResponder];
 }
 
-- (void)validateEnteredtext {
-    NSError *error = nil;
-    WODModelValidator *wValidate = [WODModelValidator new];
-    BOOL isValidName = [wValidate isValidModelTitle:self.pictureNameTextField.text error:&error];
-    if (!isValidName) {
-        UIAlertView *aller = [[UIAlertView alloc]initWithTitle:[error localizedDescription]
-                                                       message:[error localizedFailureReason]
-                                                      delegate:nil
-                                             cancelButtonTitle:NSLocalizedString(@"Ok", @"")
-                                             otherButtonTitles:nil];
-        [aller show];
-    } else {
-        [self saveData:self.pictureNameTextField.text];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+- (void)saveData:(NSString *)data {
     
 }
-- (void)saveData:(NSString *)data {
-    NSString *named = [NSString stringWithFormat:@"природа %i.jpeg",arc4random() % 9];
-    [self.wODDB insertNewObjectWithPictureName:named forSignature:data];
+
+- (void)save {
+    WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
+    for (int a = 0; a < [[wodAPI valueForKey:@"imagesURL"] count]; a++) {
+            [self.wODDB insertNewObjectWithPictureName:[[wodAPI valueForKey:@"imagesURL"] objectAtIndex:a] pictureIdName:[[wodAPI valueForKey:@"idNamed"] objectAtIndex:a]forSignature:[[wodAPI valueForKey:@"captionText"] objectAtIndex:a]];
+    }
 }
 
 - (IBAction)saveButton:(id)sender {
-    [self validateEnteredtext];
+    WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
+    [wodAPI setTagForRequest:self.pictureNameTextField.text];
+    wodAPI.wodSave = self;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self validateEnteredtext];
-    return NO;
-}
+
 @end

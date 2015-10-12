@@ -28,6 +28,7 @@ static NSString * const kSegueIdentifier = @"pushSaveViewController";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.switcherVC = YES;
     self.tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:kTableViewControllerIdentifier];
 
@@ -79,4 +80,5 @@ static NSString * const kSegueIdentifier = @"pushSaveViewController";
         }
     }
 }
+
 @end

@@ -14,5 +14,6 @@
 
 @property (nonatomic, retain) NSString * pictureSignature;
 @property (nonatomic, retain) NSString * pictureNamed;
-
+@property (nonatomic, retain) NSString * pictureIdNamed;
+@property (nonatomic, retain) NSDate *curentDate;
 @end

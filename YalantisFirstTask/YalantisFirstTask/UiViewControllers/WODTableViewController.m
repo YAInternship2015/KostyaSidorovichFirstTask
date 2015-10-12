@@ -9,6 +9,7 @@
 #import "WODTableViewController.h"
 #import "WODCustomCell.h"
 #import "WODDatabase.h"
+#import "WODInstagramAPIClient.h"
 
 static NSString *kCellIdentifier = @"WODCustomCell";
 
@@ -26,9 +27,20 @@ static NSString *kCellIdentifier = @"WODCustomCell";
 }
 
 #pragma mark <TableViewDataSource,delegat>
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *fullTagName = [self.wODDB selectedRowStringWithModel:[self.wODDB modelAtIndexPath:indexPath]];
+    UIAlertView *fullTag = [[UIAlertView alloc]initWithTitle:@"Full name" message:fullTagName delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [fullTag show];
+}
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-                                            forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - 2) {
+        WODInstagramAPIClient *instClient = [WODInstagramAPIClient sharedInstance];
+        [instClient setTagForRequest:nil];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.wODDB deleteModelWithIndex:indexPath];
     }
@@ -38,6 +50,7 @@ static NSString *kCellIdentifier = @"WODCustomCell";
     WODCustomCell *cell =[tableView dequeueReusableCellWithIdentifier:kCellIdentifier
                                                          forIndexPath:indexPath];
     [cell setupWithModel:[self.wODDB modelAtIndexPath:indexPath]];
+    
     return cell;
 }
 
