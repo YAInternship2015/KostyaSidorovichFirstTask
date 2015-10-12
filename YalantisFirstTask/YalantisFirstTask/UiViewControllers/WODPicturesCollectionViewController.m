@@ -22,7 +22,6 @@ static NSString * const kNibName = @"WODCustomCollectionCell";
 
 @implementation WODPicturesCollectionViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.wODDB = [[WODDatabase alloc] initWithDelegate:self];

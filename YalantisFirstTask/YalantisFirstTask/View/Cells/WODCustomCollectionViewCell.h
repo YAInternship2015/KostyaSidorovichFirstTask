@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class Signature;
 
 @interface WODCustomCollectionViewCell : UICollectionViewCell
