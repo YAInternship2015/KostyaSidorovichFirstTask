@@ -8,6 +8,7 @@
 
 #import "WODCustomCell.h"
 #import "Signature.h"
+#import <SDWebImage/SDImageCache.h>
 @interface WODCustomCell ()
 
 @property (nonatomic, weak) IBOutlet UILabel *name;
@@ -18,7 +19,7 @@
 @implementation WODCustomCell
 
 - (void)setupWithModel:(Signature *)wModel {
-    self.image.image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:wModel.pictureNamed]]];
+    self.image.image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:wModel.pictureIdNamed];
     self.name.text = wModel.pictureSignature;
 }
 

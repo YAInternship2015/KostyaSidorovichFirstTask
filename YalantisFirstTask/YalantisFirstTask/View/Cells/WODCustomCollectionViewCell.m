@@ -8,7 +8,7 @@
 
 #import "WODCustomCollectionViewCell.h"
 #import "Signature.h"
-
+#import <SDWebImage/SDImageCache.h>
 @interface WODCustomCollectionViewCell ()
 
 @property (nonatomic, weak) IBOutlet UIImageView *image;
@@ -17,6 +17,6 @@
 @implementation WODCustomCollectionViewCell
 
 - (void)setupWithModel:(Signature *)wModel {
-    self.image.image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:wModel.pictureNamed]]];
+    self.image.image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:wModel.pictureIdNamed];
 }
 @end

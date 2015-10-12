@@ -8,19 +8,19 @@
 
 #import "WODDatabase.h"
 #import "Signature.h"
-
+#import <SDWebImage/SDImageCache.h>
+#import "WODInstagramAPIClient.h"
 static NSString *kPictureSignatureAttribute = @"pictureSignature";
 static NSString *kPictureNameAttribute = @"pictureNamed";
 static NSString *kPictureIdAttribute = @"pictureIdNamed";
+static NSString *kPictureCreationDateAttribute = @"curentDate";
 
 @interface WODDatabase ()
-
 @property (nonatomic, weak) id<NSFetchedResultsControllerDelegate> delegate;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
 @end
 
 @implementation WODDatabase
@@ -30,43 +30,33 @@ static NSString *kPictureIdAttribute = @"pictureIdNamed";
     self = [self init];
     if (self) {
         self.delegate = delegate;
-    }
+        
+        if (![WODInstagramAPIClient sharedInstance].firstLoad) {
+            [self loadCache];
+            [WODInstagramAPIClient sharedInstance].firstLoad = YES;
+        }
+            }
     return self;
 }
-
+- (void)loadCache {
+    for (int a = 0; a < self.fetchedResultsController.fetchedObjects.count; a++) {
+        NSString *pictureId =[NSString stringWithFormat:@"%@",[[self.fetchedResultsController.fetchedObjects objectAtIndex:a]valueForKey:kPictureIdAttribute]];
+        NSString *pictureURLstring = [NSString stringWithFormat:@"%@",[[self.fetchedResultsController.fetchedObjects objectAtIndex:a]valueForKey:kPictureNameAttribute]];
+        [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:pictureURLstring]]] forKey:pictureId];
+    }
+}
 - (Signature *)modelAtIndexPath:(NSIndexPath *)indexPath {
     Signature *model = [self.fetchedResultsController objectAtIndexPath:indexPath];
     return model;
 }
 
+- (NSString *)selectedRowStringWithModel:(Signature *)model {
+   return [NSString stringWithFormat:@"%@",model.pictureSignature];
+}
 - (NSInteger)modelCountForSections:(NSInteger)section {
     id  sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
-#warning !!!!
-//- (BOOL)existenceIdName:(NSString *)idName {
-//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-//    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
-//                                                                      inManagedObjectContext:context];
-//    NSLog(@"1 = %@",[newManagedObject valueForKey:kPictureIdAttribute]);
-//    NSLog(@"2 = %@",idName);
-//    if ([[newManagedObject valueForKey:kPictureIdAttribute]containsObject:idName]) {
-//        return YES;
-//    }
-//    return NO;
-//}
-#warning !!!!
-- (void)replaceParametrsSignature:(NSString *)signature pictureName:(NSString *)pictureName forIdName:(NSString *)idName {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
-                                                                      inManagedObjectContext:context];
-    NSUInteger ind = [[newManagedObject valueForKey:kPictureIdAttribute]indexOfObject:idName];
-    [[newManagedObject valueForKey:kPictureSignatureAttribute]replaceObjectAtIndex:ind withObject:signature];
-    [[newManagedObject valueForKey:kPictureNameAttribute]replaceObjectAtIndex:ind withObject:pictureName];
-}
-
 
 - (void)deleteModelWithIndex:(NSIndexPath *)index {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
@@ -78,8 +68,8 @@ static NSString *kPictureIdAttribute = @"pictureIdNamed";
     }
 }
 - (void)searchId:(NSString *)idNamed {
-    //изменить этот бред фетчКонтроллером
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:[self.fetchedResultsController managedObjectContext]];
+    
+    NSEntityDescription *entityDesc = [[self.fetchedResultsController fetchRequest] entity];
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entityDesc];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pictureIdNamed like %@",idNamed];
@@ -98,23 +88,12 @@ static NSString *kPictureIdAttribute = @"pictureIdNamed";
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
                                                                       inManagedObjectContext:context];
-    
-////    NSLog(@"value = %@",[self.fetchedResultsController valueForKey:idName]);
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-////    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
-//    [request setEntity:entity];
-//    
-//    // Укажите, что запрос должен возвращать словари.
-//    
-//    [request setResultType:NSDictionaryResultType];
-//    NSLog(@"1 %@",[context executeFetchRequest:request error:nil]);
-//    ////
     [self searchId:idName];
-    
+    [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:name]]] forKey:idName];
+    [newManagedObject setValue:[NSDate date] forKey:kPictureCreationDateAttribute];
     [newManagedObject setValue:signature forKey:kPictureSignatureAttribute];
     [newManagedObject setValue:name forKey:kPictureNameAttribute];
     [newManagedObject setValue:idName forKey:kPictureIdAttribute];
-
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -134,7 +113,7 @@ static NSString *kPictureIdAttribute = @"pictureIdNamed";
     [fetchRequest setEntity:description];
     [fetchRequest setFetchBatchSize:20];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kPictureSignatureAttribute ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kPictureCreationDateAttribute ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -142,7 +121,7 @@ static NSString *kPictureIdAttribute = @"pictureIdNamed";
                                      initWithFetchRequest:fetchRequest
                                      managedObjectContext:context
                                      sectionNameKeyPath:nil
-                                     cacheName:@"cashe"];
+                                     cacheName:nil];
     self.fetchedResultsController.delegate = self.delegate;
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {

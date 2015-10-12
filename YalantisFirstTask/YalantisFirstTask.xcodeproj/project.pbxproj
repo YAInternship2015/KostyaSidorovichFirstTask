@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56A01CAA470951C0A26A300E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2887D286B88618F4A80F31F /* libPods.a */; };
 		DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B10BF1B7BA1D80015749E /* WODDatabase.m */; };
 		DA5B4E481B8F5A14006B8F3D /* WODSaveModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */; };
-		DA5B4E4B1B8F66B0006B8F3D /* WODModelValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4E4A1B8F66B0006B8F3D /* WODModelValidator.m */; };
 		DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2053A1B7E3042001F0876 /* WODCustomCell.m */; };
 		DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2054C1B7E3309001F0876 /* WODTableViewController.m */; };
 		DAA205601B834D9E001F0876 /* природа 0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DAA205561B834D9E001F0876 /* природа 0.jpeg */; };
@@ -58,12 +58,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8DA78E39A2BB1B3C17D38363 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B2887D286B88618F4A80F31F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5E015611F9E22BB4C8B064C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DA0B10BE1B7BA1D80015749E /* WODDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WODDatabase.h; path = ../Model/WODDatabase.h; sourceTree = "<group>"; };
 		DA0B10BF1B7BA1D80015749E /* WODDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WODDatabase.m; path = ../Model/WODDatabase.m; sourceTree = "<group>"; };
 		DA5B4E461B8F5A14006B8F3D /* WODSaveModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODSaveModelViewController.h; sourceTree = "<group>"; };
 		DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WODSaveModelViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DA5B4E491B8F66B0006B8F3D /* WODModelValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WODModelValidator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		DA5B4E4A1B8F66B0006B8F3D /* WODModelValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WODModelValidator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAA205391B7E3042001F0876 /* WODCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WODCustomCell.h; path = ../../View/Cells/WODCustomCell.h; sourceTree = "<group>"; };
 		DAA2053A1B7E3042001F0876 /* WODCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = WODCustomCell.m; path = ../../View/Cells/WODCustomCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAA2054B1B7E3309001F0876 /* WODTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODTableViewController.h; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAD1F6381BA444BB00BF3B1D /* CoreData.framework in Frameworks */,
+				56A01CAA470951C0A26A300E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +138,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DFBFAC1D68AA1B579860995 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B2887D286B88618F4A80F31F /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		64082372C97412141F510999 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8DA78E39A2BB1B3C17D38363 /* Pods.debug.xcconfig */,
+				D5E015611F9E22BB4C8B064C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DA0B10BD1B7BA1D80015749E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,8 +251,6 @@
 				DAE01B9C1BC3FD7000CC9157 /* API */,
 				DAD247E81B8E0A8E00156B10 /* WODAppDelegate.h */,
 				DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */,
-				DA5B4E491B8F66B0006B8F3D /* WODModelValidator.h */,
-				DA5B4E4A1B8F66B0006B8F3D /* WODModelValidator.m */,
 				DAE01BAC1BC40D8200CC9157 /* NSDictionary+UrlEncoding.h */,
 				DAE01BAD1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m */,
 			);
@@ -269,6 +286,8 @@
 				DAF5376F1B6CD60C00AE1857 /* YalantisFirstTask */,
 				DAF537891B6CD60C00AE1857 /* YalantisFirstTaskTests */,
 				DAF5376E1B6CD60C00AE1857 /* Products */,
+				64082372C97412141F510999 /* Pods */,
+				1DFBFAC1D68AA1B579860995 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -318,9 +337,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DAF537901B6CD60C00AE1857 /* Build configuration list for PBXNativeTarget "YalantisFirstTask" */;
 			buildPhases = (
+				43D949899C0A4C0B6CE1A114 /* Check Pods Manifest.lock */,
 				DAF537691B6CD60C00AE1857 /* Sources */,
 				DAF5376A1B6CD60C00AE1857 /* Frameworks */,
 				DAF5376B1B6CD60C00AE1857 /* Resources */,
+				CD971310D58CADCAB5C30AF3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -422,6 +443,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		43D949899C0A4C0B6CE1A114 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CD971310D58CADCAB5C30AF3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DAF537691B6CD60C00AE1857 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -441,7 +495,6 @@
 				DA5B4E481B8F5A14006B8F3D /* WODSaveModelViewController.m in Sources */,
 				DAE01BB41BC4123F00CC9157 /* WODSizerView.m in Sources */,
 				DAE01BBB1BC5AAF800CC9157 /* WODGetterInstagramInfo.m in Sources */,
-				DA5B4E4B1B8F66B0006B8F3D /* WODModelValidator.m in Sources */,
 				DAA2057B1B85E9A2001F0876 /* WODPicturesCollectionViewController.m in Sources */,
 				DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */,
 				DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */,
@@ -572,6 +625,7 @@
 		};
 		DAF537911B6CD60C00AE1857 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DA78E39A2BB1B3C17D38363 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YalantisFirstTask/Resources/PlistFolder/Info.plist;
@@ -582,6 +636,7 @@
 		};
 		DAF537921B6CD60C00AE1857 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5E015611F9E22BB4C8B064C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YalantisFirstTask/Resources/PlistFolder/Info.plist;

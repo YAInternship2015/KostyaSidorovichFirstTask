@@ -10,7 +10,6 @@
 #import "WODPicturesCollectionViewController.h"
 #import "WODTableViewController.h"
 #import "WODSaveModelViewController.h"
-#import "WODInstagramAuthViewController.h"
 
 float const kDurationAnimation = 0.1;
 static NSString * const kTableViewControllerIdentifier = @"Table";
@@ -81,4 +80,5 @@ static NSString * const kSegueIdentifier = @"pushSaveViewController";
         }
     }
 }
+
 @end

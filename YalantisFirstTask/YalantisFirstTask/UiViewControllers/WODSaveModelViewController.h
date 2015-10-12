@@ -15,5 +15,7 @@
 @interface WODSaveModelViewController : UIViewController
 
 @property (nonatomic, strong) WODDatabase *wODDB;
+
 - (void)save;
+
 @end

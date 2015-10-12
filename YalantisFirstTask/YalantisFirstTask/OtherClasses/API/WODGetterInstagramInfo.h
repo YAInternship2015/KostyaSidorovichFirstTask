@@ -8,17 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-//@protocol WODDataFromInstagramDelegate <NSObject>
-//
-//- (void)getDataFromAPIforTag:(NSString *)tag;
-//
-//@end
-
 @interface WODGetterInstagramInfo : NSObject
 
-//- (void)getInfoFromInstagram;
 - (void)didAuthWithToken:(NSString*)token forTagNmaed:(NSString *)tag;
-
-//@property (nonatomic, assign)id <WODDataFromInstagramDelegate> delegate;
 
 @end

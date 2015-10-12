@@ -11,7 +11,6 @@
 #import "WODInstagramAPIClient.h"
 @interface WODGetterInstagramInfo ()
 
-
 @property (nonatomic, strong) NSMutableArray *usersPictureId;
 @property (nonatomic, strong) NSMutableArray *picturesURL;
 @property (nonatomic, strong) NSMutableArray *pictureCaptionText;
@@ -20,42 +19,19 @@
 
 @implementation WODGetterInstagramInfo
 
-- (instancetype)init {
-    self = [super init];
-    
-    if (self) {
-//        [self getAutho];
-    }
-    return self;
-}
-
-- (void)getAuth {
-    
-    // Код запроса на авторизацию
-}
-
-
-
-//- (void)getInfoFromInstagram {
-//    WODInstagramAPIClient *wodInst = [WODInstagramAPIClient new];
-//    //[self didAuthWithToken:self.accessToken forTagNmaed:tag];
-//}
-
 - (void)didAuthWithToken:(NSString*)token forTagNmaed:(NSString *)tag {
-        if(!token) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                message:@"Failed to request token."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-            [alertView show];
-            return;
-        }
-        NSString *instagramBase = @"https://api.instagram.com/v1";
-        NSString *popularURLString = [NSString stringWithFormat:@"%@/tags/%@/media/recent?access_token=%@", instagramBase, tag, token];
-    
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:popularURLString]];
-    
+    if(!token) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Failed to request token."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    NSString *instagramBase = @"https://api.instagram.com/v1";
+    NSString *popularURLString = [NSString stringWithFormat:@"%@/tags/%@/media/recent?access_token=%@", instagramBase, tag, token];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:popularURLString]];
     NSOperationQueue *theQ = [NSOperationQueue new];
     [NSURLConnection sendAsynchronousRequest:request queue:theQ
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {

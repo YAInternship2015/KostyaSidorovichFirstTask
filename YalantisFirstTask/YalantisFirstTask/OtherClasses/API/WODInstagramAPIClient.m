@@ -12,15 +12,12 @@
 
 @interface WODInstagramAPIClient ()
 
-@property (nonatomic, strong)WODGetterInstagramInfo *wodGetInfo;
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *tag;
-
 @property (nonatomic, strong) NSMutableArray *idNamed;
 @property (nonatomic, strong) NSMutableArray *captionText;
 @property (nonatomic, strong) NSMutableArray *imagesURL;
 
-//@property (nonatomic, strong) WODSaveModelViewController *wodSave;
 @end
 
 @implementation WODInstagramAPIClient
@@ -51,6 +48,7 @@
 - (instancetype)init {
     return self;
 }
+
 -(void)setTagForRequest:(NSString *)tag {
     self.imagesURL = [NSMutableArray new];
     self.captionText = [NSMutableArray new];
@@ -62,20 +60,17 @@
         WODGetterInstagramInfo *wodInfos = [WODGetterInstagramInfo new];
         [wodInfos didAuthWithToken:self.token forTagNmaed:self.tag];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Pictures finished" message:@"enter name for search" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Pictures finished" message:@"Enter name for search" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
     }
-    
-    
-//    [self getInfFromInstagram];
 }
+
 - (void)setToken:(NSString *)token {
     _token = token;
 }
+
 - (void)getInfFromInstagram {
-//    NSLog(@"URL %@",self.imagesURL);
     [self.wodSave save];
 }
-
 
 @end
