@@ -9,6 +9,7 @@
 #import "WODTableViewController.h"
 #import "WODCustomCell.h"
 #import "WODDatabase.h"
+#import "WODInstagramAPIClient.h"
 
 static NSString *kCellIdentifier = @"WODCustomCell";
 
@@ -28,9 +29,17 @@ static NSString *kCellIdentifier = @"WODCustomCell";
 #pragma mark <TableViewDataSource,delegat>
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"indexPath = %@",indexPath);
+//    потом доделать алерт который показывает таги
 }
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-                                            forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - 4) {
+        WODInstagramAPIClient *instClient = [WODInstagramAPIClient sharedInstance];
+        [instClient setTagForRequest:nil];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.wODDB deleteModelWithIndex:indexPath];
     }

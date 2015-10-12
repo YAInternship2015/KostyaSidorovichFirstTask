@@ -18,7 +18,7 @@
 @implementation WODCustomCell
 
 - (void)setupWithModel:(Signature *)wModel {
-    self.image.image = [UIImage imageNamed:wModel.pictureNamed];
+    self.image.image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:wModel.pictureNamed]]];
     self.name.text = wModel.pictureSignature;
 }
 

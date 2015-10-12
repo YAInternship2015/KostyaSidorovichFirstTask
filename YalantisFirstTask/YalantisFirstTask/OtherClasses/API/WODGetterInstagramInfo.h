@@ -16,7 +16,8 @@
 
 @interface WODGetterInstagramInfo : NSObject
 
-- (void)setToken:(NSString *)token;
+//- (void)getInfoFromInstagram;
+- (void)didAuthWithToken:(NSString*)token forTagNmaed:(NSString *)tag;
 
 //@property (nonatomic, assign)id <WODDataFromInstagramDelegate> delegate;
 

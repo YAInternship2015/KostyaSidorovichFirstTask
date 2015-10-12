@@ -9,6 +9,7 @@
 #import "WODPicturesCollectionViewController.h"
 #import "WODDatabase.h"
 #import "WODCustomCollectionViewCell.h"
+#import "WODInstagramAPIClient.h"
 
 static NSString * const kReuseIdentifier = @"Cell";
 static NSString * const kNibName = @"WODCustomCollectionCell";
@@ -30,7 +31,12 @@ static NSString * const kNibName = @"WODCustomCollectionCell";
 }
 
 #pragma mark <CollectionViewDataSource,delegat>
-
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - 4) {
+        WODInstagramAPIClient *instClient = [WODInstagramAPIClient sharedInstance];
+        [instClient setTagForRequest:nil];
+    }
+}
 - (IBAction)handleLongPress:(UILongPressGestureRecognizer *)sender {
     
     CGPoint locationPoint = [sender locationInView:self.collectionView];

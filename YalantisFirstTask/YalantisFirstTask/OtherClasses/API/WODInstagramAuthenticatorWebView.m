@@ -10,7 +10,7 @@
 //#import "InstagramAuthDelegate.h"
 #import "NSDictionary+UrlEncoding.h"
 #import "WODGetterInstagramInfo.h"
-
+#import "WODInstagramAPIClient.h"
 static NSString *const kInstagramRedirectURL = @"https://www.google.com.ua";
 static NSString *const kInstagramClientSecret = @"27cc791529904236a03dbaaa6b500e7a";
 static NSString *const kInstagramClientID = @"bc03d5c0fbf94750898b75920b94411a";
@@ -131,15 +131,18 @@ static NSString *const kInstagramClientID = @"bc03d5c0fbf94750898b75920b94411a";
     if(jsonData && [NSJSONSerialization isValidJSONObject:jsonData]) {
         NSString *accesstoken = [jsonData objectForKey:@"access_token"];
         if (accesstoken) {
-            WODGetterInstagramInfo *wGII = [WODGetterInstagramInfo new];
-            [wGII setToken:accesstoken];
-            
+//            WODGetterInstagramInfo *wGII = [WODGetterInstagramInfo new];
+//            [wGII setToken:accesstoken];
+            [self setTokenWith:accesstoken];
             [self.authDelegate pushToContainerVC];
             return;
         }
     }
 }
-
+-(void)setTokenWith:(NSString *)token {
+    WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
+    [wodAPI setToken:token];
+}
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse
 {
     return request;

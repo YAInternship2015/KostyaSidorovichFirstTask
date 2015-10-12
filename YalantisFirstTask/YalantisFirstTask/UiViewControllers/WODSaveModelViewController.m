@@ -9,12 +9,13 @@
 #import "WODSaveModelViewController.h"
 #import "WODModelValidator.h"
 #import "WODDatabase.h"
+#import "WODInstagramAPIClient.h"
 //#import "WODSaveModelViewController.h"
 
 @interface WODSaveModelViewController ()
 
 @property (nonatomic, weak) IBOutlet UITextField *pictureNameTextField;
-
+@property (nonatomic, weak) NSString *curentTag;
 @end
 
 @implementation WODSaveModelViewController
@@ -37,16 +38,36 @@
         [aller show];
     } else {
         [self saveData:self.pictureNameTextField.text];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TagDidReceived" object:self.pictureNameTextField.text];
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
 - (void)saveData:(NSString *)data {
-    NSString *named = [NSString stringWithFormat:@"природа %i.jpeg",arc4random() % 9];
-    [self.wODDB insertNewObjectWithPictureName:named pictureIdName:@"id" forSignature:data];
+    WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
+    [wodAPI setTagForRequest:self.curentTag];
+    wodAPI.wodSave = self;
 }
 
+- (void)save {
+    WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
+    for (int a = 0; a < [[wodAPI valueForKey:@"imagesURL"] count]; a++) {
+//        if (![self.wODDB existenceIdName:[[wodAPI valueForKey:@"idNamed"] objectAtIndex:a]]) {
+            [self.wODDB insertNewObjectWithPictureName:[[wodAPI valueForKey:@"imagesURL"] objectAtIndex:a] pictureIdName:[[wodAPI valueForKey:@"idNamed"] objectAtIndex:a]forSignature:[[wodAPI valueForKey:@"captionText"] objectAtIndex:a]];
+//        } else {
+//            [self.wODDB replaceParametrsSignature:[[wodAPI valueForKey:@"captionText"] objectAtIndex:a] pictureName:[[wodAPI valueForKey:@"imagesURL"] objectAtIndex:a] forIdName:[[wodAPI valueForKey:@"idNamed"] objectAtIndex:a]];
+//        }
+        
+
+    }
+    
+//    NSLog(@"0 = %@",[[wodAPI valueForKey:@"imagesURL"]objectAtIndex:0]);
+//    NSLog(@"1 =  %lu",(unsigned long)[[wodAPI valueForKey:@"imagesURL"] count]);
+}
 - (IBAction)saveButton:(id)sender {
+    _curentTag = self.pictureNameTextField.text;
     [self validateEnteredtext];
 }
 
@@ -54,4 +75,6 @@
     [self validateEnteredtext];
     return NO;
 }
+
+
 @end

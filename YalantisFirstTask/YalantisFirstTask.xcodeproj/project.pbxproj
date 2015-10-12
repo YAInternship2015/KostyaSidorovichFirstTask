@@ -39,6 +39,7 @@
 		DAE01BAE1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BAD1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m */; };
 		DAE01BB41BC4123F00CC9157 /* WODSizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BB31BC4123F00CC9157 /* WODSizerView.m */; };
 		DAE01BBB1BC5AAF800CC9157 /* WODGetterInstagramInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BBA1BC5AAF800CC9157 /* WODGetterInstagramInfo.m */; };
+		DAE01BF81BC91FF300CC9157 /* WODInstagramAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BF71BC91FF300CC9157 /* WODInstagramAPIClient.m */; };
 		DAF5377C1B6CD60C00AE1857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377A1B6CD60C00AE1857 /* Main.storyboard */; };
 		DAF5377E1B6CD60C00AE1857 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377D1B6CD60C00AE1857 /* Images.xcassets */; };
 		DAF537811B6CD60C00AE1857 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377F1B6CD60C00AE1857 /* LaunchScreen.xib */; };
@@ -104,6 +105,8 @@
 		DAE01BB31BC4123F00CC9157 /* WODSizerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODSizerView.m; sourceTree = "<group>"; };
 		DAE01BB91BC5AAF800CC9157 /* WODGetterInstagramInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODGetterInstagramInfo.h; sourceTree = "<group>"; };
 		DAE01BBA1BC5AAF800CC9157 /* WODGetterInstagramInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODGetterInstagramInfo.m; sourceTree = "<group>"; };
+		DAE01BF61BC91FF300CC9157 /* WODInstagramAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODInstagramAPIClient.h; sourceTree = "<group>"; };
+		DAE01BF71BC91FF300CC9157 /* WODInstagramAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODInstagramAPIClient.m; sourceTree = "<group>"; };
 		DAF5376D1B6CD60C00AE1857 /* YalantisFirstTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YalantisFirstTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF5377B1B6CD60C00AE1857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DAF5377D1B6CD60C00AE1857 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				DAE01BAA1BC4077300CC9157 /* WODInstagramAuthenticatorWebView.m */,
 				DAE01BB91BC5AAF800CC9157 /* WODGetterInstagramInfo.h */,
 				DAE01BBA1BC5AAF800CC9157 /* WODGetterInstagramInfo.m */,
+				DAE01BF61BC91FF300CC9157 /* WODInstagramAPIClient.h */,
+				DAE01BF71BC91FF300CC9157 /* WODInstagramAPIClient.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 				DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */,
 				DAD247EE1B8E0A8E00156B10 /* WODAppDelegate.m in Sources */,
 				DAE01BAB1BC4077300CC9157 /* WODInstagramAuthenticatorWebView.m in Sources */,
+				DAE01BF81BC91FF300CC9157 /* WODInstagramAPIClient.m in Sources */,
 				DAD1BA921BAE030200FC6458 /* Signature.m in Sources */,
 				DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */,
 				DAE01BAE1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m in Sources */,

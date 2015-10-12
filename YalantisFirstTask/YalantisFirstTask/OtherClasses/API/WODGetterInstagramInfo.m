@@ -8,10 +8,10 @@
 
 #import "WODGetterInstagramInfo.h"
 #import <UIKit/UIKit.h>
-#import "WODSaveModelViewController.h"
+#import "WODInstagramAPIClient.h"
 @interface WODGetterInstagramInfo ()
 
-@property (nonatomic, strong) NSString *accessToken;
+
 @property (nonatomic, strong) NSMutableArray *usersPictureId;
 @property (nonatomic, strong) NSMutableArray *picturesURL;
 @property (nonatomic, strong) NSMutableArray *pictureCaptionText;
@@ -20,15 +20,26 @@
 
 @implementation WODGetterInstagramInfo
 
-- (void)setToken:(NSString *)token {
-    self.accessToken = token;
-    [self getDataFromAPIforTag:@"car"];
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+//        [self getAutho];
+    }
+    return self;
 }
 
-- (void)getDataFromAPIforTag:(NSString *)tag{
-    NSLog(@"access token %@",self.accessToken);
-    [self didAuthWithToken:self.accessToken forTagNmaed:tag];
+- (void)getAuth {
+    
+    // Код запроса на авторизацию
 }
+
+
+
+//- (void)getInfoFromInstagram {
+//    WODInstagramAPIClient *wodInst = [WODInstagramAPIClient new];
+//    //[self didAuthWithToken:self.accessToken forTagNmaed:tag];
+//}
 
 - (void)didAuthWithToken:(NSString*)token forTagNmaed:(NSString *)tag {
         if(!token) {
@@ -45,38 +56,34 @@
     
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:popularURLString]];
     
-        NSOperationQueue *theQ = [NSOperationQueue new];
-        [NSURLConnection sendAsynchronousRequest:request queue:theQ
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   NSError *err;
-    
-                                   id val = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
-                                   if(!err && !error && val && [NSJSONSerialization isValidJSONObject:val]) {
-                                       NSArray *data = [val objectForKey:@"data"];
-                                       dispatch_sync(dispatch_get_main_queue(),^{
-                                           if(!data) {
-                                               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                                                   message:@"Failed to request perform request."
-                                                                                                  delegate:nil
-                                                                                         cancelButtonTitle:@"OK"
-                                                                                         otherButtonTitles:nil];
-                                               [alertView show];
-                                           } else {
-                                               self.usersPictureId = [NSMutableArray new];
-                                               self.picturesURL = [NSMutableArray new];
-                                               self.pictureCaptionText = [NSMutableArray new];
-                                               for (NSDictionary *dict in data) {
-                                                   [self.usersPictureId addObject:[dict valueForKey:@"id"]];
-                                                   [self.picturesURL addObject:[[[dict valueForKey:@"images"] valueForKey:@"thumbnail"] valueForKey:@"url"]];
-                                                   [self.pictureCaptionText addObject:[[dict valueForKey:@"caption"]valueForKey:@"text"]];
-                                               }
-//                                               NSLog(@"id = %@",self.usersPictureId);
-//                                               NSLog(@"url = %@",self.picturesURL);
-                                               NSLog(@"text = %@",self.pictureCaptionText);
-
+    NSOperationQueue *theQ = [NSOperationQueue new];
+    [NSURLConnection sendAsynchronousRequest:request queue:theQ
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               NSError *err;
+                               id val = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
+                               if(!err && !error && val && [NSJSONSerialization isValidJSONObject:val]) {
+                                   NSArray *data = [val objectForKey:@"data"];
+                                   dispatch_sync(dispatch_get_main_queue(),^{
+                                       if(!data) {
+                                           UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                               message:@"Failed to request perform request."
+                                                                                              delegate:nil
+                                                                                     cancelButtonTitle:@"OK"
+                                                                                     otherButtonTitles:nil];
+                                           [alertView show];
+                                       } else {
+                                           WODInstagramAPIClient *instAPI = [WODInstagramAPIClient new];
+                                           for (NSDictionary *dict in data) {
+                                               [[instAPI valueForKey:@"idNamed"]addObject:[dict valueForKey:@"id"]];
+                                               [[instAPI valueForKey:@"captionText"]addObject:[[dict valueForKey:@"caption"]valueForKey:@"text"]];
+                                               [[instAPI valueForKey:@"imagesURL"]addObject:[[[dict valueForKey:@"images"] valueForKey:@"standard_resolution"] valueForKey:@"url"]];
                                            }
-                                       });
-                                   }
-                               }];
+                                           [instAPI getInfFromInstagram];
+                                       }
+                                   });
+                               }
+                           }];
 }
+
+
 @end

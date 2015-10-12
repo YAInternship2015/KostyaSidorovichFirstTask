@@ -19,6 +19,8 @@
 - (void)insertNewObjectWithPictureName:(NSString *)name pictureIdName:(NSString *)idName forSignature:(NSString *)signature;
 - (void)deleteModelWithIndex:(NSIndexPath *)index;
 - (void)saveContext;
+- (BOOL)existenceIdName:(NSString *)idName;
+- (void)replaceParametrsSignature:(NSString *)signature pictureName:(NSString *)pictureName forIdName:(NSString *)idName;
 
 @end
 

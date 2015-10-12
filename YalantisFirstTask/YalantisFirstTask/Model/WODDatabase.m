@@ -44,16 +44,18 @@ static NSString *kPictureIdAttribute = @"pictureIdNamed";
     return [sectionInfo numberOfObjects];
 }
 #warning !!!!
-- (BOOL)existenceIdName:(NSString *)idName {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
-                                                                      inManagedObjectContext:context];
-    if ([[newManagedObject valueForKey:kPictureIdAttribute]containsString:idName]) {
-        return YES;
-    }
-    return NO;
-}
+//- (BOOL)existenceIdName:(NSString *)idName {
+//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+//    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+//                                                                      inManagedObjectContext:context];
+//    NSLog(@"1 = %@",[newManagedObject valueForKey:kPictureIdAttribute]);
+//    NSLog(@"2 = %@",idName);
+//    if ([[newManagedObject valueForKey:kPictureIdAttribute]containsObject:idName]) {
+//        return YES;
+//    }
+//    return NO;
+//}
 #warning !!!!
 - (void)replaceParametrsSignature:(NSString *)signature pictureName:(NSString *)pictureName forIdName:(NSString *)idName {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
@@ -75,13 +77,39 @@ static NSString *kPictureIdAttribute = @"pictureIdNamed";
         abort();
     }
 }
-
+- (void)searchId:(NSString *)idNamed {
+    //изменить этот бред фетчКонтроллером
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Signature" inManagedObjectContext:[self.fetchedResultsController managedObjectContext]];
+    NSFetchRequest *request = [NSFetchRequest new];
+    [request setEntity:entityDesc];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pictureIdNamed like %@",idNamed];
+    [request setPredicate:predicate];
+    NSError *error;
+    NSArray *matchingData = [[self.fetchedResultsController managedObjectContext] executeFetchRequest:request error:&error];
+    if (matchingData.count != 0) {
+        for (NSManagedObject *obj in matchingData) {
+            [[self.fetchedResultsController managedObjectContext] deleteObject:obj];
+        }
+    }
+}
 - (void)insertNewObjectWithPictureName:(NSString *)name pictureIdName:(NSString *)idName forSignature:(NSString *)signature {
 
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
                                                                       inManagedObjectContext:context];
+    
+////    NSLog(@"value = %@",[self.fetchedResultsController valueForKey:idName]);
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+////    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
+//    [request setEntity:entity];
+//    
+//    // Укажите, что запрос должен возвращать словари.
+//    
+//    [request setResultType:NSDictionaryResultType];
+//    NSLog(@"1 %@",[context executeFetchRequest:request error:nil]);
+//    ////
+    [self searchId:idName];
     
     [newManagedObject setValue:signature forKey:kPictureSignatureAttribute];
     [newManagedObject setValue:name forKey:kPictureNameAttribute];
@@ -114,7 +142,7 @@ static NSString *kPictureIdAttribute = @"pictureIdNamed";
                                      initWithFetchRequest:fetchRequest
                                      managedObjectContext:context
                                      sectionNameKeyPath:nil
-                                     cacheName:nil];
+                                     cacheName:@"cashe"];
     self.fetchedResultsController.delegate = self.delegate;
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
