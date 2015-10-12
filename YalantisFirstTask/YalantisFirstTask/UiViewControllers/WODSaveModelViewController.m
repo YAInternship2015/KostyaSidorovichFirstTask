@@ -33,6 +33,8 @@
     for (int a = 0; a < [[wodAPI valueForKey:@"imagesURL"] count]; a++) {
             [self.wODDB insertNewObjectWithPictureName:[[wodAPI valueForKey:@"imagesURL"] objectAtIndex:a] pictureIdName:[[wodAPI valueForKey:@"idNamed"] objectAtIndex:a]forSignature:[[wodAPI valueForKey:@"captionText"] objectAtIndex:a]];
     }
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 - (IBAction)saveButton:(id)sender {
