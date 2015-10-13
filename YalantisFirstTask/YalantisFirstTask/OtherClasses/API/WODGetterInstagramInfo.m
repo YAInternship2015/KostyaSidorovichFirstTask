@@ -19,6 +19,8 @@
 
 @implementation WODGetterInstagramInfo
 
+#warning запрос должен быть реализован в API клиенте. Обращение же в API клиенту и анализ того JSON, который пришел в ответ, должны происходить в дата менеджере. То есть вью контроллер говорит менеджеру, мол, загрузи мне пачку постов, тот говорит апи клиенту, чтобы он отправил запрос, затем дата менеджер анализирует JSON и маппит его в модели. При этом ни в API клиенте, ни  дата менеджере не долнл быть обращение к UI, потому что они - модели, а в MVC модель не должна напрямую работать с UI
+
 - (void)didAuthWithToken:(NSString*)token forTagNmaed:(NSString *)tag {
     if(!token) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"

@@ -38,6 +38,9 @@ static NSString *kPictureCreationDateAttribute = @"curentDate";
             }
     return self;
 }
+
+#warning плохой вариант использования кеша. Кешируются абсолютно все данные, даже те, которые потенцильно не нужны пользователю, то есть он может не доскроллить до конца списка. Я предпочитаю подход, когда кешируются данные, к которым произошло хотя бы одно обращение. Это делается в методе sd_setImageWithURL: у UIImageView. То есть внутри ячейки картинку в UIImageView надо подставлять таким методом. Вначале проверяется, есть ли такая картинка в кеше, и если есть, то подставляется она. Если нет, то она загружается из сети, кешируется и затем подставляется в UIImageView. То есть кеш я бы вообще убрал из этого класса
+
 - (void)loadCache {
     for (int a = 0; a < self.fetchedResultsController.fetchedObjects.count; a++) {
         NSString *pictureId =[NSString stringWithFormat:@"%@",[[self.fetchedResultsController.fetchedObjects objectAtIndex:a]valueForKey:kPictureIdAttribute]];
@@ -67,16 +70,20 @@ static NSString *kPictureCreationDateAttribute = @"curentDate";
         abort();
     }
 }
+
+#warning плохое имя метода. Оно не описывает то, что происходит внутри + неясно, что за параметр передается в метод
 - (void)searchId:(NSString *)idNamed {
     
     NSEntityDescription *entityDesc = [[self.fetchedResultsController fetchRequest] entity];
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entityDesc];
+#warning здесь нужен не like, а строгое соответствие
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pictureIdNamed like %@",idNamed];
     [request setPredicate:predicate];
     NSError *error;
     NSArray *matchingData = [[self.fetchedResultsController managedObjectContext] executeFetchRequest:request error:&error];
     if (matchingData.count != 0) {
+#warning если я правильно понял, то Вы удаляете посты и создаете новые вместо обновления старых. Это совсем не оптимальный подход, как по производительности, так и по логике. У модели могут быть поля, котррые хранятся только локально, и при удалении теряется их значение
         for (NSManagedObject *obj in matchingData) {
             [[self.fetchedResultsController managedObjectContext] deleteObject:obj];
         }
@@ -90,6 +97,7 @@ static NSString *kPictureCreationDateAttribute = @"curentDate";
                                                                       inManagedObjectContext:context];
     [self searchId:idName];
     [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:name]]] forKey:idName];
+#warning здесь можно кастовать NSManagedObject в Ваш класс и заполнить поля нормально, а не через kvc
     [newManagedObject setValue:[NSDate date] forKey:kPictureCreationDateAttribute];
     [newManagedObject setValue:signature forKey:kPictureSignatureAttribute];
     [newManagedObject setValue:name forKey:kPictureNameAttribute];
@@ -111,6 +119,7 @@ static NSString *kPictureCreationDateAttribute = @"curentDate";
     NSEntityDescription* description =[NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
     
     [fetchRequest setEntity:description];
+#warning размер пачки надо добавить в константы
     [fetchRequest setFetchBatchSize:20];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kPictureCreationDateAttribute ascending:YES];

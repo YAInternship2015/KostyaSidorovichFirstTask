@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#warning у модели должен быть префикс приложения
 
 @interface Signature : NSManagedObject
 

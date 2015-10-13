@@ -28,12 +28,15 @@ static NSString *kCellIdentifier = @"WODCustomCell";
 
 #pragma mark <TableViewDataSource,delegat>
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+#warning странный метод. Почему просто не получать объект-модели и затем здесь брать у него нужное свойство?
     NSString *fullTagName = [self.wODDB selectedRowStringWithModel:[self.wODDB modelAtIndexPath:indexPath]];
+#warning строковые константы надо поместить в Localizable.strings
     UIAlertView *fullTag = [[UIAlertView alloc]initWithTitle:@"Full name" message:fullTagName delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [fullTag show];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+#warning цифра 2 должна быть в константах
     if (indexPath.row == [self.wODDB modelCountForSections:0] - 2) {
         WODInstagramAPIClient *instClient = [WODInstagramAPIClient sharedInstance];
         [instClient setTagForRequest:nil];

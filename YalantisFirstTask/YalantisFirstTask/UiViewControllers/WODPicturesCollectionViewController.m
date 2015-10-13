@@ -31,6 +31,7 @@ static NSString * const kNibName = @"WODCustomCollectionCell";
 
 #pragma mark <CollectionViewDataSource,delegat>
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+#warning цифры 4 должна быть в константах
     if (indexPath.row == [self.wODDB modelCountForSections:0] - 4) {
         WODInstagramAPIClient *instClient = [WODInstagramAPIClient sharedInstance];
         [instClient setTagForRequest:nil];
