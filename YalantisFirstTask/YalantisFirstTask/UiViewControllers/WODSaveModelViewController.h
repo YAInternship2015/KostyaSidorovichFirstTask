@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class WODDatabase;
-
-
+@class WODDataManager;
 
 @interface WODSaveModelViewController : UIViewController
 
 @property (nonatomic, strong) WODDatabase *wODDB;
-
-- (void)save;
+@property (nonatomic, strong) WODDataManager *manager;
 
 @end

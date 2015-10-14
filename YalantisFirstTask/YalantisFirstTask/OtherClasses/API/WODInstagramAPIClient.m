@@ -7,16 +7,13 @@
 //
 
 #import "WODInstagramAPIClient.h"
-#import "WODGetterInstagramInfo.h"
 #import "WODSaveModelViewController.h"
+#import "WODDataManager.h"
 
 @interface WODInstagramAPIClient ()
 
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *tag;
-@property (nonatomic, strong) NSMutableArray *idNamed;
-@property (nonatomic, strong) NSMutableArray *captionText;
-@property (nonatomic, strong) NSMutableArray *imagesURL;
 
 @end
 
@@ -26,14 +23,11 @@
     
     static WODInstagramAPIClient *instaApi = nil;
     static dispatch_once_t onceToken;
-    
     dispatch_once(&onceToken, ^{
-        
         if (instaApi == nil) {
             instaApi = [[super allocWithZone:NULL] init];
         }
     });
-    
     return instaApi;
 }
 
@@ -49,20 +43,8 @@
     return self;
 }
 
--(void)setTagForRequest:(NSString *)tag {
-    self.imagesURL = [NSMutableArray new];
-    self.captionText = [NSMutableArray new];
-    self.idNamed = [NSMutableArray new];
-    
-    if (tag) {
+- (void)setTagForRequest:(NSString *)tag {
         _tag = tag;
-    } if (self.tag) {
-        WODGetterInstagramInfo *wodInfos = [WODGetterInstagramInfo new];
-        [wodInfos didAuthWithToken:self.token forTagNmaed:self.tag];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Pictures finished" message:@"Enter name for search" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
 - (void)setToken:(NSString *)token {
@@ -70,7 +52,20 @@
 }
 
 - (void)getInfFromInstagram {
-    [self.wodSave save];
+    if(!self.token) {
+        return ;
+    } if (!self.tag) {
+        [self.delegate alertWithMassage:@"Enter tag please"];
+        return;
+    }
+    NSString *instagramBase = @"https://api.instagram.com/v1";
+    NSString *popularURLString = [NSString stringWithFormat:@"%@/tags/%@/media/recent?access_token=%@", instagramBase, self.tag, self.token];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:popularURLString]];
+    NSOperationQueue *theQ = [NSOperationQueue new];
+    [NSURLConnection sendAsynchronousRequest:request queue:theQ
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               [self.delegate fetchNextBatchPhotoWith:response andData:data error:error];
+                           }];
 }
 
 @end

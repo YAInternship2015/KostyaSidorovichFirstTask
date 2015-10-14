@@ -10,12 +10,13 @@
 		56A01CAA470951C0A26A300E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2887D286B88618F4A80F31F /* libPods.a */; };
 		DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B10BF1B7BA1D80015749E /* WODDatabase.m */; };
 		DA5B4E481B8F5A14006B8F3D /* WODSaveModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */; };
+		DA869AFB1BCD88510069BB98 /* WODDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA869AFA1BCD88510069BB98 /* WODDataManager.m */; };
 		DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2053A1B7E3042001F0876 /* WODCustomCell.m */; };
 		DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2054C1B7E3309001F0876 /* WODTableViewController.m */; };
 		DAA2057B1B85E9A2001F0876 /* WODPicturesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2057A1B85E9A2001F0876 /* WODPicturesCollectionViewController.m */; };
 		DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2057D1B85FD09001F0876 /* WODCustomCollectionViewCell.m */; };
 		DAA205801B862BA6001F0876 /* WODCustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */; };
-		DAD1BA921BAE030200FC6458 /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD1BA911BAE030200FC6458 /* Signature.m */; };
+		DAD1BA921BAE030200FC6458 /* WODSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD1BA911BAE030200FC6458 /* WODSignature.m */; };
 		DAD1F6381BA444BB00BF3B1D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD1F6371BA444BB00BF3B1D /* CoreData.framework */; };
 		DAD1F63B1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAD1F6391BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld */; };
 		DAD247EE1B8E0A8E00156B10 /* WODAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */; };
@@ -23,10 +24,7 @@
 		DADE4ADD1B8CEA9E00014412 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DADE4ADB1B8CEA9E00014412 /* main.m */; };
 		DADE4AE01B8CEAEC00014412 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DADE4ADF1B8CEAEC00014412 /* Info.plist */; };
 		DAE01BA51BC4005700CC9157 /* WODInstagramAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BA41BC4005700CC9157 /* WODInstagramAuthViewController.m */; };
-		DAE01BAB1BC4077300CC9157 /* WODInstagramAuthenticatorWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BAA1BC4077300CC9157 /* WODInstagramAuthenticatorWebView.m */; };
 		DAE01BAE1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BAD1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m */; };
-		DAE01BB41BC4123F00CC9157 /* WODSizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BB31BC4123F00CC9157 /* WODSizerView.m */; };
-		DAE01BBB1BC5AAF800CC9157 /* WODGetterInstagramInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BBA1BC5AAF800CC9157 /* WODGetterInstagramInfo.m */; };
 		DAE01BF81BC91FF300CC9157 /* WODInstagramAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE01BF71BC91FF300CC9157 /* WODInstagramAPIClient.m */; };
 		DAF5377C1B6CD60C00AE1857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377A1B6CD60C00AE1857 /* Main.storyboard */; };
 		DAF5377E1B6CD60C00AE1857 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF5377D1B6CD60C00AE1857 /* Images.xcassets */; };
@@ -53,6 +51,8 @@
 		DA0B10BF1B7BA1D80015749E /* WODDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WODDatabase.m; path = ../Model/WODDatabase.m; sourceTree = "<group>"; };
 		DA5B4E461B8F5A14006B8F3D /* WODSaveModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODSaveModelViewController.h; sourceTree = "<group>"; };
 		DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WODSaveModelViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DA869AF91BCD88510069BB98 /* WODDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODDataManager.h; sourceTree = "<group>"; };
+		DA869AFA1BCD88510069BB98 /* WODDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODDataManager.m; sourceTree = "<group>"; };
 		DAA205391B7E3042001F0876 /* WODCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WODCustomCell.h; path = ../../View/Cells/WODCustomCell.h; sourceTree = "<group>"; };
 		DAA2053A1B7E3042001F0876 /* WODCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = WODCustomCell.m; path = ../../View/Cells/WODCustomCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAA2054B1B7E3309001F0876 /* WODTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODTableViewController.h; sourceTree = "<group>"; };
@@ -62,8 +62,8 @@
 		DAA2057C1B85FD09001F0876 /* WODCustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODCustomCollectionViewCell.h; sourceTree = "<group>"; };
 		DAA2057D1B85FD09001F0876 /* WODCustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODCustomCollectionViewCell.m; sourceTree = "<group>"; };
 		DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WODCustomCollectionCell.xib; sourceTree = "<group>"; };
-		DAD1BA901BAE030200FC6458 /* Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signature.h; sourceTree = "<group>"; };
-		DAD1BA911BAE030200FC6458 /* Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signature.m; sourceTree = "<group>"; };
+		DAD1BA901BAE030200FC6458 /* WODSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODSignature.h; sourceTree = "<group>"; };
+		DAD1BA911BAE030200FC6458 /* WODSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODSignature.m; sourceTree = "<group>"; };
 		DAD1F6371BA444BB00BF3B1D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DAD1F63A1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WODCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		DAD247E81B8E0A8E00156B10 /* WODAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODAppDelegate.h; sourceTree = "<group>"; };
@@ -74,14 +74,8 @@
 		DADE4ADF1B8CEAEC00014412 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAE01BA31BC4005700CC9157 /* WODInstagramAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODInstagramAuthViewController.h; sourceTree = "<group>"; };
 		DAE01BA41BC4005700CC9157 /* WODInstagramAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODInstagramAuthViewController.m; sourceTree = "<group>"; };
-		DAE01BA91BC4077300CC9157 /* WODInstagramAuthenticatorWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODInstagramAuthenticatorWebView.h; sourceTree = "<group>"; };
-		DAE01BAA1BC4077300CC9157 /* WODInstagramAuthenticatorWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODInstagramAuthenticatorWebView.m; sourceTree = "<group>"; };
 		DAE01BAC1BC40D8200CC9157 /* NSDictionary+UrlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+UrlEncoding.h"; sourceTree = "<group>"; };
 		DAE01BAD1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+UrlEncoding.m"; sourceTree = "<group>"; };
-		DAE01BB21BC4123F00CC9157 /* WODSizerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODSizerView.h; sourceTree = "<group>"; };
-		DAE01BB31BC4123F00CC9157 /* WODSizerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODSizerView.m; sourceTree = "<group>"; };
-		DAE01BB91BC5AAF800CC9157 /* WODGetterInstagramInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODGetterInstagramInfo.h; sourceTree = "<group>"; };
-		DAE01BBA1BC5AAF800CC9157 /* WODGetterInstagramInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODGetterInstagramInfo.m; sourceTree = "<group>"; };
 		DAE01BF61BC91FF300CC9157 /* WODInstagramAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODInstagramAPIClient.h; sourceTree = "<group>"; };
 		DAE01BF71BC91FF300CC9157 /* WODInstagramAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODInstagramAPIClient.m; sourceTree = "<group>"; };
 		DAF5376D1B6CD60C00AE1857 /* YalantisFirstTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YalantisFirstTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,8 +131,8 @@
 				DA0B10BE1B7BA1D80015749E /* WODDatabase.h */,
 				DA0B10BF1B7BA1D80015749E /* WODDatabase.m */,
 				DAD1F6391BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld */,
-				DAD1BA901BAE030200FC6458 /* Signature.h */,
-				DAD1BA911BAE030200FC6458 /* Signature.m */,
+				DAD1BA901BAE030200FC6458 /* WODSignature.h */,
+				DAD1BA911BAE030200FC6458 /* WODSignature.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,8 +140,6 @@
 		DAA205341B7E2FA7001F0876 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DAE01BB21BC4123F00CC9157 /* WODSizerView.h */,
-				DAE01BB31BC4123F00CC9157 /* WODSizerView.m */,
 				DAA205381B7E3042001F0876 /* Cells */,
 				DAF537B01B6D6BF100AE1857 /* WODCustomCell.xib */,
 				DAA2057F1B862BA6001F0876 /* WODCustomCollectionCell.xib */,
@@ -210,6 +202,8 @@
 				DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */,
 				DAE01BAC1BC40D8200CC9157 /* NSDictionary+UrlEncoding.h */,
 				DAE01BAD1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m */,
+				DA869AF91BCD88510069BB98 /* WODDataManager.h */,
+				DA869AFA1BCD88510069BB98 /* WODDataManager.m */,
 			);
 			path = OtherClasses;
 			sourceTree = "<group>";
@@ -225,10 +219,6 @@
 		DAE01B9C1BC3FD7000CC9157 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				DAE01BA91BC4077300CC9157 /* WODInstagramAuthenticatorWebView.h */,
-				DAE01BAA1BC4077300CC9157 /* WODInstagramAuthenticatorWebView.m */,
-				DAE01BB91BC5AAF800CC9157 /* WODGetterInstagramInfo.h */,
-				DAE01BBA1BC5AAF800CC9157 /* WODGetterInstagramInfo.m */,
 				DAE01BF61BC91FF300CC9157 /* WODInstagramAPIClient.h */,
 				DAE01BF71BC91FF300CC9157 /* WODInstagramAPIClient.m */,
 			);
@@ -429,16 +419,14 @@
 				DADE4AD31B8B229C00014412 /* WODContainerViewController.m in Sources */,
 				DAD1F63B1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld in Sources */,
 				DAE01BA51BC4005700CC9157 /* WODInstagramAuthViewController.m in Sources */,
+				DA869AFB1BCD88510069BB98 /* WODDataManager.m in Sources */,
 				DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */,
 				DAD247EE1B8E0A8E00156B10 /* WODAppDelegate.m in Sources */,
-				DAE01BAB1BC4077300CC9157 /* WODInstagramAuthenticatorWebView.m in Sources */,
 				DAE01BF81BC91FF300CC9157 /* WODInstagramAPIClient.m in Sources */,
-				DAD1BA921BAE030200FC6458 /* Signature.m in Sources */,
+				DAD1BA921BAE030200FC6458 /* WODSignature.m in Sources */,
 				DAA2057E1B85FD09001F0876 /* WODCustomCollectionViewCell.m in Sources */,
 				DAE01BAE1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m in Sources */,
 				DA5B4E481B8F5A14006B8F3D /* WODSaveModelViewController.m in Sources */,
-				DAE01BB41BC4123F00CC9157 /* WODSizerView.m in Sources */,
-				DAE01BBB1BC5AAF800CC9157 /* WODGetterInstagramInfo.m in Sources */,
 				DAA2057B1B85E9A2001F0876 /* WODPicturesCollectionViewController.m in Sources */,
 				DAA2054D1B7E3309001F0876 /* WODTableViewController.m in Sources */,
 				DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */,

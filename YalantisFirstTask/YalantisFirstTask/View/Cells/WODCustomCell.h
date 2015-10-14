@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class Signature;
+@class WODSignature;
 
 @interface WODCustomCell : UITableViewCell
 
-- (void)setupWithModel:(Signature *)wModel;
+- (void)setupWithModel:(WODSignature *)wModel;
 
 @end

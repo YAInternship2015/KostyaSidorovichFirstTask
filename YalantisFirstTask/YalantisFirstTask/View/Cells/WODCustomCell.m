@@ -7,9 +7,8 @@
 //
 
 #import "WODCustomCell.h"
-#import "Signature.h"
-#import <SDWebImage/SDImageCache.h>
-
+#import "WODSignature.h"
+#import <SDWebImage/SDWebImageManager.h>
 @interface WODCustomCell ()
 
 @property (nonatomic, weak) IBOutlet UILabel *name;
@@ -19,9 +18,19 @@
 
 @implementation WODCustomCell
 
-- (void)setupWithModel:(Signature *)wModel {
-    self.image.image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:wModel.pictureIdNamed];
+- (void)setupWithModel:(WODSignature *)wModel {
     self.name.text = wModel.pictureSignature;
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:(NSURL *)wModel.pictureNamed
+                          options:0
+                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                             // progression tracking code
+                         }
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                            if (image) {
+                                self.image.image = image;
+                            }
+                        }];
 }
 
 @end

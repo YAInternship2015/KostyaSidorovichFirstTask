@@ -9,6 +9,7 @@
 #import "WODSaveModelViewController.h"
 #import "WODDatabase.h"
 #import "WODInstagramAPIClient.h"
+#import "WODDataManager.h"
 
 @interface WODSaveModelViewController ()
 
@@ -23,22 +24,12 @@
     [self.pictureNameTextField becomeFirstResponder];
 }
 
-- (void)saveTag {
-        WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
-        [wodAPI setTagForRequest:self.pictureNameTextField.text];
-        wodAPI.wodSave = self;
-}
-
-- (void)save {
-    WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
-    for (int a = 0; a < [[wodAPI valueForKey:@"imagesURL"] count]; a++) {
-
-        [self.wODDB insertNewObjectWithPictureName:[[wodAPI valueForKey:@"imagesURL"] objectAtIndex:a] pictureIdName:[[wodAPI valueForKey:@"idNamed"] objectAtIndex:a]forSignature:[[wodAPI valueForKey:@"captionText"] objectAtIndex:a]];
-   }
-}
-
 - (IBAction)saveButton:(id)sender {
-    [self saveTag];
+    WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
+    [wodAPI setTagForRequest:self.pictureNameTextField.text];
+    _manager = [WODDataManager new];
+    self.manager.wODDB = self.wODDB;
+    [self.manager sendRequest];
     [self.navigationController popViewControllerAnimated:YES];
 
 }

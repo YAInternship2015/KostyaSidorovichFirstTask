@@ -9,9 +9,13 @@
 #import "WODTableViewController.h"
 #import "WODCustomCell.h"
 #import "WODDatabase.h"
-#import "WODInstagramAPIClient.h"
+#import "WODSignature.h"
+#import "WODDataManager.h"
 
-static NSString *kCellIdentifier = @"WODCustomCell";
+static NSString * const kAlertTitle = @"Attention please";
+static NSString * const kCellIdentifier = @"WODCustomCell";
+static NSString * const kSignForRow = @"Full name";
+static int const kCellsIntervalToDownload = 2;
 
 @interface WODTableViewController ()<NSFetchedResultsControllerDelegate>
 
@@ -24,22 +28,25 @@ static NSString *kCellIdentifier = @"WODCustomCell";
     self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
     [self.tableView registerNib:[UINib nibWithNibName:kCellIdentifier bundle:nil]
          forCellReuseIdentifier:kCellIdentifier];
+    if ([self.wODDB modelCountForSections:0] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:kAlertTitle message:@"Enter tag name for load photo, please" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark <TableViewDataSource,delegat>
+
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-#warning странный метод. Почему просто не получать объект-модели и затем здесь брать у него нужное свойство?
-    NSString *fullTagName = [self.wODDB selectedRowStringWithModel:[self.wODDB modelAtIndexPath:indexPath]];
-#warning строковые константы надо поместить в Localizable.strings
-    UIAlertView *fullTag = [[UIAlertView alloc]initWithTitle:@"Full name" message:fullTagName delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    WODSignature *wSignature = [self.wODDB modelAtIndexPath:indexPath];
+    UIAlertView *fullTag = [[UIAlertView alloc]initWithTitle:kSignForRow message:wSignature.pictureSignature delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [fullTag show];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-#warning цифра 2 должна быть в константах
-    if (indexPath.row == [self.wODDB modelCountForSections:0] - 2) {
-        WODInstagramAPIClient *instClient = [WODInstagramAPIClient sharedInstance];
-        [instClient setTagForRequest:nil];
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownload) {
+        WODDataManager *manager = [WODDataManager new];
+        manager.wODDB = self.wODDB;
+        [manager sendRequest];
     }
 }
 

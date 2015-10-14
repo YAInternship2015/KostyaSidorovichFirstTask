@@ -8,22 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol FrameChangeDelegate
-
--(void) frameChanged:(CGRect)frame;
-
-@end
-
-@protocol InstagramAuthCompletedDelegate <NSObject>
-
-- (void)pushToContainerVC;
-
-@end
-
-@interface WODInstagramAuthViewController : UIViewController<FrameChangeDelegate,InstagramAuthCompletedDelegate>
-
-@property(nonatomic, weak) id<InstagramAuthCompletedDelegate> authDelegate;
-
+@interface WODInstagramAuthViewController : UIViewController <UIWebViewDelegate>
 
 @end
 

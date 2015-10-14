@@ -9,17 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Signature;
+@class WODSignature;
 
 @interface WODDatabase : NSObject
 
-- (Signature *)modelAtIndexPath:(NSIndexPath *)indexPath;
+- (WODSignature *)modelAtIndexPath:(NSIndexPath *)indexPath;
 - (NSInteger)modelCountForSections:(NSInteger)section;
 - (instancetype)initWithDelegate:(id<NSFetchedResultsControllerDelegate>)delegate;
 - (void)insertNewObjectWithPictureName:(NSString *)name pictureIdName:(NSString *)idName forSignature:(NSString *)signature;
 - (void)deleteModelWithIndex:(NSIndexPath *)index;
 - (void)saveContext;
-- (NSString *)selectedRowStringWithModel:(Signature *)model;
 
 @end
 

@@ -9,10 +9,12 @@
 #import "WODPicturesCollectionViewController.h"
 #import "WODDatabase.h"
 #import "WODCustomCollectionViewCell.h"
-#import "WODInstagramAPIClient.h"
+#import "WODDataManager.h"
 
+static NSString * const kAlertTitle = @"Attention please";
 static NSString * const kReuseIdentifier = @"Cell";
 static NSString * const kNibName = @"WODCustomCollectionCell";
+static int const kCellsIntervalToDownload = 4;
 
 @interface WODPicturesCollectionViewController ()<NSFetchedResultsControllerDelegate>
 
@@ -27,16 +29,22 @@ static NSString * const kNibName = @"WODCustomCollectionCell";
     self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
     [self.collectionView registerNib:[UINib nibWithNibName:kNibName bundle:nil]
           forCellWithReuseIdentifier:kReuseIdentifier];
+    if ([self.wODDB modelCountForSections:0] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:kAlertTitle message:@"Enter tag name for load photo, please" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark <CollectionViewDataSource,delegat>
+
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-#warning цифры 4 должна быть в константах
-    if (indexPath.row == [self.wODDB modelCountForSections:0] - 4) {
-        WODInstagramAPIClient *instClient = [WODInstagramAPIClient sharedInstance];
-        [instClient setTagForRequest:nil];
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownload) {
+        WODDataManager *manager = [WODDataManager new];
+        manager.wODDB = self.wODDB;
+        [manager sendRequest];
     }
 }
+
 - (IBAction)handleLongPress:(UILongPressGestureRecognizer *)sender {
     
     CGPoint locationPoint = [sender locationInView:self.collectionView];

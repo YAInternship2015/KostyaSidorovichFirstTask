@@ -1,18 +1,19 @@
 //
-//  Signature.m
+//  WODSignature.m
 //  
 //
 //  Created by Woddi on 19.09.15.
 //
 //
 
-#import "Signature.h"
+#import "WODSignature.h"
 
 
-@implementation Signature
+@implementation WODSignature
 
 @dynamic pictureSignature;
 @dynamic pictureNamed;
 @dynamic pictureIdNamed;
 @dynamic curentDate;
+
 @end

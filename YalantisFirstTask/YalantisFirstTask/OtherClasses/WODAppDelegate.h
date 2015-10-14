@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#warning не увидел в приложении ниодного инстаграм-поста. Удалите приложение на симуляторе и установите заново, чтобы воспроизвести мою ситуацию
-
 @interface WODAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 

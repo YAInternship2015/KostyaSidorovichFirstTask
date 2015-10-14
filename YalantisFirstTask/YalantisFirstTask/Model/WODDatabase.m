@@ -7,15 +7,18 @@
 //
 
 #import "WODDatabase.h"
-#import "Signature.h"
+#import "WODSignature.h"
 #import <SDWebImage/SDImageCache.h>
 #import "WODInstagramAPIClient.h"
+
 static NSString *kPictureSignatureAttribute = @"pictureSignature";
 static NSString *kPictureNameAttribute = @"pictureNamed";
 static NSString *kPictureIdAttribute = @"pictureIdNamed";
 static NSString *kPictureCreationDateAttribute = @"curentDate";
+static int const kFetchBatchSize = 20;
 
 @interface WODDatabase ()
+
 @property (nonatomic, weak) id<NSFetchedResultsControllerDelegate> delegate;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
@@ -30,32 +33,15 @@ static NSString *kPictureCreationDateAttribute = @"curentDate";
     self = [self init];
     if (self) {
         self.delegate = delegate;
-        
-        if (![WODInstagramAPIClient sharedInstance].firstLoad) {
-            [self loadCache];
-            [WODInstagramAPIClient sharedInstance].firstLoad = YES;
-        }
-            }
+    }
     return self;
 }
 
-#warning плохой вариант использования кеша. Кешируются абсолютно все данные, даже те, которые потенцильно не нужны пользователю, то есть он может не доскроллить до конца списка. Я предпочитаю подход, когда кешируются данные, к которым произошло хотя бы одно обращение. Это делается в методе sd_setImageWithURL: у UIImageView. То есть внутри ячейки картинку в UIImageView надо подставлять таким методом. Вначале проверяется, есть ли такая картинка в кеше, и если есть, то подставляется она. Если нет, то она загружается из сети, кешируется и затем подставляется в UIImageView. То есть кеш я бы вообще убрал из этого класса
-
-- (void)loadCache {
-    for (int a = 0; a < self.fetchedResultsController.fetchedObjects.count; a++) {
-        NSString *pictureId =[NSString stringWithFormat:@"%@",[[self.fetchedResultsController.fetchedObjects objectAtIndex:a]valueForKey:kPictureIdAttribute]];
-        NSString *pictureURLstring = [NSString stringWithFormat:@"%@",[[self.fetchedResultsController.fetchedObjects objectAtIndex:a]valueForKey:kPictureNameAttribute]];
-        [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:pictureURLstring]]] forKey:pictureId];
-    }
-}
-- (Signature *)modelAtIndexPath:(NSIndexPath *)indexPath {
-    Signature *model = [self.fetchedResultsController objectAtIndexPath:indexPath];
+- (WODSignature *)modelAtIndexPath:(NSIndexPath *)indexPath {
+    WODSignature *model = [self.fetchedResultsController objectAtIndexPath:indexPath];
     return model;
 }
 
-- (NSString *)selectedRowStringWithModel:(Signature *)model {
-   return [NSString stringWithFormat:@"%@",model.pictureSignature];
-}
 - (NSInteger)modelCountForSections:(NSInteger)section {
     id  sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
@@ -71,40 +57,40 @@ static NSString *kPictureCreationDateAttribute = @"curentDate";
     }
 }
 
-#warning плохое имя метода. Оно не описывает то, что происходит внутри + неясно, что за параметр передается в метод
-- (void)searchId:(NSString *)idNamed {
-    
+- (BOOL)databaseContainsPictureId:(NSString *)pictureId elseReplaceSignature:(NSString *)signature pictureURL:(NSString *)urlString {
     NSEntityDescription *entityDesc = [[self.fetchedResultsController fetchRequest] entity];
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entityDesc];
-#warning здесь нужен не like, а строгое соответствие
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pictureIdNamed like %@",idNamed];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pictureIdNamed == %@",pictureId];
     [request setPredicate:predicate];
     NSError *error;
     NSArray *matchingData = [[self.fetchedResultsController managedObjectContext] executeFetchRequest:request error:&error];
     if (matchingData.count != 0) {
-#warning если я правильно понял, то Вы удаляете посты и создаете новые вместо обновления старых. Это совсем не оптимальный подход, как по производительности, так и по логике. У модели могут быть поля, котррые хранятся только локально, и при удалении теряется их значение
         for (NSManagedObject *obj in matchingData) {
-            [[self.fetchedResultsController managedObjectContext] deleteObject:obj];
+            [obj setValue:urlString forKey:kPictureNameAttribute];
+            [obj setValue:signature forKey:kPictureSignatureAttribute];
+            [obj setValue:[NSDate date] forKey:kPictureCreationDateAttribute];
         }
+        return YES;
+    } else {
+        return NO;
     }
 }
-- (void)insertNewObjectWithPictureName:(NSString *)name pictureIdName:(NSString *)idName forSignature:(NSString *)signature {
 
+- (void)insertNewObjectWithPictureName:(NSString *)name pictureIdName:(NSString *)idName forSignature:(NSString *)signature {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
-                                                                      inManagedObjectContext:context];
-    [self searchId:idName];
-    [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:name]]] forKey:idName];
-#warning здесь можно кастовать NSManagedObject в Ваш класс и заполнить поля нормально, а не через kvc
-    [newManagedObject setValue:[NSDate date] forKey:kPictureCreationDateAttribute];
-    [newManagedObject setValue:signature forKey:kPictureSignatureAttribute];
-    [newManagedObject setValue:name forKey:kPictureNameAttribute];
-    [newManagedObject setValue:idName forKey:kPictureIdAttribute];
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    
+    if (![self databaseContainsPictureId:idName elseReplaceSignature:signature pictureURL:name]) {
+        WODSignature *wSignature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+        wSignature.pictureIdNamed = idName;
+        wSignature.pictureNamed = name;
+        wSignature.pictureSignature =signature;
+        wSignature.curentDate = [NSDate date];
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
     }
 }
 
@@ -119,8 +105,7 @@ static NSString *kPictureCreationDateAttribute = @"curentDate";
     NSEntityDescription* description =[NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
     
     [fetchRequest setEntity:description];
-#warning размер пачки надо добавить в константы
-    [fetchRequest setFetchBatchSize:20];
+    [fetchRequest setFetchBatchSize:kFetchBatchSize];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kPictureCreationDateAttribute ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
