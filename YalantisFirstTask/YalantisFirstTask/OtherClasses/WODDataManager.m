@@ -16,6 +16,7 @@ static NSString * const kAlertTitle = @"Attention please";
 
 @interface WODDataManager ()
 
+#warning wInstagramAPIClient
 @property(nonatomic, strong)  WODInstagramAPIClient *wInstagramAPIclient;
 
 @end

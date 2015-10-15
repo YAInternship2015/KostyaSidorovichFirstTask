@@ -57,6 +57,7 @@ static int const kFetchBatchSize = 20;
     }
 }
 
+#warning плохое имя метода
 - (BOOL)databaseContainsPictureId:(NSString *)pictureId elseReplaceSignature:(NSString *)signature pictureURL:(NSString *)urlString {
     NSEntityDescription *entityDesc = [[self.fetchedResultsController fetchRequest] entity];
     NSFetchRequest *request = [NSFetchRequest new];

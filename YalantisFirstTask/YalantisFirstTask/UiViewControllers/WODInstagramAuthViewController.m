@@ -58,6 +58,7 @@ static NSString *const kSegueIdentifier = @"afterLogin";
     NSString *urlCallbackPrefix = [NSString stringWithFormat:@"%@/?code=", kInstagramRedirectURL];
     
     if([responseURL hasPrefix:urlCallbackPrefix]) {
+#warning было бы неплохо эту логику вынести в отдельный дата менеджер и апи клиент
         NSString *authToken = [responseURL substringFromIndex:[urlCallbackPrefix length]];
         NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];

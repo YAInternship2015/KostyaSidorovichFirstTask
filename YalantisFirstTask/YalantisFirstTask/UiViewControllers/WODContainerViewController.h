@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#warning зачем здесь этот импорт?
 #import "WODInstagramAuthViewController.h"
 
 @interface WODContainerViewController : UIViewController

@@ -44,8 +44,10 @@ static int const kCellsIntervalToDownload = 2;
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownload) {
+#warning зачем создавать дата менеджер каждый раз для каждого запроса? Можно же хранить его в проперти
         WODDataManager *manager = [WODDataManager new];
         manager.wODDB = self.wODDB;
+#warning здесь вообще не очевидно, что делает метод sendRequest
         [manager sendRequest];
     }
 }
