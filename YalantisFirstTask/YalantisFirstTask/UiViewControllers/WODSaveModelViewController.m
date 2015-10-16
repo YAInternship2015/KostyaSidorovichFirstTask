@@ -29,7 +29,7 @@
     [wodAPI setTagForRequest:self.pictureNameTextField.text];
     _manager = [WODDataManager new];
     self.manager.wODDB = self.wODDB;
-    [self.manager sendRequest];
+    [self.manager sendRequestForLoadPicture];
     [self.navigationController popViewControllerAnimated:YES];
 
 }

@@ -11,13 +11,9 @@
 #import "WODDatabase.h"
 #import "WODSaveModelViewController.h"
 
-static NSString * const kAlertTitle = @"Attention please";
-
-
 @interface WODDataManager ()
 
-#warning wInstagramAPIClient
-@property(nonatomic, strong)  WODInstagramAPIClient *wInstagramAPIclient;
+@property(nonatomic, strong)  WODInstagramAPIClient *wInstagramAPIClient;
 
 @end
 
@@ -26,19 +22,20 @@ static NSString * const kAlertTitle = @"Attention please";
 - (id)init {
     self = [super init];
     if (self) {
-        _wInstagramAPIclient = [WODInstagramAPIClient sharedInstance];
+        _wInstagramAPIClient = [WODInstagramAPIClient sharedInstance];
     }
     return self;
 }
 
-- (void)sendRequest {
-    [self.wInstagramAPIclient getInfFromInstagram];
-    self.wInstagramAPIclient.delegate = self;
+- (BOOL)sendRequestForLoadPicture {
+    if ([[WODInstagramAPIClient sharedInstance]valueForKey:@"tag"]) {
+        [self.wInstagramAPIClient loadInfFromInstagram];
+        self.wInstagramAPIClient.delegate = self;
+        return YES;
+    }
+    return NO;
 }
-- (void)alertWithMassage:(NSString *)massage {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:kAlertTitle message:massage delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
-}
+
 - (void)fetchNextBatchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error {
     NSError *err;
     id val = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];

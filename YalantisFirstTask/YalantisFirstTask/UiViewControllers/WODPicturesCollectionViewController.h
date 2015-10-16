@@ -10,8 +10,6 @@
 
 @class WODDatabase;
 
-#warning здесь актуальны все те же замечания, то и в табличном контроллере
-
 @interface WODPicturesCollectionViewController : UICollectionViewController
 
 @property (nonatomic, strong) WODDatabase *wODDB;

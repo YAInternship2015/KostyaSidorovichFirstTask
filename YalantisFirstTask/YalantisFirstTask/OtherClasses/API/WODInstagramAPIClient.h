@@ -13,7 +13,6 @@
 @protocol WODLoadCompletedDelegat <NSObject>
 
 - (void)fetchNextBatchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error;
-- (void)alertWithMassage:(NSString *)massage;
 
 @end
 
@@ -25,7 +24,7 @@
 
 - (void)setToken:(NSString *)token;
 - (void)setTagForRequest:(NSString *)tag;
-- (void)getInfFromInstagram;
+- (void)loadInfFromInstagram;
 
 @end
 

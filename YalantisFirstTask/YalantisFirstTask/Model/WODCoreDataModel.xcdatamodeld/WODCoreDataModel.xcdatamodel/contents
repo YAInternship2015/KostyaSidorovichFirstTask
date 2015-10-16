@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Signature" representedClassName="WODSignature" syncable="YES">
-        <attribute name="curentDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="currentDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="pictureIdNamed" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureNamed" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureSignature" optional="YES" attributeType="String" syncable="YES"/>

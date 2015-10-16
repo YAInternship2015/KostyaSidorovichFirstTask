@@ -16,6 +16,6 @@
 @property (nonatomic, strong) WODDatabase *wODDB;
 
 - (void)fetchNextBatchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error;
-- (void)sendRequest;
+- (BOOL)sendRequestForLoadPicture;
 
 @end

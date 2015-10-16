@@ -10,12 +10,7 @@
 #import "WODSignature.h"
 #import <SDWebImage/SDImageCache.h>
 #import "WODInstagramAPIClient.h"
-
-static NSString *kPictureSignatureAttribute = @"pictureSignature";
-static NSString *kPictureNameAttribute = @"pictureNamed";
-static NSString *kPictureIdAttribute = @"pictureIdNamed";
-static NSString *kPictureCreationDateAttribute = @"curentDate";
-static int const kFetchBatchSize = 20;
+#import "WODConst.h"
 
 @interface WODDatabase ()
 
@@ -57,8 +52,7 @@ static int const kFetchBatchSize = 20;
     }
 }
 
-#warning плохое имя метода
-- (BOOL)databaseContainsPictureId:(NSString *)pictureId elseReplaceSignature:(NSString *)signature pictureURL:(NSString *)urlString {
+- (BOOL)replaceParametersForId:(NSString *)pictureId signature:(NSString *)signature pictureURL:(NSString *)urlString {
     NSEntityDescription *entityDesc = [[self.fetchedResultsController fetchRequest] entity];
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entityDesc];
@@ -82,12 +76,12 @@ static int const kFetchBatchSize = 20;
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     
-    if (![self databaseContainsPictureId:idName elseReplaceSignature:signature pictureURL:name]) {
+    if (![self replaceParametersForId:idName signature:signature pictureURL:name]) {
         WODSignature *wSignature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
         wSignature.pictureIdNamed = idName;
         wSignature.pictureNamed = name;
         wSignature.pictureSignature =signature;
-        wSignature.curentDate = [NSDate date];
+        wSignature.currentDate = [NSDate date];
         NSError *error;
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);

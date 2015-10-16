@@ -10,15 +10,12 @@
 #import "WODDatabase.h"
 #import "WODCustomCollectionViewCell.h"
 #import "WODDataManager.h"
-
-static NSString * const kAlertTitle = @"Attention please";
-static NSString * const kReuseIdentifier = @"Cell";
-static NSString * const kNibName = @"WODCustomCollectionCell";
-static int const kCellsIntervalToDownload = 4;
+#import "WODConst.h"
 
 @interface WODPicturesCollectionViewController ()<NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) WODDataManager *manager;
 
 @end
 
@@ -26,11 +23,12 @@ static int const kCellsIntervalToDownload = 4;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.manager = [WODDataManager new];
     self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
     [self.collectionView registerNib:[UINib nibWithNibName:kNibName bundle:nil]
-          forCellWithReuseIdentifier:kReuseIdentifier];
+          forCellWithReuseIdentifier:kReuseCollectionIdentifier];
     if ([self.wODDB modelCountForSections:0] == 0) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:kAlertTitle message:@"Enter tag name for load photo, please" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Attention please", nil) message:NSLocalizedString(@"Enter tag", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
     }
 }
@@ -38,10 +36,12 @@ static int const kCellsIntervalToDownload = 4;
 #pragma mark <CollectionViewDataSource,delegat>
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownload) {
-        WODDataManager *manager = [WODDataManager new];
-        manager.wODDB = self.wODDB;
-        [manager sendRequest];
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownloadCollectionView) {
+        self.manager.wODDB = self.wODDB;
+        if(![self.manager sendRequestForLoadPicture]) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Attention please", nil)  message:NSLocalizedString(@"Enter tag please", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 
@@ -69,7 +69,7 @@ static int const kCellsIntervalToDownload = 4;
 
 - (WODCustomCollectionViewCell *)collectionView:(UICollectionView *)collectionView
                          cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    WODCustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier
+    WODCustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseCollectionIdentifier
                                                                                   forIndexPath:indexPath];
     [cell setupWithModel:[self.wODDB modelAtIndexPath:indexPath]];
     return cell;

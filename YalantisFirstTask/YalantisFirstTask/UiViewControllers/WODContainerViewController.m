@@ -10,11 +10,7 @@
 #import "WODPicturesCollectionViewController.h"
 #import "WODTableViewController.h"
 #import "WODSaveModelViewController.h"
-
-float const kDurationAnimation = 0.1;
-static NSString * const kTableViewControllerIdentifier = @"Table";
-static NSString * const kCollectionViewControllerIdentifier = @"Collection";
-static NSString * const kSegueIdentifier = @"pushSaveViewController";
+#import "WODConst.h"
 
 @interface WODContainerViewController ()
 
@@ -71,7 +67,7 @@ static NSString * const kSegueIdentifier = @"pushSaveViewController";
     }
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:kSegueIdentifier]) {
+    if ([segue.identifier isEqualToString:kSegueIdentifierFromContainerVC]) {
         WODSaveModelViewController *wSaveVC = segue.destinationViewController;
         if (self.switcherVC) {
             wSaveVC.wODDB = self.tableViewController.wODDB;

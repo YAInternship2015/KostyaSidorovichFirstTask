@@ -14,6 +14,6 @@
 @dynamic pictureSignature;
 @dynamic pictureNamed;
 @dynamic pictureIdNamed;
-@dynamic curentDate;
+@dynamic currentDate;
 
 @end

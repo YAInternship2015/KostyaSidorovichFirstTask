@@ -11,13 +11,11 @@
 #import "WODDatabase.h"
 #import "WODSignature.h"
 #import "WODDataManager.h"
-
-static NSString * const kAlertTitle = @"Attention please";
-static NSString * const kCellIdentifier = @"WODCustomCell";
-static NSString * const kSignForRow = @"Full name";
-static int const kCellsIntervalToDownload = 2;
+#import "WODConst.h"
 
 @interface WODTableViewController ()<NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, strong) WODDataManager *manager;
 
 @end
 
@@ -25,11 +23,12 @@ static int const kCellsIntervalToDownload = 2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.manager = [WODDataManager new];
     self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
     [self.tableView registerNib:[UINib nibWithNibName:kCellIdentifier bundle:nil]
          forCellReuseIdentifier:kCellIdentifier];
     if ([self.wODDB modelCountForSections:0] == 0) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:kAlertTitle message:@"Enter tag name for load photo, please" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Attention please", nil) message:NSLocalizedString(@"Enter tag", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
     }
 }
@@ -43,12 +42,12 @@ static int const kCellsIntervalToDownload = 2;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownload) {
-#warning зачем создавать дата менеджер каждый раз для каждого запроса? Можно же хранить его в проперти
-        WODDataManager *manager = [WODDataManager new];
-        manager.wODDB = self.wODDB;
-#warning здесь вообще не очевидно, что делает метод sendRequest
-        [manager sendRequest];
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownloadTableView) {
+        self.manager.wODDB = self.wODDB;
+        if(![self.manager sendRequestForLoadPicture]) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Attention please", nil) message:NSLocalizedString(@"Enter tag please", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 
