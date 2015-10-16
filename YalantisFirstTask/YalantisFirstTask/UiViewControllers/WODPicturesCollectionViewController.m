@@ -14,6 +14,7 @@
 
 @interface WODPicturesCollectionViewController ()<NSFetchedResultsControllerDelegate>
 
+#warning здесь же по факту лежат не айтемы, а чейнджи
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) WODDataManager *manager;
 

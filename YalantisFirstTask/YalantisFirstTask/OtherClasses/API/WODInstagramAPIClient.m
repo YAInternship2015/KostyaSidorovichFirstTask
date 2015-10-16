@@ -41,6 +41,7 @@
     return self;
 }
 
+#warning этот метод не нужен
 -(void)setToken:(NSString *)token {
     _token = token;
 }
@@ -49,6 +50,7 @@
     _tag = tag;
 }
 
+#warning loadInfoFromInstagram
 - (void)loadInfFromInstagram {
     if(!self.token) {
         return ;
@@ -60,7 +62,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:self.theQ
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-
+#warning здесь надо использовать weakSelf вместо self
                                [self.delegate fetchNextBatchPhotoWith:response andData:data error:error];
                            }];
 }

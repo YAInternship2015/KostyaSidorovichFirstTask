@@ -52,6 +52,7 @@
     }
 }
 
+#warning получается дублирование кода в установке значений для новой модели и для имеющейся модели. Код по заполнению "какой-то" модели данными должен быть общим, независимо от того, "новая" она, или "старая"
 - (BOOL)replaceParametersForId:(NSString *)pictureId signature:(NSString *)signature pictureURL:(NSString *)urlString {
     NSEntityDescription *entityDesc = [[self.fetchedResultsController fetchRequest] entity];
     NSFetchRequest *request = [NSFetchRequest new];

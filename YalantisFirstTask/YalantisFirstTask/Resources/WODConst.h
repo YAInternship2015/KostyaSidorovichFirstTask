@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#warning в глобальных константах должен быть префикс приложения вместо "k"
+
 extern int      const kCellsIntervalToDownloadTableView;
 extern int      const kCellsIntervalToDownloadCollectionView;
 extern float    const kDurationAnimation;

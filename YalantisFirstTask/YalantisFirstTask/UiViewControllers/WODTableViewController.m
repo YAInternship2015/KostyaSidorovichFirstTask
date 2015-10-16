@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+#warning если менеждеру для работы всегда требуется wODDB, то почему бы его не передавать его в методе init как параметр?
     self.manager = [WODDataManager new];
     self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
     [self.tableView registerNib:[UINib nibWithNibName:kCellIdentifier bundle:nil]

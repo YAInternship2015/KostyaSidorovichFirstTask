@@ -54,6 +54,7 @@
     NSString *urlCallbackPrefix = [NSString stringWithFormat:@"%@/?code=", kInstagramRedirectURL];
     
     if([responseURL hasPrefix:urlCallbackPrefix]) {
+#warning формирование запроса можно вынести в категорию NSURLRequest
         NSString *authToken = [responseURL substringFromIndex:[urlCallbackPrefix length]];
         NSURL *url = [NSURL URLWithString:kAPIAccessToken];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];

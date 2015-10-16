@@ -36,6 +36,7 @@
     return NO;
 }
 
+#warning по сути в этом методе происходит маппинг данных, а имя такое, будето здесь запрос выполняется. Переименуйте метод
 - (void)fetchNextBatchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error {
     NSError *err;
     id val = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
@@ -44,6 +45,7 @@
         dispatch_sync(dispatch_get_main_queue(),^{
             if(data) {
                 for (NSDictionary *dict in data) {
+#warning здесь внутри блока нужен weakSelf вместо self
                     [self.wODDB insertNewObjectWithPictureName:[[[dict valueForKey:@"images"] valueForKey:@"standard_resolution"] valueForKey:@"url"] pictureIdName:[dict valueForKey:@"id"] forSignature:[[dict valueForKey:@"caption"]valueForKey:@"text"]];
                 }
             }

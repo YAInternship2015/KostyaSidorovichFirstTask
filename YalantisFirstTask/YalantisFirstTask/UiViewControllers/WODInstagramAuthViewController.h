@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#warning в *.h можно не писать, что контроллер является <UIWebViewDelegate>
 @interface WODInstagramAuthViewController : UIViewController <UIWebViewDelegate>
 
 @end
