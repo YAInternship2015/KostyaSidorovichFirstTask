@@ -12,7 +12,7 @@
 
 @protocol WODLoadCompletedDelegat <NSObject>
 
-- (void)fetchNextBatchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error;
+- (void)mappingFetchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error;
 
 @end
 
@@ -22,9 +22,8 @@
 
 + (WODInstagramAPIClient *)sharedInstance;
 
-- (void)setToken:(NSString *)token;
 - (void)setTagForRequest:(NSString *)tag;
-- (void)loadInfFromInstagram;
+- (void)loadInfoFromInstagram;
 
 @end
 

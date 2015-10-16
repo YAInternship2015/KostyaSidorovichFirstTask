@@ -41,29 +41,22 @@
     return self;
 }
 
-#warning этот метод не нужен
--(void)setToken:(NSString *)token {
-    _token = token;
-}
-
 - (void)setTagForRequest:(NSString *)tag {
     _tag = tag;
 }
 
-#warning loadInfoFromInstagram
-- (void)loadInfFromInstagram {
+- (void)loadInfoFromInstagram {
     if(!self.token) {
         return ;
     }
-    NSString *instagramBase = kBaseURL;
-    NSString *popularURLString = [NSString stringWithFormat:kMediaRecent, instagramBase, self.tag, self.token];
+    NSString *instagramBase = WODBaseURL;
+    NSString *popularURLString = [NSString stringWithFormat:WODMediaRecent, instagramBase, self.tag, self.token];
     NSMutableURLRequest *request = [[NSMutableURLRequest
                                      alloc] initWithURL:[NSURL URLWithString:popularURLString]];
-    
+    __weak __typeof(self)weakSelf = self;
     [NSURLConnection sendAsynchronousRequest:request queue:self.theQ
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-#warning здесь надо использовать weakSelf вместо self
-                               [self.delegate fetchNextBatchPhotoWith:response andData:data error:error];
+                               [weakSelf.delegate mappingFetchPhotoWith:response andData:data error:error];
                            }];
 }
 

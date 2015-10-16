@@ -23,11 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-#warning если менеждеру для работы всегда требуется wODDB, то почему бы его не передавать его в методе init как параметр?
-    self.manager = [WODDataManager new];
     self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
-    [self.tableView registerNib:[UINib nibWithNibName:kCellIdentifier bundle:nil]
-         forCellReuseIdentifier:kCellIdentifier];
+    self.manager = [[WODDataManager alloc]initWithDatabase:self.wODDB];
+    [self.tableView registerNib:[UINib nibWithNibName:WODCellIdentifier bundle:nil]
+         forCellReuseIdentifier:WODCellIdentifier];
     if ([self.wODDB modelCountForSections:0] == 0) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Attention please", nil) message:NSLocalizedString(@"Enter tag", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
@@ -38,13 +37,12 @@
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     WODSignature *wSignature = [self.wODDB modelAtIndexPath:indexPath];
-    UIAlertView *fullTag = [[UIAlertView alloc]initWithTitle:kSignForRow message:wSignature.pictureSignature delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *fullTag = [[UIAlertView alloc]initWithTitle:WODSignForRow message:wSignature.pictureSignature delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [fullTag show];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownloadTableView) {
-        self.manager.wODDB = self.wODDB;
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - WODCellsIntervalToDownloadTableView) {
         if(![self.manager sendRequestForLoadPicture]) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Attention please", nil) message:NSLocalizedString(@"Enter tag please", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alert show];
@@ -59,7 +57,7 @@
 }
 
 - (WODCustomCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WODCustomCell *cell =[tableView dequeueReusableCellWithIdentifier:kCellIdentifier
+    WODCustomCell *cell =[tableView dequeueReusableCellWithIdentifier:WODCellIdentifier
                                                          forIndexPath:indexPath];
     [cell setupWithModel:[self.wODDB modelAtIndexPath:indexPath]];
     

@@ -27,8 +27,7 @@
 - (IBAction)saveButton:(id)sender {
     WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
     [wodAPI setTagForRequest:self.pictureNameTextField.text];
-    _manager = [WODDataManager new];
-    self.manager.wODDB = self.wODDB;
+    self.manager = [[WODDataManager alloc]initWithDatabase:self.wODDB];
     [self.manager sendRequestForLoadPicture];
     [self.navigationController popViewControllerAnimated:YES];
 

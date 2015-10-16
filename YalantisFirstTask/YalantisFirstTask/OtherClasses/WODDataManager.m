@@ -14,39 +14,40 @@
 @interface WODDataManager ()
 
 @property(nonatomic, strong)  WODInstagramAPIClient *wInstagramAPIClient;
+@property (nonatomic, strong) WODDatabase *wODDB;
 
 @end
 
 @implementation WODDataManager
 
-- (id)init {
+- (id)initWithDatabase:(WODDatabase *)wODDB {
     self = [super init];
     if (self) {
         _wInstagramAPIClient = [WODInstagramAPIClient sharedInstance];
+        _wODDB = wODDB;
     }
     return self;
 }
 
 - (BOOL)sendRequestForLoadPicture {
     if ([[WODInstagramAPIClient sharedInstance]valueForKey:@"tag"]) {
-        [self.wInstagramAPIClient loadInfFromInstagram];
+        [self.wInstagramAPIClient loadInfoFromInstagram];
         self.wInstagramAPIClient.delegate = self;
         return YES;
     }
     return NO;
 }
 
-#warning по сути в этом методе происходит маппинг данных, а имя такое, будето здесь запрос выполняется. Переименуйте метод
-- (void)fetchNextBatchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error {
+- (void)mappingFetchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error {
     NSError *err;
     id val = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
     if(!err && !error && val && [NSJSONSerialization isValidJSONObject:val]) {
         NSArray *data = [val objectForKey:@"data"];
+        __weak __typeof(self)weakSelf = self;
         dispatch_sync(dispatch_get_main_queue(),^{
             if(data) {
                 for (NSDictionary *dict in data) {
-#warning здесь внутри блока нужен weakSelf вместо self
-                    [self.wODDB insertNewObjectWithPictureName:[[[dict valueForKey:@"images"] valueForKey:@"standard_resolution"] valueForKey:@"url"] pictureIdName:[dict valueForKey:@"id"] forSignature:[[dict valueForKey:@"caption"]valueForKey:@"text"]];
+                    [weakSelf.wODDB insertNewObjectWithPictureName:[[[dict valueForKey:@"images"] valueForKey:@"standard_resolution"] valueForKey:@"url"] pictureIdName:[dict valueForKey:@"id"] forSignature:[[dict valueForKey:@"caption"]valueForKey:@"text"]];
                 }
             }
         });

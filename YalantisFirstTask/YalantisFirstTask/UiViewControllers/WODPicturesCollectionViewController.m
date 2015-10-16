@@ -14,8 +14,7 @@
 
 @interface WODPicturesCollectionViewController ()<NSFetchedResultsControllerDelegate>
 
-#warning здесь же по факту лежат не айтемы, а чейнджи
-@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) NSMutableArray *changedObj;
 @property (nonatomic, strong) WODDataManager *manager;
 
 @end
@@ -24,10 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.manager = [WODDataManager new];
     self.wODDB = [[WODDatabase alloc] initWithDelegate:self];
-    [self.collectionView registerNib:[UINib nibWithNibName:kNibName bundle:nil]
-          forCellWithReuseIdentifier:kReuseCollectionIdentifier];
+    self.manager = [[WODDataManager alloc]initWithDatabase:self.wODDB];
+    [self.collectionView registerNib:[UINib nibWithNibName:WODNibName bundle:nil]
+          forCellWithReuseIdentifier:WODReuseCollectionIdentifier];
     if ([self.wODDB modelCountForSections:0] == 0) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Attention please", nil) message:NSLocalizedString(@"Enter tag", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
@@ -37,8 +36,7 @@
 #pragma mark <CollectionViewDataSource,delegat>
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [self.wODDB modelCountForSections:0] - kCellsIntervalToDownloadCollectionView) {
-        self.manager.wODDB = self.wODDB;
+    if (indexPath.row == [self.wODDB modelCountForSections:0] - WODCellsIntervalToDownloadCollectionView) {
         if(![self.manager sendRequestForLoadPicture]) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Attention please", nil)  message:NSLocalizedString(@"Enter tag please", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alert show];
@@ -57,7 +55,7 @@
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    self.items = [[NSMutableArray alloc] init];
+    self.changedObj = [[NSMutableArray alloc] init];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -70,7 +68,7 @@
 
 - (WODCustomCollectionViewCell *)collectionView:(UICollectionView *)collectionView
                          cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    WODCustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseCollectionIdentifier
+    WODCustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:WODReuseCollectionIdentifier
                                                                                   forIndexPath:indexPath];
     [cell setupWithModel:[self.wODDB modelAtIndexPath:indexPath]];
     return cell;
@@ -98,13 +96,13 @@
         case NSFetchedResultsChangeMove:
             break;
     }
-    [self.items addObject:change];
+    [self.changedObj addObject:change];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.collectionView performBatchUpdates:^{
         
-        for (NSDictionary *change in self.items) {
+        for (NSDictionary *change in self.changedObj) {
             [change enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
                 NSFetchedResultsChangeType type = [key unsignedIntegerValue];
                 switch(type) {
@@ -122,7 +120,7 @@
             }];
         }
     } completion:^(BOOL finished) {
-        self.items = nil;
+        self.changedObj = nil;
     }];
 }
 

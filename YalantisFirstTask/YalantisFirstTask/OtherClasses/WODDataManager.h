@@ -13,9 +13,8 @@
 
 @interface WODDataManager : NSObject <WODLoadCompletedDelegat>
 
-@property (nonatomic, strong) WODDatabase *wODDB;
-
-- (void)fetchNextBatchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error;
+- (id)initWithDatabase:(WODDatabase *)wODDB;
+- (void)mappingFetchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error;
 - (BOOL)sendRequestForLoadPicture;
 
 @end

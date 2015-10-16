@@ -11,6 +11,7 @@
 		DA0B10C01B7BA1D80015749E /* WODDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B10BF1B7BA1D80015749E /* WODDatabase.m */; };
 		DA36D2511BD12D4E00BF0367 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA36D2501BD12D4E00BF0367 /* Localizable.strings */; };
 		DA36D2541BD1306200BF0367 /* WODConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DA36D2531BD1306200BF0367 /* WODConst.m */; };
+		DA36D2571BD15F8400BF0367 /* NSURLConnection+WODFormated.m in Sources */ = {isa = PBXBuildFile; fileRef = DA36D2561BD15F8400BF0367 /* NSURLConnection+WODFormated.m */; };
 		DA5B4E481B8F5A14006B8F3D /* WODSaveModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */; };
 		DA869AFB1BCD88510069BB98 /* WODDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA869AFA1BCD88510069BB98 /* WODDataManager.m */; };
 		DAA2053B1B7E3042001F0876 /* WODCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA2053A1B7E3042001F0876 /* WODCustomCell.m */; };
@@ -54,6 +55,8 @@
 		DA36D2501BD12D4E00BF0367 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		DA36D2521BD1306200BF0367 /* WODConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODConst.h; sourceTree = "<group>"; };
 		DA36D2531BD1306200BF0367 /* WODConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODConst.m; sourceTree = "<group>"; };
+		DA36D2551BD15F8400BF0367 /* NSURLConnection+WODFormated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+WODFormated.h"; sourceTree = "<group>"; };
+		DA36D2561BD15F8400BF0367 /* NSURLConnection+WODFormated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+WODFormated.m"; sourceTree = "<group>"; };
 		DA5B4E461B8F5A14006B8F3D /* WODSaveModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODSaveModelViewController.h; sourceTree = "<group>"; };
 		DA5B4E471B8F5A14006B8F3D /* WODSaveModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WODSaveModelViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DA869AF91BCD88510069BB98 /* WODDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODDataManager.h; sourceTree = "<group>"; };
@@ -208,10 +211,12 @@
 				DAE01B9C1BC3FD7000CC9157 /* API */,
 				DAD247E81B8E0A8E00156B10 /* WODAppDelegate.h */,
 				DAD247E91B8E0A8E00156B10 /* WODAppDelegate.m */,
-				DAE01BAC1BC40D8200CC9157 /* NSDictionary+UrlEncoding.h */,
-				DAE01BAD1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m */,
 				DA869AF91BCD88510069BB98 /* WODDataManager.h */,
 				DA869AFA1BCD88510069BB98 /* WODDataManager.m */,
+				DAE01BAC1BC40D8200CC9157 /* NSDictionary+UrlEncoding.h */,
+				DAE01BAD1BC40D8200CC9157 /* NSDictionary+UrlEncoding.m */,
+				DA36D2551BD15F8400BF0367 /* NSURLConnection+WODFormated.h */,
+				DA36D2561BD15F8400BF0367 /* NSURLConnection+WODFormated.m */,
 			);
 			path = OtherClasses;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 			files = (
 				DADE4ADD1B8CEA9E00014412 /* main.m in Sources */,
 				DADE4AD31B8B229C00014412 /* WODContainerViewController.m in Sources */,
+				DA36D2571BD15F8400BF0367 /* NSURLConnection+WODFormated.m in Sources */,
 				DAD1F63B1BA4450600BF3B1D /* WODCoreDataModel.xcdatamodeld in Sources */,
 				DAE01BA51BC4005700CC9157 /* WODInstagramAuthViewController.m in Sources */,
 				DA869AFB1BCD88510069BB98 /* WODDataManager.m in Sources */,

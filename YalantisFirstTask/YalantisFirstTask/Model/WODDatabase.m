@@ -52,8 +52,7 @@
     }
 }
 
-#warning получается дублирование кода в установке значений для новой модели и для имеющейся модели. Код по заполнению "какой-то" модели данными должен быть общим, независимо от того, "новая" она, или "старая"
-- (BOOL)replaceParametersForId:(NSString *)pictureId signature:(NSString *)signature pictureURL:(NSString *)urlString {
+- (NSArray *)repeatedModelForId:(NSString *)pictureId {
     NSEntityDescription *entityDesc = [[self.fetchedResultsController fetchRequest] entity];
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entityDesc];
@@ -62,14 +61,9 @@
     NSError *error;
     NSArray *matchingData = [[self.fetchedResultsController managedObjectContext] executeFetchRequest:request error:&error];
     if (matchingData.count != 0) {
-        for (NSManagedObject *obj in matchingData) {
-            [obj setValue:urlString forKey:kPictureNameAttribute];
-            [obj setValue:signature forKey:kPictureSignatureAttribute];
-            [obj setValue:[NSDate date] forKey:kPictureCreationDateAttribute];
-        }
-        return YES;
+        return matchingData;
     } else {
-        return NO;
+        return nil;
     }
 }
 
@@ -77,16 +71,24 @@
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     
-    if (![self replaceParametersForId:idName signature:signature pictureURL:name]) {
-        WODSignature *wSignature = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    NSArray *matchingData = [self repeatedModelForId:idName];
+    if (!matchingData) {
+        WODSignature *wSignature = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                                                 inManagedObjectContext:context];
         wSignature.pictureIdNamed = idName;
         wSignature.pictureNamed = name;
         wSignature.pictureSignature =signature;
         wSignature.currentDate = [NSDate date];
-        NSError *error;
-        if (![context save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    } else {
+        for (NSManagedObject *obj in matchingData) {
+            [obj setValue:name forKey:WODPictureNameAttribute];
+            [obj setValue:signature forKey:WODPictureSignatureAttribute];
+            [obj setValue:[NSDate date] forKey:WODPictureCreationDateAttribute];
         }
+    }
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
 }
 
@@ -101,9 +103,9 @@
     NSEntityDescription* description =[NSEntityDescription entityForName:@"Signature" inManagedObjectContext:self.managedObjectContext];
     
     [fetchRequest setEntity:description];
-    [fetchRequest setFetchBatchSize:kFetchBatchSize];
+    [fetchRequest setFetchBatchSize:WODFetchBatchSize];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kPictureCreationDateAttribute ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:WODPictureCreationDateAttribute ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     

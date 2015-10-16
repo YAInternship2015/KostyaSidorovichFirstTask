@@ -7,11 +7,11 @@
 //
 
 #import "WODInstagramAuthViewController.h"
-#import "NSDictionary+UrlEncoding.h"
 #import "WODInstagramAPIClient.h"
 #import "WODConst.h"
+#import "NSURLConnection+WODFormated.h"
 
-@interface WODInstagramAuthViewController ()
+@interface WODInstagramAuthViewController ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) NSURLConnection *tokenRequestConnection;
@@ -29,11 +29,11 @@
 }
 
 - (void)pushToContainerVC {
-    [self performSegueWithIdentifier:kSegueIdentifierFromAuthVC sender:self];
+    [self performSegueWithIdentifier:WODSegueIdentifierFromAuthVC sender:self];
 }
 
 -(void)authorize {
-    NSString *url = [NSString stringWithFormat:kAuthString, kInstagramClientID];
+    NSString *url = [NSString stringWithFormat:WODAuthString, WODInstagramClientID];
     [_authWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
@@ -51,28 +51,12 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *responseURL = [request.URL absoluteString];
-    NSString *urlCallbackPrefix = [NSString stringWithFormat:@"%@/?code=", kInstagramRedirectURL];
+    NSString *urlCallbackPrefix = [NSString stringWithFormat:@"%@/?code=", WODInstagramRedirectURL];
     
     if([responseURL hasPrefix:urlCallbackPrefix]) {
-#warning формирование запроса можно вынести в категорию NSURLRequest
         NSString *authToken = [responseURL substringFromIndex:[urlCallbackPrefix length]];
-        NSURL *url = [NSURL URLWithString:kAPIAccessToken];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-        NSDictionary *paramDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   authToken,               @"code",
-                                   kInstagramRedirectURL,   @"redirect_uri",
-                                   @"authorization_code",   @"grant_type",
-                                   kInstagramClientID,      @"client_id",
-                                   kInstagramClientSecret,  @"client_secret", nil];
         
-        NSString *paramString = [paramDict urlEncodedString];
-        NSString *charset = (NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-        
-        [request setHTTPMethod:@"POST"];
-        [request addValue:[NSString stringWithFormat:kValueForRequest,charset] forHTTPHeaderField:kContentType];
-        [request setHTTPBody:[paramString dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        self.tokenRequestConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        self.tokenRequestConnection = [[NSURLConnection alloc] formatedURLConnectionAuthTokenString:authToken delegate:self];
         [self.tokenRequestConnection start];
         return NO;
     }
@@ -100,7 +84,7 @@
         NSString *accesstoken = [jsonData objectForKey:@"access_token"];
         if (accesstoken) {
             WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
-            [wodAPI setToken:accesstoken];
+            [wodAPI setValue:accesstoken forKey:@"token"];
             [self pushToContainerVC];
             return;
         }
