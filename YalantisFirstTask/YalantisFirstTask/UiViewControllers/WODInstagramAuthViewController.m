@@ -40,6 +40,7 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self.authWebView stopLoading];
     if([error code] == -1009) {
+#warning @"Error" также нужно локализировать
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:NSLocalizedString(@"Cannot open", nil)
                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -84,6 +85,7 @@
         NSString *accesstoken = [jsonData objectForKey:@"access_token"];
         if (accesstoken) {
             WODInstagramAPIClient *wodAPI = [WODInstagramAPIClient sharedInstance];
+#warning лучше в интерфейс WODInstagramAPIClient добавить метод setToken:, реализовывать его не нужно, потому что есть свойство token. KVC это конечно хорошо, но если имя свойства изменится, то этот код будет крешить приложение
             [wodAPI setValue:accesstoken forKey:@"token"];
             [self pushToContainerVC];
             return;

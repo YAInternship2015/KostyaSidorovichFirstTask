@@ -14,6 +14,7 @@
 @interface WODDataManager : NSObject <WODLoadCompletedDelegat>
 
 - (id)initWithDatabase:(WODDatabase *)wODDB;
+#warning следующий метод можно здесь не писать, он уже объявлен в протоколе
 - (void)mappingFetchPhotoWith:(NSURLResponse *)respone andData:(NSData *)data error:(NSError*)error;
 - (BOOL)sendRequestForLoadPicture;
 
