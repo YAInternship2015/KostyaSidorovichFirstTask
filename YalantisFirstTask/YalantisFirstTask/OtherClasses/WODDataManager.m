@@ -11,7 +11,7 @@
 #import "WODDatabase.h"
 #import "WODSaveModelViewController.h"
 
-@interface WODDataManager ()
+@interface WODDataManager ()<WODLoadCompletedDelegat>
 
 @property(nonatomic, strong)  WODInstagramAPIClient *wInstagramAPIClient;
 @property (nonatomic, strong) WODDatabase *wODDB;

@@ -22,6 +22,7 @@
 
 + (WODInstagramAPIClient *)sharedInstance;
 
+- (void)setToken:(NSString *)token;
 - (void)setTagForRequest:(NSString *)tag;
 - (void)loadInfoFromInstagram;
 
